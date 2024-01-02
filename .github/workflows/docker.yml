@@ -64,7 +64,7 @@ jobs:
 
       - name: Push
         if: |
-          github.repository == 'robotology/gym-gz' &&
+          github.repository == 'andreaostuni/gym-gz' &&
           github.event_name != 'pull_request' &&
           (github.event_name == 'schedule' || github.ref == 'refs/heads/devel')
         run: docker push andreaostuni/gym-gz:${{ matrix.tag }}
