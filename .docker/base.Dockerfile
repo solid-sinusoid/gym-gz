@@ -28,11 +28,11 @@ RUN apt-get update &&\
     apt-add-repository "deb https://apt.kitware.com/ubuntu/ `lsb_release -cs` main" &&\
     add-apt-repository ppa:deadsnakes/ppa &&\
     wget -nv -O - http://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - &&\
-    apt-add-repository -y "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-17 main" &&\
+    apt-add-repository -y "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs` main" &&\
     apt-get update &&\
     apt-get install -y --no-install-recommends \
         build-essential \
-        clang-10 \
+        clang \
         git \
         cmake \
         cmake-curses-gui \
