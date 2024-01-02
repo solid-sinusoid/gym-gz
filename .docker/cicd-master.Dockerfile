@@ -7,7 +7,7 @@ RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_releas
         > /etc/apt/sources.list.d/gazebo-stable.list &&\
     wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add - &&\
     apt-get update &&\
-    apt-get install -y --no-install-recommends gz-${ignition_codename} &&\
+    apt-get install -y --no-install-recommends gz-${gazebo_codename} &&\
     rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /entrypoint.sh
