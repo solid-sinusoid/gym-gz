@@ -5,7 +5,7 @@ services:
   base:
     build:
       args:
-        from: ubuntu:focal
+        from: ubuntu:jammy
       context: .
       dockerfile: base.Dockerfile
     image: andreaostuni/gym-gz:base
@@ -18,7 +18,7 @@ services:
     build:
       args:
         from: andreaostuni/gym-gz:base
-        gazebo_codename: dome
+        gazebo_codename: garden
       context: .
       dockerfile: cicd-master.Dockerfile
     image: andreaostuni/gym-gz:ci-master
@@ -27,7 +27,7 @@ services:
     build:
       args:
         from: andreaostuni/gym-gz:base
-        gazebo_codename: dome
+        gazebo_codename: garden
       context: .
       dockerfile: cicd-master.Dockerfile
     image: andreaostuni/gym-gz:pypi-master
@@ -40,7 +40,7 @@ services:
     build:
       args:
         from: andreaostuni/gym-gz:base
-        gazebo_codename: fortress
+        gazebo_codename: garden
         CMAKE_BUILD_TYPE: Debug
       context: .
       dockerfile: cicd-devel.Dockerfile
@@ -50,7 +50,7 @@ services:
     build:
       args:
         from: andreaostuni/gym-gz:base
-        gazebo_codename: fortress
+        gazebo_codename: garden
         CMAKE_BUILD_TYPE: Release
       context: .
       dockerfile: cicd-devel.Dockerfile
