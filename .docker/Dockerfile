@@ -1,4 +1,4 @@
-ARG from=diegoferigo/gym-gz:pypi-master
+ARG from=andreaostuni/gym-gz:pypi-master
 FROM ${from}
 
 # Install the PyPI package in a virtualenv
@@ -11,7 +11,7 @@ RUN virtualenv -p $(which python3) ${VIRTUAL_ENV} &&\
 # Clone the repository
 WORKDIR /github
 ARG branch="master"
-RUN git clone -b ${branch} https://github.com/robotology/gym-gz /github
+RUN git clone -b ${branch} https://github.com/andreaostuni/gym-gz /github
 
 # Reset the entrypoint
 ENTRYPOINT [""]
