@@ -51,7 +51,7 @@ jobs:
             software-properties-common
 
       - name: '🐍 Initialize Python'
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: 3.8
 
@@ -164,7 +164,7 @@ jobs:
             software-properties-common
 
       - name: '🐍 Initialize Python'
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
 
@@ -431,7 +431,7 @@ jobs:
 
       # Any Python3 version is ok in this job
       - name: '🐍 Initialize Python'
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: 3.10
 
