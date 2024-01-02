@@ -8,7 +8,7 @@ services:
         from: ubuntu:focal
       context: .
       dockerfile: base.Dockerfile
-    image: diegoferigo/gym-gz:base
+    image: andreaostuni/gym-gz:base
 
   # ======
   # MASTER
@@ -17,20 +17,20 @@ services:
   ci-master:
     build:
       args:
-        from: diegoferigo/gym-gz:base
+        from: andreaostuni/gym-gz:base
         gazebo_codename: dome
       context: .
       dockerfile: cicd-master.Dockerfile
-    image: diegoferigo/gym-gz:ci-master
+    image: andreaostuni/gym-gz:ci-master
 
   pypi-master:
     build:
       args:
-        from: diegoferigo/gym-gz:base
+        from: andreaostuni/gym-gz:base
         gazebo_codename: dome
       context: .
       dockerfile: cicd-master.Dockerfile
-    image: diegoferigo/gym-gz:pypi-master
+    image: andreaostuni/gym-gz:pypi-master
 
   # =====
   # DEVEL
@@ -39,22 +39,22 @@ services:
   ci-devel:
     build:
       args:
-        from: diegoferigo/gym-gz:base
+        from: andreaostuni/gym-gz:base
         gazebo_codename: fortress
         CMAKE_BUILD_TYPE: Debug
       context: .
       dockerfile: cicd-devel.Dockerfile
-    image: diegoferigo/gym-gz:ci-devel
+    image: andreaostuni/gym-gz:ci-devel
 
   pypi-devel:
     build:
       args:
-        from: diegoferigo/gym-gz:base
+        from: andreaostuni/gym-gz:base
         gazebo_codename: fortress
         CMAKE_BUILD_TYPE: Release
       context: .
       dockerfile: cicd-devel.Dockerfile
-    image: diegoferigo/gym-gz:pypi-devel
+    image: andreaostuni/gym-gz:pypi-devel
 
   # ====
   # DEMO
@@ -63,18 +63,18 @@ services:
   latest:
     build:
       args:
-        from: diegoferigo/gym-gz:pypi-master
+        from: andreaostuni/gym-gz:pypi-master
         branch: master
       context: .
       dockerfile: Dockerfile
-    image: diegoferigo/gym-gz:latest
+    image: andreaostuni/gym-gz:latest
 
   nightly:
     build:
       args:
-        from: diegoferigo/gym-gz:ci-devel
+        from: andreaostuni/gym-gz:ci-devel
         branch: devel
         pip_options: --pre
       context: .
       dockerfile: Dockerfile
-    image: diegoferigo/gym-gz:nightly
+    image: andreaostuni/gym-gz:nightly
