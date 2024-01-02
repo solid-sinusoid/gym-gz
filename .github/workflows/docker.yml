@@ -18,12 +18,12 @@ on:
 
 jobs:
   docker:
-    name: 'diegoferigo/gym-ignition:${{ matrix.tag }}'
+    name: 'andreaostuni/gym-gz:${{ matrix.tag }}'
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
       matrix:
-        baseimage: ['ubuntu:bionic']
+        baseimage: ['ubuntu:jammy']
         tag:
           - base
           - ci-master
@@ -54,7 +54,7 @@ jobs:
 
       - name: Login
         if: |
-          github.repository == 'robotology/gym-ignition' &&
+          github.repository == 'andreaostuni/gym-gz' &&
           github.event_name != 'pull_request' &&
           (github.event_name == 'schedule' || github.ref == 'refs/heads/devel')
         env:
@@ -64,7 +64,7 @@ jobs:
 
       - name: Push
         if: |
-          github.repository == 'robotology/gym-ignition' &&
+          github.repository == 'robotology/gym-gz' &&
           github.event_name != 'pull_request' &&
           (github.event_name == 'schedule' || github.ref == 'refs/heads/devel')
-        run: docker push diegoferigo/gym-ignition:${{ matrix.tag }}
+        run: docker push andreaostuni/gym-gz:${{ matrix.tag }}

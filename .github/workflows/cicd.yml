@@ -14,7 +14,7 @@ jobs:
 # =============
   build-colcon:
 # =============
-    name: 'colcon@${{ matrix.ignition }}'
+    name: 'colcon@${{ matrix.gazebo }}'
     if: |
       (github.event_name == 'push' && github.ref != 'refs/heads/master') ||
       (github.event_name == 'pull_request' && github.event.pull_request.base.ref != 'master')
@@ -22,10 +22,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ignition:
+        gazebo:
           # - dome
           # - edifice
-          - fortress
+          - garden
     env:
       CCACHE_DIR: ${{ github.workspace }}/.ccache
     steps:
@@ -61,9 +61,9 @@ jobs:
           path: ${{ env.CCACHE_DIR }}
           # We include the commit sha in the cache key, as new cache entries are
           # only created if there is no existing entry for the key yet.
-          key: ${{ runner.os }}-ccache-${{ matrix.ignition }}-${{ github.sha }}
+          key: ${{ runner.os }}-ccache-${{ matrix.gazebo }}-${{ github.sha }}
           # Restore any ccache cache entry, if none for the key above exists
-          restore-keys: ${{ runner.os }}-ccache-${{ matrix.ignition }}
+          restore-keys: ${{ runner.os }}-ccache-${{ matrix.gazebo }}
 
       - name: '🚚 Enable ccache'
         run: |
@@ -89,11 +89,11 @@ jobs:
           sudo chmod -R a+rw /workspace
           cd /workspace/src
           wget -O - ${TAGS_YAML} | vcs import
-          echo $(sort -u $(find . -iname 'packages-'$(lsb_release -cs)'.apt' -o -iname 'packages.apt') | grep -v -E "^libignition|^libsdformat" | tr '\n' ' ') \
+          echo $(sort -u $(find . -iname 'packages-'$(lsb_release -cs)'.apt' -o -iname 'packages.apt') | grep -v -E "^libgz|^libsdformat" | tr '\n' ' ') \
             > /workspace/install/pkg.txt
           xargs -a /workspace/install/pkg.txt sudo apt-get install -y --no-install-recommends
         env:
-          TAGS_YAML: https://raw.githubusercontent.com/ignition-tooling/gazebodistro/master/collection-${{ matrix.ignition }}.yaml
+          TAGS_YAML: https://raw.githubusercontent.com/gazebo-tooling/gazebodistro/master/collection-${{ matrix.gazebo }}.yaml
 
       - name: '🏗️ Build colcon workspace'
         run: |
@@ -115,13 +115,13 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: /tmp/workspace_install.tar.lz4
-          name: workspace-${{ matrix.ignition }}
+          name: workspace-${{ matrix.gazebo }}
           retention-days: 1
 
 # ===============
   build-and-test:
 # ===============
-    name: 'Build and Test [${{matrix.type}}|${{matrix.ignition}}|${{matrix.python}}]'
+    name: 'Build and Test [${{matrix.type}}|${{matrix.gazebo}}|${{matrix.python}}]'
     if: always()
     needs: [ build-colcon ]
     runs-on: ${{ matrix.os }}
@@ -133,13 +133,12 @@ jobs:
         type:
           - User
           - Developer
-        ignition:
+        gazebo:
           # - dome
           # - edifice
-          - fortress
+          - garden
         python:
-          - 3.8
-          - 3.9
+          - 3.10
     steps:
 
       - name: '🔍 Inspect Environment'
@@ -175,7 +174,7 @@ jobs:
         run: git fetch --prune --unshallow
 
       # ================
-      # Install Ignition
+      # Install Gazebo
       # ================
 
       - name: '⚙️ Add osrf ppa'
@@ -185,14 +184,14 @@ jobs:
             /etc/apt/sources.list.d/gazebo-stable.list'
           wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
           sudo apt-get update
-      - name: '[🔒️|stable] Install Ignition from ppa'
+      - name: '[🔒️|stable] Install Gazebo from ppa'
         if: |
           contains(matrix.os, 'ubuntu') && (
             github.event_name == 'release' ||
             github.ref == 'refs/heads/master' ||
             (github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'master')
           )
-        run: sudo apt-get install -y --no-install-recommends ignition-${{ matrix.ignition }}
+        run: sudo apt-get install -y --no-install-recommends gz-${{ matrix.gazebo }}
 
       - name: '[🧪|nightly] Download pre-built colcon workspace'
         uses: actions/download-artifact@v2
@@ -203,7 +202,7 @@ jobs:
           )
         with:
           path: /tmp
-          name: workspace-${{ matrix.ignition }}
+          name: workspace-${{ matrix.gazebo }}
       - name: '[🧪|nightly] Setup colcon workspace'
         if: |
           contains(matrix.os, 'ubuntu') && (
@@ -244,26 +243,26 @@ jobs:
           cmake -S . -B build/ \
             -GNinja \
             -DCMAKE_BUILD_TYPE=Debug \
-            -DIGNITION_DISTRIBUTION=$(python3 -c "print('${{ matrix.ignition }}'.capitalize())")
+            -DGAZEBO_DISTRIBUTION=$(python3 -c "print('${{ matrix.gazebo }}'.capitalize())")
           sudo cmake --build build/ --target install
       - name: '[👷|developer] Install Python ScenarIO'
         if: matrix.type == 'Developer'
         run: pip install -e ./scenario
 
       # User installation
-      - name: '[👤|user] Create wheel (default ignition)'
-        if: matrix.type == 'User' && matrix.ignition == 'fortress'
+      - name: '[👤|user] Create wheel (default gazebo)'
+        if: matrix.type == 'User' && matrix.gazebo == 'garden'
         shell: bash -i -e {0}
         run: pip wheel --use-feature=in-tree-build -v -w dist/ ./scenario
       # Note: Calling "pip wheel" with "--global-option" forces all dependencies to be built from their sdist.
       #       Since it's very slow, we create the wheel from setup.py without isolation (requires system deps).
-      - name: '[👤|user] Create wheel (custom ignition)'
-        if: matrix.type == 'User' && matrix.ignition != 'fortress'
+      - name: '[👤|user] Create wheel (custom gazebo)'
+        if: matrix.type == 'User' && matrix.gazebo != 'gardern'
         shell: bash -i -e {0}
         run: |
           pip install wheel setuptools-scm cmake-build-extension
           python3 ./scenario/setup.py bdist_wheel \
-            build_ext -DIGNITION_DISTRIBUTION=$(python3 -c "print('${{ matrix.ignition }}'.capitalize())")
+            build_ext -DGAZEBO_DISTRIBUTION=$(python3 -c "print('${{ matrix.gazebo }}'.capitalize())")
       - name: '[👤|user] Install local wheel'
         if: matrix.type == 'User'
         run: pip install -v dist/scenario-*.whl
@@ -275,10 +274,10 @@ jobs:
           tree $(python3 -c "import scenario, pathlib; print(pathlib.Path(scenario.__file__).parent)")
 
       # ====================
-      # Install gym-ignition
+      # Install gym-gz
       # ====================
 
-      - name: '🐍 Install gym-ignition'
+      - name: '🐍 Install gym-gz'
         run: pip install wheel && pip install .[all]
 
       # ============
@@ -286,7 +285,7 @@ jobs:
       # ============
 
       - name: '🔍 Inspect installed versions'
-        run: pip list | grep -E "^scenario|^gym-ignition"
+        run: pip list | grep -E "^scenario|^gym-gz"
 
       - name: '[🐍|scenario] Python Tests'
         shell: bash -i -e {0}
@@ -300,17 +299,17 @@ jobs:
           pip install colour-valgrind
           valgrind --log-file=/tmp/valgrind.log pytest -m "scenario" || colour-valgrind -t /tmp/valgrind.log
 
-      - name: '[🐍|gym-ignition] Python Tests'
+      - name: '[🐍|gym-gz] Python Tests'
         shell: bash -i -e {0}
-        run: pytest -m "gym_ignition"
+        run: pytest -m "gym_gz"
 
-      - name: '[🚨|gym-ignition] Python Tests with Valgrind'
+      - name: '[🚨|gym-gz] Python Tests with Valgrind'
         shell: bash -i -e {0}
         if: failure()
         run: |
           sudo apt-get install -y --no-install-recommends valgrind
           pip install colour-valgrind
-          valgrind --log-file=/tmp/valgrind.log pytest -m "gym_ignition" || colour-valgrind -t /tmp/valgrind.log
+          valgrind --log-file=/tmp/valgrind.log pytest -m "gym_gz" || colour-valgrind -t /tmp/valgrind.log
 
       # ============================
       # Upload artifacts (only User)
@@ -322,7 +321,7 @@ jobs:
 
       # We have to trick PyPI that our wheels are manylinux2014 even if they are not.
       # Unfortunately we cannot create self-contained wheels (neither the PEP600 perennial)
-      # due to the Ignition architecture.
+      # due to the Gazebo architecture.
       - name: '📝 Rename scenario wheel'
         if: matrix.type == 'User' && contains(matrix.os, 'ubuntu')
         run: |
@@ -336,7 +335,7 @@ jobs:
 
       - name: '⬆️ Upload artifacts'
         uses: actions/upload-artifact@v2
-        if: matrix.type == 'User' && matrix.ignition == 'fortress'
+        if: matrix.type == 'User' && matrix.gazebo == 'gardern'
         with:
           path: dist/*
           name: dist
@@ -376,7 +375,7 @@ jobs:
 
       - name: '⬆️ Upload website folder'
         uses: actions/upload-artifact@v2
-        if: matrix.type == 'User' && matrix.ignition == 'fortress' && contains(matrix.os, 'ubuntu')
+        if: matrix.type == 'User' && matrix.gazebo == 'garden' && contains(matrix.os, 'ubuntu')
         with:
           path: build/html
           name: website
@@ -404,7 +403,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v3
         if: |
           github.event_name == 'push' &&
-          github.repository == 'robotology/gym-ignition' &&
+          github.repository == 'andreaostuni/gym-gz' &&
           (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/devel')
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -434,7 +433,7 @@ jobs:
       - name: '🐍 Initialize Python'
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.10
 
       - name: '🔀 Clone repository'
         uses: actions/checkout@master
@@ -468,7 +467,7 @@ jobs:
       - name: '[📦|scenario]️ Create sdist'
         run: python -m build --sdist scenario/ -o dist/
 
-      - name: '[📦|gym-ignition]️ Create sdist and wheel'
+      - name: '[📦|gym-gz]️ Create sdist and wheel'
         run: python -m build .
 
       # ================
@@ -476,7 +475,7 @@ jobs:
       # ================
 
       - name: '🗑️ Remove external packages'
-        run: find dist/ -type f -not \( -name '*scenario-*' -o -name '*gym_ignition-*' \) -delete -print
+        run: find dist/ -type f -not \( -name '*scenario-*' -o -name '*gym_gz-*' \) -delete -print
 
       - name: '🔍 Check packages'
         run: pipx run twine check dist/*
@@ -538,7 +537,7 @@ jobs:
 
       - name: '⬆️ Publish packages to PyPI'
         if: |
-          github.repository == 'robotology/gym-ignition' &&
+          github.repository == 'robotology/gym-gz' &&
           ((github.event_name == 'release' && github.event.action == 'published') ||
            (github.event_name == 'push' && github.ref == 'refs/heads/devel'))
         uses: pypa/gh-action-pypi-publish@master

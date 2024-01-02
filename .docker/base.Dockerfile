@@ -1,4 +1,4 @@
-ARG from=ubuntu:focal
+ARG from=ubuntu:jammy
 FROM ${from}
 
 SHELL ["/bin/bash", "-c"]
@@ -41,9 +41,9 @@ RUN apt-get update &&\
         libgflags-dev \
         python3-pip \
         python3-wheel \
-        python3.8 \
-        python3.8-dev \
-        libpython3.8-dev \
+        python3.10 \
+        python3.10-dev \
+        libpython3.10-dev \
         virtualenv \
         swig \
         &&\

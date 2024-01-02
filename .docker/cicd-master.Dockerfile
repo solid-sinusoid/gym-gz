@@ -1,13 +1,13 @@
-ARG from=diegoferigo/gym-ignition:base
+ARG from=diegoferigo/gym-gz:base
 FROM ${from}
 
 # Install ignition gazebo
-ARG ignition_codename="fortress"
+ARG gazebo_codename="garden"
 RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" \
         > /etc/apt/sources.list.d/gazebo-stable.list &&\
     wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add - &&\
     apt-get update &&\
-    apt-get install -y --no-install-recommends ignition-${ignition_codename} &&\
+    apt-get install -y --no-install-recommends gz-${ignition_codename} &&\
     rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /entrypoint.sh
