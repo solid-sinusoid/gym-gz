@@ -278,7 +278,9 @@ jobs:
       # ====================
 
       - name: '🐍 Install gym-gz'
-        run: pip install wheel && pip install .[all]
+        run: |
+          pip install -i https://test.pypi.org/simple/ gym-gz-models
+          pip install wheel && pip install .[all]
 
       # ============
       # Test project
@@ -537,11 +539,11 @@ jobs:
 
       - name: '⬆️ Publish packages to PyPI'
         if: |
-          github.repository == 'robotology/gym-gz' &&
+          github.repository == 'andreaostuni/gym-gz' &&
           ((github.event_name == 'release' && github.event.action == 'published') ||
            (github.event_name == 'push' && github.ref == 'refs/heads/devel'))
-        uses: pypa/gh-action-pypi-publish@master
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: __token__
           password: ${{ secrets.PYPI_TOKEN }}
-          skip_existing: true
+          skip-existing: true
