@@ -99,14 +99,14 @@ class PendulumSwingUp(task.Task, abc.ABC):
         terminated = not self.observation_space.contains(observation)
 
         return terminated
-    
+
     def is_truncated(self) -> bool:
         return False
 
     def reset_task(self) -> None:
 
         if self.model_name not in self.world.model_names():
-            raise RuntimeError("The cartpole model was not inserted in the world")
+            raise RuntimeError("The pendulum model was not inserted in the world")
 
         # Get the model
         model = self.world.get_model(self.model_name)
