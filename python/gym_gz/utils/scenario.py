@@ -4,8 +4,8 @@
 
 from typing import List, Tuple, Union
 
-import gymnasium as gym
 import gym_gz_models
+import gymnasium as gym
 import numpy as np
 
 from scenario import core

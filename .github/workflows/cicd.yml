@@ -253,7 +253,7 @@ jobs:
       - name: '[👤|user] Create wheel (default gazebo)'
         if: matrix.type == 'User' && matrix.gazebo == 'garden'
         shell: bash -i -e {0}
-        run: pip wheel --use-feature=in-tree-build -v -w dist/ ./scenario
+        run: pip wheel -v -w dist/ ./scenario
       # Note: Calling "pip wheel" with "--global-option" forces all dependencies to be built from their sdist.
       #       Since it's very slow, we create the wheel from setup.py without isolation (requires system deps).
       - name: '[👤|user] Create wheel (custom gazebo)'
