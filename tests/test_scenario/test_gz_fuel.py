@@ -24,7 +24,6 @@ scenario.set_verbosity(scenario.Verbosity_debug)
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_download_model_from_fuel(gazebo: scenario.GazeboSimulator):
-
     assert gazebo.initialize()
 
     # Get the default world

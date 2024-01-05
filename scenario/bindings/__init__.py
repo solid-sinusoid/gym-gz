@@ -12,7 +12,6 @@ import packaging.version
 
 
 def supported_versions_specifier_set() -> packaging.specifiers.SpecifierSet:
-
     # If 7 is the Gazebo distribution major version, the following specifier enables
     # the compatibility with all the following versions:
     #
@@ -33,7 +32,6 @@ class InstallMode(Enum):
 
 
 def detect_install_mode() -> InstallMode:
-
     import scenario.bindings.core
 
     install_prefix = scenario.bindings.core.get_install_prefix()
@@ -51,7 +49,6 @@ def detect_install_mode() -> InstallMode:
 
 
 def setup_gazebo_environment() -> None:
-
     import scenario.bindings.core
 
     # Configure the environment
@@ -84,7 +81,6 @@ def setup_gazebo_environment() -> None:
 
 
 def preload_tensorflow_shared_libraries() -> None:
-
     # Check if tensorflow is installed
     import importlib.util
 
@@ -120,7 +116,6 @@ def preload_tensorflow_shared_libraries() -> None:
 
 
 def pre_import_gym() -> None:
-
     # Check if gym is installed
     import importlib.util
 
@@ -133,7 +128,6 @@ def pre_import_gym() -> None:
 
 
 def check_gazebo_installation() -> None:
-
     import subprocess
 
     try:
@@ -176,7 +170,6 @@ def check_gazebo_installation() -> None:
 
 
 def import_gazebo() -> None:
-
     # Check the the module was never loaded by someone else
     if "scenario.bindings._gazebo" in sys.modules:
         raise ImportError("Failed to load ScenarIO Gazebo with custom dlopen flags")
@@ -195,7 +188,6 @@ def import_gazebo() -> None:
     # See https://github.com/robotology/gym-ignition/issues/7
     #     https://stackoverflow.com/a/45473441/12150968
     if sys.platform.startswith("linux") or sys.platform.startswith("darwin"):
-
         # Update the dlopen flags
         dlopen_flags = sys.getdlopenflags()
         sys.setdlopenflags(dlopen_flags | os.RTLD_GLOBAL)
@@ -210,7 +202,6 @@ def import_gazebo() -> None:
 
 
 def create_home_dot_folder() -> None:
-
     # Make sure that the dot folder in the user's home exists
     Path("~/.gz/gazebo").expanduser().mkdir(mode=0o755, parents=True, exist_ok=True)
 
@@ -221,7 +212,6 @@ def create_home_dot_folder() -> None:
 
 # Find the _gazebo.* shared lib
 if len(list((Path(__file__).parent / "bindings").glob(pattern="_gazebo.*"))) == 1:
-
     check_gazebo_installation()
     import_gazebo()
     create_home_dot_folder()

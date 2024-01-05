@@ -31,7 +31,6 @@ scenario.set_verbosity(scenario.Verbosity_debug)
     ids=utils.id_gazebo_fn,
 )
 def test_initialization(gazebo: scenario.GazeboSimulator):
-
     ok = gazebo.initialize()
 
     rtf = gazebo.real_time_factor()
@@ -62,7 +61,6 @@ def test_initialization(gazebo: scenario.GazeboSimulator):
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_run(gazebo: scenario.GazeboSimulator):
-
     assert gazebo.initialize()
     assert gazebo.run(paused=True)
     assert gazebo.run()
@@ -72,7 +70,6 @@ def test_run(gazebo: scenario.GazeboSimulator):
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_pause(gazebo: scenario.GazeboSimulator):
-
     assert gazebo.initialize()
     assert not gazebo.running()
     assert gazebo.pause()
@@ -95,7 +92,6 @@ def test_pause(gazebo: scenario.GazeboSimulator):
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_paused_step(gazebo: scenario.GazeboSimulator):
-
     assert gazebo.initialize()
 
     world = gazebo.get_world().to_gazebo()
@@ -115,7 +111,6 @@ def test_paused_step(gazebo: scenario.GazeboSimulator):
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_load_default_world(gazebo: scenario.GazeboSimulator):
-
     assert gazebo.initialize()
     assert gazebo.world_names()
     assert len(gazebo.world_names()) == 1

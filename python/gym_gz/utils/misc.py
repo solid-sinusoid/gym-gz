@@ -6,7 +6,6 @@ import tempfile
 
 
 def string_to_file(string: str) -> str:
-
     handle, tmpfile = tempfile.mkstemp()
 
     with open(handle, "w") as f:

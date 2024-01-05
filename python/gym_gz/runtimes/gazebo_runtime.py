@@ -58,7 +58,6 @@ class GazeboRuntime(runtime.Runtime):
         render_mode: Optional[str] = None,
         **kwargs,
     ):
-
         if gym.logger.min_level <= gym.logger.DEBUG:
             import inspect
 
@@ -109,7 +108,6 @@ class GazeboRuntime(runtime.Runtime):
     # =================
 
     def timestamp(self) -> float:
-
         return self.world.time()
 
     # =================
@@ -117,7 +115,6 @@ class GazeboRuntime(runtime.Runtime):
     # =================
 
     def step(self, action: Action) -> State:
-
         if not self.action_space.contains(action):
             logger.warn("The action does not belong to the action space")
 
@@ -163,7 +160,6 @@ class GazeboRuntime(runtime.Runtime):
         )
 
     def reset(self, seed: int = None, options: Dict = {}, **kwargs) -> ResetReturn:
-
         self.seed(seed)
 
         # Reset the task
@@ -203,14 +199,12 @@ class GazeboRuntime(runtime.Runtime):
         return
 
     def close(self) -> None:
-
         ok_close = self.gazebo.close()
 
         if not ok_close:
             raise RuntimeError("Failed to close Gazebo")
 
     def seed(self, seed: int = None) -> SeedList:
-
         # This method also seeds the spaces. To create them, the task could use the world.
         # Here we check that is has been created.
         if not self.task.has_world():
@@ -227,7 +221,6 @@ class GazeboRuntime(runtime.Runtime):
 
     @property
     def gazebo(self) -> scenario.GazeboSimulator:
-
         if self._gazebo is not None:
             assert self._gazebo.initialized()
             return self._gazebo
@@ -258,7 +251,6 @@ class GazeboRuntime(runtime.Runtime):
 
     @property
     def world(self) -> scenario.World:
-
         if self._world is not None:
             assert self.gazebo.initialized()
             return self._world
@@ -297,7 +289,6 @@ class GazeboRuntime(runtime.Runtime):
         assert self._world_name in self._gazebo.world_names()
 
         if self._world_sdf == "":
-
             # Insert the ground plane
             ok_ground = world.insert_model(gym_gz_models.get_model_file("ground_plane"))
 

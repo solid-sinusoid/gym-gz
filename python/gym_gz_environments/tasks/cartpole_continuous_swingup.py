@@ -21,7 +21,6 @@ from scenario import core as scenario
 
 class CartPoleContinuousSwingup(task.Task, abc.ABC):
     def __init__(self, agent_rate: float, reward_cart_at_center: bool = True, **kwargs):
-
         # Initialize the Task base class
         task.Task.__init__(self, agent_rate=agent_rate)
 
@@ -41,7 +40,6 @@ class CartPoleContinuousSwingup(task.Task, abc.ABC):
         self._dq_threshold = np.deg2rad(3 * 360)  # rad / s
 
     def create_spaces(self) -> Tuple[ActionSpace, ObservationSpace]:
-
         # Create the action space
         max_force = 200.0  # Nm
         action_space = gym.spaces.Box(
@@ -70,7 +68,6 @@ class CartPoleContinuousSwingup(task.Task, abc.ABC):
         return action_space, observation_space
 
     def set_action(self, action: Action) -> None:
-
         # Get the force value
         force = action.tolist()[0]
 
@@ -82,7 +79,6 @@ class CartPoleContinuousSwingup(task.Task, abc.ABC):
             raise RuntimeError("Failed to set the force to the cart")
 
     def get_observation(self) -> Observation:
-
         # Get the model
         model = self.world.get_model(self.model_name)
 
@@ -97,7 +93,6 @@ class CartPoleContinuousSwingup(task.Task, abc.ABC):
         return observation
 
     def get_reward(self) -> Reward:
-
         # Get the model
         model = self.world.get_model(self.model_name)
 
@@ -112,7 +107,7 @@ class CartPoleContinuousSwingup(task.Task, abc.ABC):
         reward = (np.cos(q) + 1) / 2
 
         # Penalize cart velocities
-        reward -= 0.1 * (dx ** 2)
+        reward -= 0.1 * (dx**2)
 
         # Penalize positions close to the end of the rail
         reward -= 10.0 * (x >= 0.8 * self._x_threshold)
@@ -120,7 +115,6 @@ class CartPoleContinuousSwingup(task.Task, abc.ABC):
         return reward
 
     def is_terminated(self) -> bool:
-
         # Get the observation
         observation = self.get_observation()
 
@@ -133,7 +127,6 @@ class CartPoleContinuousSwingup(task.Task, abc.ABC):
         return False
 
     def reset_task(self) -> None:
-
         if self.model_name not in self.world.model_names():
             raise RuntimeError("Cartpole model not found in the world")
 

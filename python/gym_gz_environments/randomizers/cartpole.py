@@ -35,7 +35,6 @@ class CartpoleRandomizersMixin(
     """
 
     def __init__(self, randomize_physics_after_rollouts: int = 0):
-
         # Initialize base classes
         randomizers.abc.TaskRandomizer.__init__(self)
         randomizers.abc.PhysicsRandomizer.__init__(
@@ -51,11 +50,9 @@ class CartpoleRandomizersMixin(
     # ===========================
 
     def get_engine(self):
-
         return scenario.PhysicsEngine_dart
 
     def randomize_physics(self, task: SupportedTasks, **kwargs) -> None:
-
         gravity_z = task.np_random.normal(loc=-9.8, scale=0.2)
 
         if not task.world.to_gazebo().set_gravity((0, 0, gravity_z)):
@@ -66,7 +63,6 @@ class CartpoleRandomizersMixin(
     # ========================
 
     def randomize_task(self, task: SupportedTasks, **kwargs) -> None:
-
         # Remove the model from the world
         self._clean_world(task=task)
 
@@ -94,7 +90,6 @@ class CartpoleRandomizersMixin(
     # ====================================
 
     def randomize_model_description(self, task: SupportedTasks, **kwargs) -> str:
-
         randomizer = self._get_sdf_randomizer(task=task)
         sdf = misc.string_to_file(randomizer.sample())
         return sdf
@@ -106,7 +101,6 @@ class CartpoleRandomizersMixin(
     def _get_sdf_randomizer(
         self, task: SupportedTasks
     ) -> randomizers.model.sdf.SDFRandomizer:
-
         if self._sdf_randomizer is not None:
             return self._sdf_randomizer
 
@@ -142,16 +136,13 @@ class CartpoleRandomizersMixin(
 
     @staticmethod
     def _clean_world(task: SupportedTasks) -> None:
-
         # Remove the model from the simulation
         if task.model_name is not None and task.model_name in task.world.model_names():
-
             if not task.world.to_gazebo().remove_model(task.model_name):
                 raise RuntimeError("Failed to remove the cartpole from the world")
 
     @staticmethod
     def _populate_world(task: SupportedTasks, cartpole_model: str = None) -> None:
-
         # Insert a new cartpole.
         # It will create a unique name if there are clashing.
         model = cartpole.CartPole(world=task.world, model_file=cartpole_model)
@@ -168,7 +159,6 @@ class CartpoleEnvRandomizer(
     """
 
     def __init__(self, env: MakeEnvCallable, num_physics_rollouts: int = 0):
-
         # Initialize the mixin
         CartpoleRandomizersMixin.__init__(
             self, randomize_physics_after_rollouts=num_physics_rollouts

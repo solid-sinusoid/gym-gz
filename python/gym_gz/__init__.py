@@ -18,7 +18,6 @@ if "GZ_SIM_RESOURCE_PATH" in os.environ:
 
 
 def initialize_verbosity() -> None:
-
     import gym_gz.utils.logger
     import gymnasium as gym
 

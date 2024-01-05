@@ -20,7 +20,6 @@ scenario.set_verbosity(scenario.Verbosity_debug)
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_load_default_world(gazebo: scenario.GazeboSimulator):
-
     assert gazebo.initialize()
     world = gazebo.get_world()
 
@@ -33,7 +32,6 @@ def test_load_default_world(gazebo: scenario.GazeboSimulator):
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_load_default_world_from_file(gazebo: scenario.GazeboSimulator):
-
     empty_world_sdf = utils.get_empty_world_sdf()
 
     assert gazebo.insert_world_from_sdf(empty_world_sdf)
@@ -50,7 +48,6 @@ def test_load_default_world_from_file(gazebo: scenario.GazeboSimulator):
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_rename_default_world(gazebo: scenario.GazeboSimulator):
-
     empty_world_sdf = utils.get_empty_world_sdf()
     assert gazebo.insert_world_from_sdf(empty_world_sdf, "myWorld")
 
@@ -72,7 +69,6 @@ def test_rename_default_world(gazebo: scenario.GazeboSimulator):
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_world_api(gazebo: scenario.GazeboSimulator):
-
     assert gazebo.initialize()
     world = gazebo.get_world()
 
@@ -153,7 +149,6 @@ def test_world_api(gazebo: scenario.GazeboSimulator):
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_world_physics_plugin(gazebo: scenario.GazeboSimulator):
-
     assert gazebo.initialize()
     world = gazebo.get_world()
 
@@ -199,7 +194,6 @@ def test_world_physics_plugin(gazebo: scenario.GazeboSimulator):
     "gazebo", [(0.001, 1.0, 1), (1e-9, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_sim_time_starts_from_zero(gazebo: scenario.GazeboSimulator):
-
     assert gazebo.initialize()
     world = gazebo.get_world()
 

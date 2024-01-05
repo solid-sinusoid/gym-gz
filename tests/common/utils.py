@@ -86,7 +86,6 @@ def default_world_fixture(request):
 
 
 def get_multi_world_sdf_file() -> str:
-
     multi_world_sdf_string = f"""
     <?xml version="1.0" ?>
     <sdf version="1.6">
@@ -150,10 +149,9 @@ def get_cube_sdf_string() -> str:
 
 
 def get_cube_urdf_string() -> str:
-
     mass = 5.0
     edge = 0.2
-    i = 1 / 12 * mass * (edge ** 2 + edge ** 2)
+    i = 1 / 12 * mass * (edge**2 + edge**2)
     cube_urdf = f"""
     <robot name="cube_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
         <link name="cube">
@@ -181,13 +179,11 @@ def get_cube_urdf_string() -> str:
 
 
 def get_cube_urdf() -> str:
-
     model_file = misc.string_to_file(get_cube_urdf_string())
     return model_file
 
 
 def get_empty_world_sdf() -> str:
-
     world_sdf_string = scenario.get_empty_world()
 
     world_file = misc.string_to_file(world_sdf_string)
@@ -196,13 +192,11 @@ def get_empty_world_sdf() -> str:
 
 @dataclasses.dataclass
 class SphereURDF:
-
     mass: float = 5.0
     radius: float = 0.1
     restitution: float = 0
 
     def urdf(self) -> str:
-
         i = 2.0 / 5 * self.mass * self.radius * self.radius
         urdf = f"""
             <robot name="sphere_model" xmlns:xacro="http://www.ros.org/wiki/xacro">

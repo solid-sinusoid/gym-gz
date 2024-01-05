@@ -12,7 +12,6 @@ GRAVITY = (0, 0, -9.80665)
 
 @dataclass
 class ComputedTorqueFixedBase(plugin.GazeboPlugin):
-
     urdf: str
     kp: List[float]
     ki: List[float]
@@ -43,5 +42,4 @@ class ComputedTorqueFixedBase(plugin.GazeboPlugin):
 
     @staticmethod
     def _to_str(iterable: Iterable) -> str:
-
         return " ".join([str(el) for el in iterable])

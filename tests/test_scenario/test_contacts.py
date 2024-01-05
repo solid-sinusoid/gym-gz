@@ -23,10 +23,9 @@ scenario.set_verbosity(scenario.Verbosity_debug)
 
 
 def get_cube_urdf_string_double_collision() -> str:
-
     mass = 5.0
     edge = 0.2
-    i = 1 / 12 * mass * (edge ** 2 + edge ** 2)
+    i = 1 / 12 * mass * (edge**2 + edge**2)
     cube_urdf = f"""
     <robot name="cube_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
         <link name="cube">
@@ -69,7 +68,6 @@ def get_cube_urdf_string_double_collision() -> str:
     ids=utils.id_gazebo_fn,
 )
 def test_cube_contact(gazebo: scenario.GazeboSimulator, get_model_str: Callable):
-
     assert gazebo.initialize()
     world = gazebo.get_world().to_gazebo()
 
@@ -117,7 +115,6 @@ def test_cube_contact(gazebo: scenario.GazeboSimulator, get_model_str: Callable)
 
     # Check contact points
     for point in contact_with_ground.points:
-
         assert point.normal == pytest.approx([0, 0, 1])
 
     # Check that the contact force matches the weight of the cube
@@ -142,7 +139,6 @@ def test_cube_contact(gazebo: scenario.GazeboSimulator, get_model_str: Callable)
 def test_cube_multiple_contacts(
     gazebo: scenario.GazeboSimulator, get_model_str: Callable
 ):
-
     assert gazebo.initialize()
     world = gazebo.get_world().to_gazebo()
 

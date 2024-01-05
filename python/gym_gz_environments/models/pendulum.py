@@ -18,7 +18,6 @@ class Pendulum(model_wrapper.ModelWrapper, model_with_file.ModelWithFile):
         orientation: List[float] = (1.0, 0, 0, 0),
         model_file: str = None,
     ):
-
         # Get a unique model name
         model_name = get_unique_model_name(world, "pendulum")
 
@@ -43,7 +42,6 @@ class Pendulum(model_wrapper.ModelWrapper, model_with_file.ModelWithFile):
 
     @classmethod
     def get_model_file(cls) -> str:
-
         import gym_gz_models
 
         return gym_gz_models.get_model_file("pendulum")

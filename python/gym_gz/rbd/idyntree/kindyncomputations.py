@@ -22,7 +22,6 @@ class KinDynComputations:
         world_gravity: np.ndarray = np.array([0, 0, -9.806]),
         velocity_representation: FrameVelocityRepresentation = FrameVelocityRepresentation.MIXED_REPRESENTATION,
     ) -> None:
-
         self.velocity_representation = velocity_representation
 
         self.kindyn = iDynTreeHelpers.get_kindyncomputations(
@@ -33,7 +32,6 @@ class KinDynComputations:
         self.dofs = self.kindyn.getNrOfDegreesOfFreedom()
 
         if considered_joints is None:
-
             model: idt.Model = self.kindyn.model()
 
             all_joints = [model.getJointName(i) for i in range(model.getNrOfJoints())]
@@ -42,7 +40,6 @@ class KinDynComputations:
             self._considered_joints = considered_joints
 
     def joint_serialization(self) -> List[str]:
-
         return self._considered_joints
 
     def set_robot_state(
@@ -53,7 +50,6 @@ class KinDynComputations:
         base_velocity: np.ndarray = np.zeros(6),
         world_gravity: np.ndarray = None,
     ) -> None:
-
         gravity = world_gravity if world_gravity is not None else self.world_gravity
 
         if s.size != self.dofs:
@@ -98,7 +94,6 @@ class KinDynComputations:
     def set_robot_state_from_model(
         self, model: scenario_core.Model, world_gravity: np.ndarray = None
     ) -> None:
-
         s = np.array(model.joint_positions(self.joint_serialization()))
         ds = np.array(model.joint_velocities(self.joint_serialization()))
 
@@ -110,12 +105,10 @@ class KinDynComputations:
         mixed = FrameVelocityRepresentation.MIXED_REPRESENTATION.to_idyntree()
 
         if self.kindyn.getFrameVelocityRepresentation() is mixed:
-
             base_linear_velocity = np.array(model.base_world_linear_velocity())
             base_angular_velocity = np.array(model.base_world_angular_velocity())
 
         elif self.kindyn.getFrameVelocityRepresentation() is body:
-
             base_linear_velocity = np.array(model.base_body_linear_velocity())
             base_angular_velocity = np.array(model.base_body_angular_velocity())
 
@@ -137,11 +130,9 @@ class KinDynComputations:
         )
 
     def get_floating_base(self) -> str:
-
         return self.kindyn.getFloatingBase()
 
     def get_joint_positions(self) -> np.ndarray:
-
         vector = idt.VectorDynSize()
 
         if not self.kindyn.getJointPos(vector):
@@ -150,7 +141,6 @@ class KinDynComputations:
         return vector.toNumPy()
 
     def get_joint_velocities(self) -> np.ndarray:
-
         vector = idt.VectorDynSize()
 
         if not self.kindyn.getJointVel(vector):
@@ -159,7 +149,6 @@ class KinDynComputations:
         return vector.toNumPy()
 
     def get_model_velocity(self) -> np.ndarray:
-
         nu = idt.VectorDynSize()
 
         if not self.kindyn.getModelVel(nu):
@@ -168,7 +157,6 @@ class KinDynComputations:
         return nu.toNumPy()
 
     def get_model_position(self) -> np.ndarray:
-
         W_H_B: idt.Transform = self.kindyn.getWorldBaseTransform()
         rpy: idt.Vector3 = self.kindyn.getWorldBaseTransform().getRotation().asRPY()
 
@@ -177,7 +165,6 @@ class KinDynComputations:
         return np.concatenate([q_base, self.get_joint_positions()])
 
     def get_world_transform(self, frame_name: str) -> np.ndarray:
-
         if self.kindyn.getFrameIndex(frame_name) < 0:
             raise ValueError(f"Frame '{frame_name}' does not exist")
 
@@ -188,7 +175,6 @@ class KinDynComputations:
     def get_relative_transform(
         self, ref_frame_name: str, frame_name: str
     ) -> np.ndarray:
-
         if self.kindyn.getFrameIndex(ref_frame_name) < 0:
             raise ValueError(f"Frame '{ref_frame_name}' does not exist")
 
@@ -202,7 +188,6 @@ class KinDynComputations:
         return ref_H_other.asHomogeneousTransform().toNumPy()
 
     def get_world_base_transform(self) -> np.ndarray:
-
         W_H_B: idt.Transform = self.kindyn.getWorldBaseTransform()
         return W_H_B.asHomogeneousTransform().toNumPy()
 
@@ -213,14 +198,12 @@ class KinDynComputations:
         frame_origin: str,
         frame_orientation: str,
     ) -> np.ndarray:
-
         for frame in {
             ref_frame_origin,
             ref_frame_orientation,
             frame_origin,
             frame_orientation,
         }:
-
             if frame != "world" and self.kindyn.getFrameIndex(frame) < 0:
                 raise ValueError(f"Frame '{frame}' does not exist")
 
@@ -270,7 +253,6 @@ class KinDynComputations:
         frame_origin: str,
         frame_orientation: str,
     ) -> np.ndarray:
-
         AB_H_CD = self.get_relative_transform_explicit(
             ref_frame_origin=ref_frame_origin,
             ref_frame_orientation=ref_frame_orientation,
@@ -287,7 +269,6 @@ class KinDynComputations:
         )
 
     def get_mass_matrix(self) -> np.ndarray:
-
         M = idt.MatrixDynSize()
 
         if not self.kindyn.getFreeFloatingMassMatrix(M):
@@ -296,7 +277,6 @@ class KinDynComputations:
         return M.toNumPy()
 
     def get_generalized_gravity_forces(self) -> np.ndarray:
-
         g = idt.FreeFloatingGeneralizedTorques(self.kindyn.model())
 
         if not self.kindyn.generalizedGravityForces(g):
@@ -310,7 +290,6 @@ class KinDynComputations:
         )
 
     def get_bias_forces(self) -> np.ndarray:
-
         h = idt.FreeFloatingGeneralizedTorques(self.kindyn.model())
 
         if not self.kindyn.generalizedBiasForces(h):
@@ -324,7 +303,6 @@ class KinDynComputations:
         )
 
     def get_momentum(self) -> Tuple[np.ndarray, np.ndarray]:
-
         spatial_momentum = self.kindyn.getLinearAngularMomentum()
         momentum_6d = spatial_momentum.asVector().toNumPy()
 
@@ -332,7 +310,6 @@ class KinDynComputations:
         return linear, angular
 
     def get_centroidal_momentum(self) -> Tuple[np.ndarray, np.ndarray]:
-
         spatial_momentum = self.kindyn.getCentroidalTotalMomentum()
         momentum_6d = spatial_momentum.asVector().toNumPy()
 
@@ -340,25 +317,21 @@ class KinDynComputations:
         return linear, angular
 
     def get_com_position(self) -> np.ndarray:
-
         W_p_com = self.kindyn.getCenterOfMassPosition()
         return W_p_com.toNumPy()
 
     def get_com_velocity(self) -> np.ndarray:
-
         # Velocity representations
         body = FrameVelocityRepresentation.BODY_FIXED_REPRESENTATION.to_idyntree()
         mixed = FrameVelocityRepresentation.MIXED_REPRESENTATION.to_idyntree()
 
         if self.kindyn.getFrameVelocityRepresentation() is mixed:
-
             # The method always returns the MIXED velocity of the CoM, regardless of
             # how KinDynComputations was configured.
             v_com = self.kindyn.getCenterOfMassVelocity()
             return v_com.toNumPy()
 
         elif self.kindyn.getFrameVelocityRepresentation() is body:
-
             # Get the transform of the base frame
             W_H_B = self.kindyn.getWorldBaseTransform()
             _, W_R_B = numpy.ToNumPy.from_idyntree_transform(
@@ -378,17 +351,14 @@ class KinDynComputations:
             raise RuntimeError("INERTIAL_FIXED_REPRESENTATION not yet supported")
 
     def get_average_velocity(self) -> np.ndarray:
-
         twist: idt.Twist = self.kindyn.getAverageVelocity()
         return twist.toNumPy()
 
     def get_centroidal_average_velocity(self) -> np.ndarray:
-
         twist: idt.Twist = self.kindyn.getCentroidalAverageVelocity()
         return twist.toNumPy()
 
     def get_frame_jacobian(self, frame_name: str) -> np.ndarray:
-
         if self.kindyn.getFrameIndex(frame_name) < 0:
             raise ValueError(f"Frame '{frame_name}' does not exist")
 
@@ -400,7 +370,6 @@ class KinDynComputations:
         return J.toNumPy()
 
     def get_linear_angular_momentum_jacobian(self) -> np.ndarray:
-
         J_mom = idt.MatrixDynSize()
 
         if not self.kindyn.getLinearAngularMomentumJacobian(J_mom):
@@ -409,7 +378,6 @@ class KinDynComputations:
         return J_mom.toNumPy()
 
     def get_centroidal_total_momentum_jacobian(self) -> np.ndarray:
-
         J_cmm = idt.MatrixDynSize()
 
         if not self.kindyn.getCentroidalTotalMomentumJacobian(J_cmm):
@@ -418,7 +386,6 @@ class KinDynComputations:
         return J_cmm.toNumPy()
 
     def get_average_velocity_jacobian(self) -> np.ndarray:
-
         J_avg_vel = idt.MatrixDynSize()
 
         if not self.kindyn.getAverageVelocityJacobian(J_avg_vel):
@@ -427,7 +394,6 @@ class KinDynComputations:
         return J_avg_vel.toNumPy()
 
     def get_centroidal_average_velocity_jacobian(self) -> np.ndarray:
-
         J_cen_avg_vel = idt.MatrixDynSize()
 
         if not self.kindyn.getCentroidalAverageVelocityJacobian(J_cen_avg_vel):
@@ -436,7 +402,6 @@ class KinDynComputations:
         return J_cen_avg_vel.toNumPy()
 
     def get_frame_bias_acc(self, frame_name: str) -> np.ndarray:
-
         if self.kindyn.getFrameIndex(frame_name) < 0:
             raise ValueError(f"Frame '{frame_name}' does not exist")
 
@@ -445,6 +410,5 @@ class KinDynComputations:
         return dJ_nu.toNumPy()
 
     def get_com_bias_acc(self) -> np.ndarray:
-
         dJ_nu = self.kindyn.getCenterOfMassBiasAcc()
         return dJ_nu.toNumPy()

@@ -24,7 +24,6 @@ scenario.set_verbosity(scenario.Verbosity_debug)
 
 
 def to_wxyz(xyzw: np.ndarray) -> np.ndarray:
-
     if xyzw.shape != (4,):
         raise ValueError(xyzw)
 
@@ -32,7 +31,6 @@ def to_wxyz(xyzw: np.ndarray) -> np.ndarray:
 
 
 def to_xyzw(wxyz: np.ndarray) -> np.ndarray:
-
     if wxyz.shape != (4,):
         raise ValueError(wxyz)
 
@@ -40,7 +38,6 @@ def to_xyzw(wxyz: np.ndarray) -> np.ndarray:
 
 
 def to_matrix(quaternion: Tuple[float, float, float, float]) -> np.ndarray:
-
     quaternion_xyzw = to_xyzw(np.array(quaternion))
     return Rotation.from_quat(quaternion_xyzw).as_matrix()
 
@@ -48,7 +45,6 @@ def to_matrix(quaternion: Tuple[float, float, float, float]) -> np.ndarray:
 def get_random_panda(
     gazebo: scenario.GazeboSimulator, world: scenario.World
 ) -> core.Model:
-
     panda_urdf = gym_gz_models.get_model_file("panda")
     assert world.insert_model(panda_urdf)
     assert "panda" in world.model_names()
@@ -69,7 +65,6 @@ def get_random_panda(
 
 
 def get_cube(gazebo: scenario.GazeboSimulator, world: scenario.World) -> core.Model:
-
     quaternion = to_wxyz(Rotation.from_euler("x", 45, degrees=True).as_quat())
     initial_pose = core.Pose([0, 0, 0.5], quaternion.tolist())
 
@@ -100,7 +95,6 @@ def test_linear_velocity(
     get_model: Callable[[scenario.GazeboSimulator, scenario.World], core.Model],
     link_name: str,
 ):
-
     # Get the simulator and the world
     gazebo, world = default_world
     dt = gazebo.step_size()
@@ -113,14 +107,12 @@ def test_linear_velocity(
     link = model.get_link(link_name)
 
     if link.name() != model.base_frame():
-
         position = link.position
         orientation = link.orientation
         body_linear_velocity = link.body_linear_velocity
         world_linear_velocity = link.world_linear_velocity
 
     else:
-
         position = model.base_position
         orientation = model.base_orientation
         body_linear_velocity = model.base_body_linear_velocity
@@ -128,7 +120,6 @@ def test_linear_velocity(
 
     # 0.5 seconds of simulation
     for _ in range(int(0.5 / dt)):
-
         position_old = np.array(position())
         assert gazebo.run()
         position_new = np.array(position())
@@ -161,7 +152,6 @@ def test_angular_velocity(
     get_model: Callable[[scenario.GazeboSimulator, scenario.World], core.Model],
     link_name: str,
 ):
-
     # Get the simulator and the world
     gazebo, world = default_world
     dt = gazebo.step_size()
@@ -174,13 +164,11 @@ def test_angular_velocity(
     link = model.get_link(link_name)
 
     if link.name() != model.base_frame():
-
         orientation = link.orientation
         body_angular_velocity = link.body_angular_velocity
         world_angular_velocity = link.world_angular_velocity
 
     else:
-
         orientation = model.base_orientation
         body_angular_velocity = model.base_body_angular_velocity
         world_angular_velocity = model.base_world_angular_velocity
@@ -189,7 +177,6 @@ def test_angular_velocity(
     vee = lambda matrix: [matrix[2, 1], matrix[0, 2], matrix[1, 0]]
 
     for _ in range(int(0.5 / dt)):
-
         W_R_L_old = to_matrix(orientation())
         assert gazebo.run()
         W_R_L_new = to_matrix(orientation())
@@ -223,7 +210,6 @@ def test_linear_acceleration(
     get_model: Callable[[scenario.GazeboSimulator, scenario.World], core.Model],
     link_name: str,
 ):
-
     # Get the simulator and the world
     gazebo, world = default_world
     dt = gazebo.step_size()
@@ -236,14 +222,12 @@ def test_linear_acceleration(
     link = model.get_link(link_name)
 
     if link.name() != model.base_frame():
-
         orientation = link.orientation
         world_linear_velocity = link.world_linear_velocity
         body_linear_acceleration = link.body_linear_acceleration
         world_linear_acceleration = link.world_linear_acceleration
 
     else:
-
         orientation = model.base_orientation
         world_linear_velocity = model.base_world_linear_velocity
         body_linear_acceleration = model.base_body_linear_acceleration
@@ -251,7 +235,6 @@ def test_linear_acceleration(
 
     # 0.5 seconds of simulation
     for _ in range(int(0.5 / dt)):
-
         velocity_old = np.array(world_linear_velocity())
         assert gazebo.run()
         velocity_new = np.array(world_linear_velocity())
@@ -290,7 +273,6 @@ def test_angular_acceleration(
     get_model: Callable[[scenario.GazeboSimulator, scenario.World], core.Model],
     link_name: str,
 ):
-
     # Get the simulator and the world
     gazebo, world = default_world
     dt = gazebo.step_size()
@@ -303,21 +285,18 @@ def test_angular_acceleration(
     link = model.get_link(link_name)
 
     if link.name() != model.base_frame():
-
         orientation = link.orientation
         world_angular_velocity = link.world_angular_velocity
         body_angular_acceleration = link.body_angular_acceleration
         world_angular_acceleration = link.world_angular_acceleration
 
     else:
-
         orientation = model.base_orientation
         world_angular_velocity = model.base_world_angular_velocity
         body_angular_acceleration = model.base_body_angular_acceleration
         world_angular_acceleration = model.base_word_angular_acceleration
 
     for _ in range(int(0.5 / dt)):
-
         world_velocity_old = np.array(world_angular_velocity())
         assert gazebo.run()
         world_velocity_new = np.array(world_angular_velocity())

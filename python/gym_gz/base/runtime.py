@@ -62,7 +62,6 @@ class Runtime(gym.Env, abc.ABC):
     """
 
     def __init__(self, task: Task, agent_rate: float):
-
         #: Task handled by the runtime.
         self.task: Task = task
 

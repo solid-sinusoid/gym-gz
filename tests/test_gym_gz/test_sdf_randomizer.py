@@ -21,7 +21,6 @@ from scenario import gazebo as scenario
 
 
 def test_sdf_randomizer():
-
     # Get the URDF model
     urdf_model = gym_gz_models.get_model_file("cartpole")
 
@@ -78,7 +77,6 @@ def test_sdf_randomizer():
 
 
 def test_randomizer_reproducibility():
-
     # Get the model
     sdf_model = gym_gz_models.get_model_file("ground_plane")
 
@@ -137,7 +135,6 @@ def test_randomizer_reproducibility():
 
 
 def test_randomize_missing_element():
-
     # Get the URDF model
     urdf_model = gym_gz_models.get_model_file("pendulum")
 
@@ -163,7 +160,6 @@ def test_randomize_missing_element():
     frictions = randomizer.find_xpath("*/link/collision/surface/friction")
 
     for friction in frictions:
-
         # Create parent 'ode' first
         if friction.find("ode") is None:
             etree.SubElement(friction, "ode")
@@ -195,7 +191,6 @@ def test_randomize_missing_element():
 
 
 def test_full_panda_randomization():
-
     # Get the URDF model
     urdf_model = gym_gz_models.get_model_file("panda")
 
@@ -213,7 +208,6 @@ def test_full_panda_randomization():
 
     # Add the friction and damping elements since they're missing in the model
     for joint_dynamic in joint_dynamics:
-
         if joint_dynamic.find("friction") is None:
             etree.SubElement(joint_dynamic, "friction")
             friction = joint_dynamic.find("friction")
@@ -275,7 +269,6 @@ def test_full_panda_randomization():
     }
 
     for xpath, config in randomization_config.items():
-
         randomizer.new_randomization().at_xpath(xpath).method(
             config["method"]
         ).sampled_from(config["distribution"], config["params"]).force_positive(

@@ -15,7 +15,6 @@ set_level(gym.logger.DEBUG)
 
 
 def make_env(**kwargs) -> gym.Env:
-
     import gym_gz_environments
     import gymnasium as gym
 
@@ -24,7 +23,6 @@ def make_env(**kwargs) -> gym.Env:
 
 @pytest.mark.parametrize("num_physics_rollouts", [0, 2])
 def test_reproducibility(num_physics_rollouts: int):
-
     env1 = randomizers.cartpole.CartpoleEnvRandomizer(
         env=make_env, num_physics_rollouts=num_physics_rollouts
     )
@@ -39,7 +37,6 @@ def test_reproducibility(num_physics_rollouts: int):
     env2.unwrapped.seed(42)
 
     for _ in range(5):
-
         # Reset the environments with the same seed
         observation1, _ = env1.reset(seed=42, options={})
         observation2, _ = env2.reset(seed=42, options={})
@@ -49,7 +46,6 @@ def test_reproducibility(num_physics_rollouts: int):
         done = False
 
         while not done:
-
             # Sample a random action
             action1 = env1.action_space.sample()
             action2 = env2.action_space.sample()

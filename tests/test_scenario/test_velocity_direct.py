@@ -24,7 +24,6 @@ scenario_gazebo.set_verbosity(scenario_gazebo.Verbosity_debug)
 def test_velocity_direct(
     default_world: Tuple[scenario_gazebo.GazeboSimulator, scenario_gazebo.World]
 ):
-
     # Get the simulator and the world
     gazebo, world = default_world
 

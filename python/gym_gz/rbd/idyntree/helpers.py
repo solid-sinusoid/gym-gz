@@ -12,13 +12,11 @@ from gym_gz.utils import resource_finder
 
 
 class FrameVelocityRepresentation(Enum):
-
     MIXED_REPRESENTATION = auto()
     BODY_FIXED_REPRESENTATION = auto()
     INERTIAL_FIXED_REPRESENTATION = auto()
 
     def to_idyntree(self):
-
         if self.value == FrameVelocityRepresentation.MIXED_REPRESENTATION.value:
             return idt.MIXED_REPRESENTATION
         elif self.value == FrameVelocityRepresentation.BODY_FIXED_REPRESENTATION.value:
@@ -35,7 +33,6 @@ class FrameVelocityRepresentation(Enum):
 class iDynTreeHelpers(abc.ABC):
     @staticmethod
     def get_model_loader(model_file: str, considered_joints: List[str] = None):
-
         # Find the urdf file
         urdf_file = resource_finder.find_resource(file_name=model_file)
 
@@ -66,7 +63,6 @@ class iDynTreeHelpers(abc.ABC):
         considered_joints: List[str] = None,
         velocity_representation: FrameVelocityRepresentation = FrameVelocityRepresentation.MIXED_REPRESENTATION,
     ):
-
         # Get the model loader
         model_loader = iDynTreeHelpers.get_model_loader(model_file, considered_joints)
 

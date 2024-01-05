@@ -36,7 +36,6 @@ class PhysicsRandomizer(abc.ABC):
     """
 
     def __init__(self, randomize_after_rollouts_num: int = 0):
-
         self._rollout_counter = randomize_after_rollouts_num
         self.randomize_after_rollouts_num = randomize_after_rollouts_num
 

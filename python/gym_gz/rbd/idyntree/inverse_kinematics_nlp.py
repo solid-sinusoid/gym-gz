@@ -13,7 +13,6 @@ from gym_gz import rbd
 
 
 class TargetType(Enum):
-
     POSITION = auto()
     ROTATION = auto()
     POSE = auto()
@@ -21,14 +20,12 @@ class TargetType(Enum):
 
 @dataclass
 class TransformTargetData:
-
     position: np.ndarray
     quaternion: np.ndarray
 
 
 @dataclass
 class TargetData:
-
     type: TargetType
     weight: Union[float, Tuple[float, float]]
     data: Union[np.ndarray, TransformTargetData]
@@ -36,19 +33,16 @@ class TargetData:
 
 @dataclass
 class IKSolution:
-
     joint_configuration: np.ndarray
     base_position: np.ndarray = np.array([0.0, 0.0, 0.0])
     base_quaternion: np.ndarray = np.array([1.0, 0.0, 0.0, 0.0])
 
 
 class RotationParametrization(Enum):
-
     QUATERNION = auto()
     ROLL_PITCH_YAW = auto()
 
     def to_idyntree(self):
-
         if self.value == RotationParametrization.QUATERNION.value:
             return idt.InverseKinematicsRotationParametrizationQuaternion
 
@@ -60,14 +54,12 @@ class RotationParametrization(Enum):
 
 
 class TargetResolutionMode(Enum):
-
     TARGET_AS_CONSTRAINT_FULL = auto()
     TARGET_AS_CONSTRAINT_NONE = auto()
     TARGET_AS_CONSTRAINT_POSITION = auto()
     TARGET_AS_CONSTRAINT_ROTATION = auto()
 
     def to_idyntree(self):
-
         if self.value == TargetResolutionMode.TARGET_AS_CONSTRAINT_FULL.value:
             return idt.InverseKinematicsTreatTargetAsConstraintFull
 
@@ -91,7 +83,6 @@ class InverseKinematicsNLP:
         considered_joints: List[str] = None,
         joint_serialization: List[str] = None,
     ) -> None:
-
         self._floating_base: bool = False
         self._base_frame: Optional[str] = None
         self._urdf_filename: str = urdf_filename
@@ -116,7 +107,6 @@ class InverseKinematicsNLP:
         floating_base: bool = False,
         verbosity: int = 1,
     ) -> None:
-
         # Create the IK object
         self._ik = idt.InverseKinematics()
 
@@ -169,7 +159,6 @@ class InverseKinematicsNLP:
         self._floating_base = floating_base
 
         if not self._floating_base:
-
             # Add a frame constraint for the base
             self.add_frame_transform_constraint(
                 frame_name=self._base_frame,
@@ -183,7 +172,6 @@ class InverseKinematicsNLP:
         base_quaternion: np.ndarray,
         joint_configuration: np.ndarray,
     ) -> None:
-
         if joint_configuration.size != len(self._joint_serialization):
             raise ValueError(joint_configuration)
 
@@ -199,7 +187,6 @@ class InverseKinematicsNLP:
             raise RuntimeError("Failed to set the current robot configuration")
 
         if not self._floating_base:
-
             self.update_frame_transform_constraint(
                 frame_name=self._base_frame,
                 position=base_position,
@@ -209,7 +196,6 @@ class InverseKinematicsNLP:
     def set_current_joint_configuration(
         self, joint_name: str, configuration: float
     ) -> None:
-
         if joint_name not in self._joint_serialization:
             raise ValueError(joint_name)
 
@@ -231,7 +217,6 @@ class InverseKinematicsNLP:
         weight: Union[float, Tuple[float, float]] = None,
         as_constraint: bool = False,
     ) -> None:
-
         # Check the type of the 'weight' argument
         float_target_types = {TargetType.ROTATION, TargetType.POSITION}
         weight_type = float if target_type in float_target_types else tuple
@@ -310,7 +295,6 @@ class InverseKinematicsNLP:
         as_constraint: bool = False,
         constraint_tolerance: float = 1e-8,
     ) -> None:
-
         # Add the target
         self._ik.setCOMTarget(idt.Position_Zero(), weight)
 
@@ -325,11 +309,9 @@ class InverseKinematicsNLP:
         )
 
     def update_position_target(self, target_name: str, position: np.ndarray) -> None:
-
         if target_name not in self.get_active_target_names(
             target_type=TargetType.POSITION
         ):
-
             raise ValueError(f"Failed to find a position target '{target_name}'")
 
         # Create the iDynTree position
@@ -348,11 +330,9 @@ class InverseKinematicsNLP:
         )
 
     def update_rotation_target(self, target_name: str, quaternion: np.ndarray) -> None:
-
         if target_name not in self.get_active_target_names(
             target_type=TargetType.ROTATION
         ):
-
             raise ValueError(f"Failed to find a rotation target '{target_name}'")
 
         # Create the iDynTree rotation matrix
@@ -373,9 +353,7 @@ class InverseKinematicsNLP:
     def update_transform_target(
         self, target_name: str, position: np.ndarray, quaternion: np.ndarray
     ) -> None:
-
         if target_name not in self.get_active_target_names(target_type=TargetType.POSE):
-
             raise ValueError(f"Failed to find a transform target '{target_name}'")
 
         # Create the iDynTree transform
@@ -399,7 +377,6 @@ class InverseKinematicsNLP:
         )
 
     def update_com_target(self, position: np.ndarray) -> None:
-
         if not self._ik.isCOMTargetActive():
             raise RuntimeError("Constraint on CoM not active")
 
@@ -417,7 +394,6 @@ class InverseKinematicsNLP:
         )
 
     def deactivate_com_target(self) -> None:
-
         if not self._ik.isCOMTargetActive():
             raise RuntimeError("Constraint on CoM not active")
 
@@ -430,7 +406,6 @@ class InverseKinematicsNLP:
     def add_frame_transform_constraint(
         self, frame_name: str, position: np.ndarray, quaternion: np.ndarray
     ) -> None:
-
         # Create the transform
         H = rbd.idyntree.numpy.FromNumPy.to_idyntree_transform(
             position=position, quaternion=quaternion
@@ -443,7 +418,6 @@ class InverseKinematicsNLP:
     def add_frame_position_constraint(
         self, frame_name: str, position: np.ndarray
     ) -> None:
-
         # Create the position
         p = rbd.idyntree.numpy.FromNumPy.to_idyntree_position(position=position)
 
@@ -454,7 +428,6 @@ class InverseKinematicsNLP:
     def add_frame_rotation_constraint(
         self, frame_name: str, quaternion: np.ndarray
     ) -> None:
-
         # Create the position
         R = rbd.idyntree.numpy.FromNumPy.to_idyntree_rotation(quaternion=quaternion)
 
@@ -465,7 +438,6 @@ class InverseKinematicsNLP:
     def update_frame_transform_constraint(
         self, frame_name: str, position: np.ndarray, quaternion: np.ndarray
     ) -> None:
-
         if not self._ik.isFrameConstraintActive(frame_name):
             raise RuntimeError(f"Constraint on frame '{frame_name}' not active")
 
@@ -478,7 +450,6 @@ class InverseKinematicsNLP:
             raise RuntimeError(f"Failed to update constraint on frame '{frame_name}'")
 
     def deactivate_frame_constraint(self, frame_name: str) -> None:
-
         if not self._ik.isFrameConstraintActive(frame_name):
             raise RuntimeError(f"Constraint on frame '{frame_name}' not active")
 
@@ -492,7 +463,6 @@ class InverseKinematicsNLP:
     # ===================
 
     def solve(self) -> None:
-
         if not self._ik.solve():
             raise RuntimeError("Failed to solve IK")
 
@@ -502,7 +472,6 @@ class InverseKinematicsNLP:
     def warm_start_from(
         self, full_solution: IKSolution = None, reduced_solution: IKSolution = None
     ) -> None:
-
         if (
             full_solution is None
             and reduced_solution is None
@@ -546,11 +515,9 @@ class InverseKinematicsNLP:
     # =======
 
     def get_base_frame(self) -> str:
-
         return self._base_frame
 
     def get_available_target_names(self) -> List[str]:
-
         # Get the reduced model
         model = self._ik.reducedModel()
 
@@ -563,7 +530,6 @@ class InverseKinematicsNLP:
         return link_names
 
     def get_active_target_names(self, target_type: TargetType = None) -> List[str]:
-
         if target_type is None:
             return list(self._targets_data.keys())
 
@@ -575,11 +541,9 @@ class InverseKinematicsNLP:
             ]
 
     def get_target_data(self, target_name: str) -> TargetData:
-
         return self._targets_data[target_name]
 
     def get_full_solution(self) -> IKSolution:
-
         # Initialize buffers
         base_transform = idt.Transform.Identity()
         joint_positions = idt.VectorDynSize(self._ik.fullModel().getNrOfJoints())
@@ -600,7 +564,6 @@ class InverseKinematicsNLP:
         )
 
     def get_reduced_solution(self) -> IKSolution:
-
         # Initialize buffers
         base_transform = idt.Transform.Identity()
         joint_positions = idt.VectorDynSize(self._ik.reducedModel().getNrOfJoints())
@@ -628,7 +591,6 @@ class InverseKinematicsNLP:
     def _get_model_loader(
         urdf: str, joint_serialization: List[str] = None
     ) -> idt.ModelLoader:
-
         # Get the model loader
         model_loader = idt.ModelLoader()
 
@@ -649,6 +611,5 @@ class InverseKinematicsNLP:
         return model_loader
 
     def _warm_start_with_last_solution(self) -> None:
-
         last_solution = self.get_full_solution()
         self.warm_start_from(full_solution=last_solution)

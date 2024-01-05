@@ -23,7 +23,6 @@ class CartPoleDiscreteBalancing(task.Task, abc.ABC):
     def __init__(
         self, agent_rate: float, reward_cart_at_center: bool = True, **kwargs
     ) -> None:
-
         # Initialize the Task base class
         task.Task.__init__(self, agent_rate=agent_rate)
 
@@ -44,7 +43,6 @@ class CartPoleDiscreteBalancing(task.Task, abc.ABC):
         self._dq_threshold = np.deg2rad(3 * 360)  # rad / s
 
     def create_spaces(self) -> Tuple[ActionSpace, ObservationSpace]:
-
         # Configure action space: [0, 1]
         action_space = gym.spaces.Discrete(2)
 
@@ -70,7 +68,6 @@ class CartPoleDiscreteBalancing(task.Task, abc.ABC):
         return action_space, observation_space
 
     def set_action(self, action: Action) -> None:
-
         # Calculate the force
         force = self._force_mag if action == 1 else -self._force_mag
 
@@ -82,7 +79,6 @@ class CartPoleDiscreteBalancing(task.Task, abc.ABC):
             raise RuntimeError("Failed to set the force to the cart")
 
     def get_observation(self) -> Observation:
-
         # Get the model
         model = self.world.get_model(self.model_name)
 
@@ -97,12 +93,10 @@ class CartPoleDiscreteBalancing(task.Task, abc.ABC):
         return observation
 
     def get_reward(self) -> Reward:
-
         # Calculate the reward
         reward = 1.0 if not self.is_terminated() or not self.is_truncated() else 0.0
 
         if self._reward_cart_at_center:
-
             # Get the observation
             x, dx, _, _ = self.get_observation()
 
@@ -116,7 +110,6 @@ class CartPoleDiscreteBalancing(task.Task, abc.ABC):
         return reward
 
     def is_terminated(self) -> bool:
-
         # Get the observation
         observation = self.get_observation()
 
@@ -129,7 +122,6 @@ class CartPoleDiscreteBalancing(task.Task, abc.ABC):
         return False
 
     def reset_task(self) -> None:
-
         if self.model_name not in self.world.model_names():
             raise RuntimeError("Cartpole model not found in the world")
 

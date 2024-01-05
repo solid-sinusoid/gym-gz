@@ -24,7 +24,6 @@ scenario_gazebo.set_verbosity(scenario_gazebo.Verbosity_debug)
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_insert_multiple_worlds(gazebo: scenario_gazebo.GazeboSimulator):
-
     empty_world_sdf = utils.get_empty_world_sdf()
     assert gazebo.insert_world_from_sdf(empty_world_sdf, "myWorld1")
 
@@ -47,7 +46,6 @@ def test_insert_multiple_worlds(gazebo: scenario_gazebo.GazeboSimulator):
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_insert_multiple_world(gazebo: scenario_gazebo.GazeboSimulator):
-
     multi_world_sdf = utils.get_multi_world_sdf_file()
 
     assert gazebo.insert_worlds_from_sdf(multi_world_sdf)
@@ -69,7 +67,6 @@ def test_insert_multiple_world(gazebo: scenario_gazebo.GazeboSimulator):
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_insert_multiple_world_rename(gazebo: scenario_gazebo.GazeboSimulator):
-
     multi_world_sdf = utils.get_multi_world_sdf_file()
 
     assert not gazebo.insert_worlds_from_sdf(multi_world_sdf, ["only_one_name"])
@@ -92,7 +89,6 @@ def test_insert_multiple_world_rename(gazebo: scenario_gazebo.GazeboSimulator):
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_insert_world_multiple_calls(gazebo: scenario_gazebo.GazeboSimulator):
-
     single_world_sdf = utils.get_empty_world_sdf()
 
     assert gazebo.insert_world_from_sdf(single_world_sdf)

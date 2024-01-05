@@ -29,7 +29,6 @@ test_matrix = [
 
 @pytest.mark.parametrize("input,low, high, output", test_matrix)
 def test_normalization(input, low, high, output):
-
     normalized_input = normalize(input=input, low=low, high=high)
 
     assert output == pytest.approx(normalized_input)

@@ -38,7 +38,6 @@ def template_test(
     physics_rate: float,
     agent_rate: float,
 ) -> None:
-
     # Get the simulator
     iterations = int(physics_rate / agent_rate)
     gazebo = utils.Gazebo(physics_rate=physics_rate, iterations=iterations, rtf=rtf)
@@ -146,7 +145,6 @@ def create_test_matrix() -> List[Tuple[float, float, float]]:
 
 @pytest.mark.parametrize("rtf, agent_rate, physics_rate", create_test_matrix())
 def test_rates(rtf: float, agent_rate: float, physics_rate: float):
-
     print("========")
     print("Testing:")
     print("========")

@@ -7,7 +7,6 @@ import abc
 
 class ModelWithFile(abc.ABC):
     def __init__(self):
-
         super().__init__()
 
     @classmethod

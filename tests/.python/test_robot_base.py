@@ -10,7 +10,6 @@ from . import utils
 
 @pytest.mark.parametrize("simulator_name", ["gazebo", "pybullet"])
 def test_robot_fixed_base(simulator_name: str):
-
     if simulator_name == "gazebo":
         simulator = utils.Gazebo(physics_rate=1000)
     elif simulator_name == "pybullet":
@@ -59,7 +58,6 @@ def test_robot_fixed_base(simulator_name: str):
 
 @pytest.mark.parametrize("simulator_name", ["pybullet"])
 def test_robot_floating_to_fixed(simulator_name: str):
-
     if simulator_name == "gazebo":
         simulator = utils.Gazebo(physics_rate=1000)
     elif simulator_name == "pybullet":

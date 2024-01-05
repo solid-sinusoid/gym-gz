@@ -35,7 +35,6 @@ class RealTimeRuntime(runtime.Runtime):
         render_mode: Optional[str] = None,
         **kwargs
     ):
-
         # Build the environment
         task_object = task_cls(**kwargs)
 
@@ -56,7 +55,6 @@ class RealTimeRuntime(runtime.Runtime):
     # =================
 
     def timestamp(self) -> float:
-
         raise NotImplementedError
 
     # =================
@@ -64,7 +62,6 @@ class RealTimeRuntime(runtime.Runtime):
     # =================
 
     def step(self, action: Action) -> State:
-
         # Validate action and robot
         assert self.action_space.contains(action), "%r (%s) invalid" % (
             action,
@@ -105,7 +102,6 @@ class RealTimeRuntime(runtime.Runtime):
         )
 
     def reset(self, seed: int = None, options: Dict = {}, **kwargs) -> ResetReturn:
-
         # Get the observation
         observation = self.task.get_observation()
 

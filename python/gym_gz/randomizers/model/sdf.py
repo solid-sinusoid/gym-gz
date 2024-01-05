@@ -55,7 +55,6 @@ class RandomizationDataBuilder:
     """
 
     def __init__(self, randomizer: "SDFRandomizer"):
-
         self.storage: Dict = {}
         self.randomizer = randomizer
 
@@ -178,7 +177,6 @@ class SDFRandomizer:
     """
 
     def __init__(self, sdf_model: str):
-
         self._sdf_file = sdf_model
 
         if not Path(self._sdf_file).is_file():
@@ -233,7 +231,6 @@ class SDFRandomizer:
         expanded_randomizations = []
 
         for data in self._randomizations:
-
             # Find all the matches
             elements: List[etree.Element] = self._root.findall(path=data.xpath)
 
@@ -241,7 +238,6 @@ class SDFRandomizer:
                 raise RuntimeError(f"Failed to find elements from XPath '{data.xpath}'")
 
             for element in elements:
-
                 if data.ignore_zeros and float(self._get_element_text(element)) == 0:
                     continue
 
@@ -281,15 +277,12 @@ class SDFRandomizer:
         """
 
         for data in self._randomizations:
-
             if data.distribution is Distribution.Gaussian:
-
                 sample = self.rng.normal(
                     loc=data.parameters.mean, scale=data.parameters.variance
                 )
 
             elif data.distribution is Distribution.Uniform:
-
                 sample = self.rng.uniform(
                     low=data.parameters.low, high=data.parameters.high
                 )
@@ -299,16 +292,13 @@ class SDFRandomizer:
 
             # Update the value
             if data.method is Method.Absolute:
-
                 data.element.text = str(sample)
 
             elif data.method is Method.Additive:
-
                 default_value = self._default_values[data.element]
                 data.element.text = str(sample + default_value)
 
             elif data.method is Method.Coefficient:
-
                 default_value = self._default_values[data.element]
                 data.element.text = str(sample * default_value)
 
@@ -363,7 +353,6 @@ class SDFRandomizer:
 
     @staticmethod
     def _get_tree_from_file(xml_file) -> etree.ElementTree:
-
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(source=xml_file, parser=parser)
 
@@ -371,7 +360,6 @@ class SDFRandomizer:
 
     @staticmethod
     def _get_element_text(element: etree.Element) -> str:
-
         text = element.text
 
         if text is None:

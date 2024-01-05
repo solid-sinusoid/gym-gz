@@ -42,7 +42,6 @@ env = randomizers.cartpole_no_rand.CartpoleEnvNoRandomizations(env=make_env)
 # env.render('human')
 
 for epoch in range(10):
-
     # Reset the environment
     # Initialize the seed
     observation = env.reset(seed=42, options={})
@@ -54,7 +53,6 @@ for epoch in range(10):
     totalReward = 0
 
     while not done:
-
         # Execute a random action
         action = env.action_space.sample()
         observation, reward, terminated, truncated, _ = env.step(action)

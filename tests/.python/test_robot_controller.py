@@ -99,7 +99,7 @@ def test_joint_controller():
     # Initialize the cart position buffer
     pos_cart_buffer = np.zeros(np.shape(cart_ref))
 
-    for (i, ref) in enumerate(cart_ref):
+    for i, ref in enumerate(cart_ref):
         # Set the references
         ok1 = robot.setJointPositionTarget("linear", ref)
         assert ok1, "Failed to set joint references"

@@ -39,7 +39,6 @@ def get_unique_model_name(world: scenario.World, model_name: str) -> str:
     model_name_tentative = f"{model_name}"
 
     while model_name_tentative in world.model_names():
-
         postfix += 1
         model_name_tentative = f"{model_name}{postfix}"
 

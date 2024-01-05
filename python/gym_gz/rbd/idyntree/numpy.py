@@ -9,12 +9,10 @@ from gym_gz import rbd
 class FromNumPy(abc.ABC):
     @staticmethod
     def to_idyntree_dyn_vector(array: np.ndarray) -> idt.VectorDynSize:
-
         return idt.VectorDynSize_FromPython(array)
 
     @staticmethod
     def to_idyntree_fixed_vector(array: np.ndarray):
-
         size = array.size
         supported_sizes = [3, 4, 6]
 
@@ -34,7 +32,6 @@ class FromNumPy(abc.ABC):
 
     @staticmethod
     def to_idyntree_position(position: np.ndarray) -> idt.Position:
-
         if position.size != 3:
             raise ValueError("The position array must have 3 elements")
 
@@ -42,7 +39,6 @@ class FromNumPy(abc.ABC):
 
     @staticmethod
     def to_idyntree_rotation(quaternion: np.ndarray) -> idt.Rotation:
-
         if quaternion.size != 4:
             raise ValueError("The quaternion array must have 4 elements")
 
@@ -57,7 +53,6 @@ class FromNumPy(abc.ABC):
     def to_idyntree_transform(
         position: np.ndarray, quaternion: np.ndarray = None, rotation: np.ndarray = None
     ) -> idt.Transform:
-
         if quaternion is None and rotation is None:
             raise ValueError("You must pass either a quaternion or a rotation")
 
@@ -80,7 +75,6 @@ class FromNumPy(abc.ABC):
     def to_idyntree_twist(
         linear_velocity: np.ndarray, angular_velocity: np.ndarray
     ) -> idt.Twist:
-
         if linear_velocity.size != 3:
             raise ValueError("The linear velocity must have 3 elements")
 
@@ -97,7 +91,6 @@ class FromNumPy(abc.ABC):
 class ToNumPy(abc.ABC):
     @staticmethod
     def from_idyntree_vector(vector) -> np.ndarray:
-
         input_types = (
             idt.Vector3,
             idt.Vector4,
@@ -118,7 +111,6 @@ class ToNumPy(abc.ABC):
     def from_idyntree_transform(
         transform: idt.Transform, split: bool = False
     ) -> Union[Tuple[np.ndarray, np.ndarray], np.ndarray]:
-
         if not isinstance(transform, idt.Transform):
             raise ValueError(transform)
 

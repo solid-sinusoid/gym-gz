@@ -18,7 +18,6 @@ class Panda(model_wrapper.ModelWrapper, model_with_file.ModelWithFile):
         orientation: List[float] = (1.0, 0, 0, 0),
         model_file: str = None,
     ):
-
         # Get a unique model name
         model_name = get_unique_model_name(world, "panda")
 
@@ -64,7 +63,6 @@ class Panda(model_wrapper.ModelWrapper, model_with_file.ModelWithFile):
 
         # Set the PID gains
         for joint_name, pid in pid_gains_1000hz.items():
-
             if not model.get_joint(joint_name).set_pid(pid=pid):
                 raise RuntimeError(f"Failed to set the PID of joint '{joint_name}'")
 
@@ -76,7 +74,6 @@ class Panda(model_wrapper.ModelWrapper, model_with_file.ModelWithFile):
 
     @classmethod
     def get_model_file(cls) -> str:
-
         import gym_gz_models
 
         return gym_gz_models.get_model_file("panda")

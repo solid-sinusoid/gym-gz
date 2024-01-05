@@ -24,7 +24,6 @@ np.set_printoptions(precision=4, suppress=True)
 def add_panda_controller(
     panda: gym_gz_environments.models.panda.Panda, controller_period: float
 ) -> None:
-
     # Set the controller period
     assert panda.set_controller_period(period=controller_period)
 
@@ -56,7 +55,6 @@ def add_panda_controller(
 def get_panda_ik(
     panda: gym_gz_environments.models.panda.Panda, optimized_joints: List[str]
 ) -> inverse_kinematics_nlp.InverseKinematicsNLP:
-
     # Create IK
     ik = inverse_kinematics_nlp.InverseKinematicsNLP(
         urdf_filename=panda.get_model_file(),
@@ -92,7 +90,6 @@ def get_panda_ik(
 
 
 def insert_bucket(world: scenario_gazebo.World) -> scenario_gazebo.Model:
-
     # Insert objects from Fuel
     uri = lambda org, name: f"https://fuel.gazebosim.org/{org}/models/{name}"
 
@@ -118,7 +115,6 @@ def insert_bucket(world: scenario_gazebo.World) -> scenario_gazebo.Model:
 
 
 def insert_table(world: scenario_gazebo.World) -> scenario_gazebo.Model:
-
     # Insert objects from Fuel
     uri = lambda org, name: f"https://fuel.gazebosim.org/{org}/models/{name}"
 
@@ -140,7 +136,6 @@ def insert_table(world: scenario_gazebo.World) -> scenario_gazebo.Model:
 def insert_cube_in_operating_area(
     world: scenario_gazebo.World,
 ) -> scenario_gazebo.Model:
-
     # Insert objects from Fuel
     uri = lambda org, name: f"https://fuel.gazebosim.org/{org}/models/{name}"
 
@@ -171,7 +166,6 @@ def solve_ik(
     target_orientation: np.ndarray,
     ik: inverse_kinematics_nlp.InverseKinematicsNLP,
 ) -> np.ndarray:
-
     quat_xyzw = R.from_euler(seq="y", angles=90, degrees=True).as_quat()
 
     ik.update_transform_target(
@@ -193,7 +187,6 @@ def end_effector_reached(
     max_error_vel: float = 0.5,
     mask: np.ndarray = np.array([1.0, 1.0, 1.0]),
 ) -> bool:
-
     masked_target = mask * position
     masked_current = mask * np.array(end_effector_link.position())
 
@@ -204,12 +197,10 @@ def end_effector_reached(
 
 
 def get_unload_position(bucket: scenario_core.Model) -> np.ndarray:
-
     return bucket.base_position() + np.array([0, 0, 0.3])
 
 
 class FingersAction(enum.Enum):
-
     OPEN = enum.auto()
     CLOSE = enum.auto()
 
@@ -217,7 +208,6 @@ class FingersAction(enum.Enum):
 def move_fingers(
     panda: gym_gz_environments.models.panda.Panda, action: FingersAction
 ) -> None:
-
     # Get the joints of the fingers
     finger1 = panda.get_joint(joint_name="panda_finger_joint1")
     finger2 = panda.get_joint(joint_name="panda_finger_joint2")
@@ -282,7 +272,6 @@ finger_right = panda.get_link(link_name="panda_rightfinger")
 end_effector_frame = panda.get_link(link_name="end_effector_frame")
 
 while True:
-
     # Insert a new cube
     cube = insert_cube_in_operating_area(world=world)
     gazebo.run(paused=True)
@@ -343,7 +332,6 @@ while True:
         position=np.array(cube.base_position()) + np.array([0, 0, 0.04]),
         end_effector_link=end_effector_frame,
     ):
-
         gazebo.run()
 
     # Wait a bit more
@@ -421,7 +409,6 @@ while True:
         max_error_vel=0.1,
         mask=np.array([1, 1, 0]),
     ):
-
         gazebo.run()
 
     # Open the fingers

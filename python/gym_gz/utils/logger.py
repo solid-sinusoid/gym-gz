@@ -80,7 +80,6 @@ def set_level(level: int, scenario_level: int = None) -> None:
 
 @contextlib.contextmanager
 def gym_verbosity(level: int):
-
     old_level = gym.logger.min_level
     gym.logger.set_level(level=level)
     yield None

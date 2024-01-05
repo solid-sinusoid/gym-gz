@@ -51,7 +51,6 @@ class GazeboEnvRandomizer(gym.Wrapper, TaskRandomizer, abc.ABC):
         physics_randomizer: PhysicsRandomizer = dart.DART(),
         **kwargs,
     ):
-
         # Print the extra kwargs
         gym.logger.debug(f"GazeboEnvRandomizer: {dict(kwargs=kwargs)}")
 
@@ -75,10 +74,8 @@ class GazeboEnvRandomizer(gym.Wrapper, TaskRandomizer, abc.ABC):
     def reset(
         self, seed: int = None, options: Dict = {}, **kwargs
     ) -> typing.ResetReturn:
-
         # Reset the physics
         if self._physics_randomizer.physics_expired() and seed is None:
-
             # Get the random components of the task
             seed = self.env.unwrapped.task.seed
             np_random = self.env.task.np_random
@@ -115,7 +112,6 @@ class GazeboEnvRandomizer(gym.Wrapper, TaskRandomizer, abc.ABC):
     def _create_environment(
         self, env: Union[str, MakeEnvCallable], **kwargs
     ) -> gazebo_runtime.GazeboRuntime:
-
         if isinstance(env, str):
             env_to_wrap = self._create_from_id(env_id=env, **kwargs)
 
@@ -132,12 +128,10 @@ class GazeboEnvRandomizer(gym.Wrapper, TaskRandomizer, abc.ABC):
 
     @staticmethod
     def _create_from_callable(make_env: MakeEnvCallable, **kwargs) -> gym.Env:
-
         env = make_env(**kwargs)
         return env
 
     @staticmethod
     def _create_from_id(env_id: str, **kwargs) -> gym.Env:
-
         env = gym.make(env_id, **kwargs)
         return env

@@ -21,7 +21,6 @@ from scenario import core as scenario
 
 class PendulumSwingUp(task.Task, abc.ABC):
     def __init__(self, agent_rate: float, **kwargs):
-
         # Initialize the Task base class
         task.Task.__init__(self, agent_rate=agent_rate)
 
@@ -33,7 +32,6 @@ class PendulumSwingUp(task.Task, abc.ABC):
         self._max_torque = 50.0
 
     def create_spaces(self) -> Tuple[ActionSpace, ObservationSpace]:
-
         action_space = gym.spaces.Box(
             low=-self._max_torque, high=self._max_torque, shape=(1,), dtype=np.float64
         )
@@ -45,7 +43,6 @@ class PendulumSwingUp(task.Task, abc.ABC):
         return action_space, observation_space
 
     def set_action(self, action: Action) -> None:
-
         # Get the force value
         force = action.tolist()[0]
 
@@ -57,7 +54,6 @@ class PendulumSwingUp(task.Task, abc.ABC):
             raise RuntimeError("Failed to set the force to the pendulum")
 
     def get_observation(self) -> Observation:
-
         # Get the model
         model = self.world.get_model(self.model_name)
 
@@ -72,7 +68,6 @@ class PendulumSwingUp(task.Task, abc.ABC):
         return observation
 
     def get_reward(self) -> Reward:
-
         # This environment is done only if the observation goes outside its limits.
         # Since it can happen only when velocity is too high, penalize this happening.
         cost = 100.0 if self.is_terminated() else 0.0
@@ -86,12 +81,11 @@ class PendulumSwingUp(task.Task, abc.ABC):
         tau = model.get_joint("pivot").generalized_force_target()
 
         # Calculate the cost
-        cost += (q ** 2) + 0.1 * (dq ** 2) + 0.001 * (tau ** 2)
+        cost += (q**2) + 0.1 * (dq**2) + 0.001 * (tau**2)
 
         return Reward(-cost)
 
     def is_terminated(self) -> bool:
-
         # Get the observation
         observation = self.get_observation()
 
@@ -104,7 +98,6 @@ class PendulumSwingUp(task.Task, abc.ABC):
         return False
 
     def reset_task(self) -> None:
-
         if self.model_name not in self.world.model_names():
             raise RuntimeError("The pendulum model was not inserted in the world")
 

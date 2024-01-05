@@ -14,7 +14,6 @@ from scenario import core as scenario_core
 class ICubGazeboABC(
     scenario.model_wrapper.ModelWrapper, scenario.model_with_file.ModelWithFile, abc.ABC
 ):
-
     DOFS = 32
     NUM_LINKS = 39
     NUM_JOINTS = 32
@@ -67,7 +66,6 @@ class ICubGazeboABC(
         orientation: List[float],
         model_file: str = None,
     ):
-
         # Get a unique model name
         model_name = get_unique_model_name(world, "icub")
 
@@ -107,7 +105,6 @@ class ICubGazebo(ICubGazeboABC):
         orientation: List[float] = (0, 0, 0, 1.0),
         model_file: str = None,
     ):
-
         super().__init__(
             world=world,
             position=position,
@@ -117,7 +114,6 @@ class ICubGazebo(ICubGazeboABC):
 
     @classmethod
     def get_model_file(cls) -> str:
-
         import gym_gz_models
 
         return gym_gz_models.get_model_file("iCubGazeboV2_5")
@@ -131,7 +127,6 @@ class ICubGazeboSimpleCollisions(ICubGazeboABC):
         orientation: List[float] = (0, 0, 0, 1.0),
         model_file: str = None,
     ):
-
         super().__init__(
             world=world,
             position=position,
@@ -141,7 +136,6 @@ class ICubGazeboSimpleCollisions(ICubGazeboABC):
 
     @classmethod
     def get_model_file(cls) -> str:
-
         import gym_gz_models
 
         return gym_gz_models.get_model_file("iCubGazeboSimpleCollisionsV2_5")

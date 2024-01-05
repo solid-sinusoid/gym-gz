@@ -25,7 +25,6 @@ scenario.set_verbosity(scenario.Verbosity_debug)
 def get_model(
     gazebo: scenario.GazeboSimulator, gym_gz_models_name: str
 ) -> scenario.Model:
-
     # Get the world and cast it to a Gazebo world
     world = gazebo.get_world().to_gazebo()
 
@@ -47,7 +46,6 @@ def get_model(
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_model_core_api(gazebo: scenario.GazeboSimulator):
-
     assert gazebo.initialize()
 
     gym_gz_model_name = "cartpole"
@@ -68,7 +66,6 @@ def test_model_core_api(gazebo: scenario.GazeboSimulator):
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_model_joints(gazebo: scenario.GazeboSimulator):
-
     assert gazebo.initialize()
 
     gym_gz_model_name = "panda"
@@ -119,7 +116,6 @@ def test_model_joints(gazebo: scenario.GazeboSimulator):
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_model_base_pose(gazebo: scenario.GazeboSimulator):
-
     assert gazebo.initialize()
 
     gym_gz_model_name = "pendulum"
@@ -157,7 +153,6 @@ def test_model_base_pose(gazebo: scenario.GazeboSimulator):
 def test_model_base_velocity(
     default_world: Tuple[scenario.GazeboSimulator, scenario.World]
 ):
-
     # Get the simulator and the world
     gazebo, world = default_world
 
@@ -228,7 +223,6 @@ def test_model_base_velocity(
     "gazebo", [(0.001, 1.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_model_references(gazebo: scenario.GazeboSimulator):
-
     assert gazebo.initialize()
 
     gym_gz_model_name = "cartpole"
@@ -274,7 +268,6 @@ def test_model_references(gazebo: scenario.GazeboSimulator):
 def test_history_of_joint_forces(
     default_world: Tuple[scenario.GazeboSimulator, scenario.World]
 ):
-
     # Get the simulator and the world
     gazebo, world = default_world
 
@@ -299,7 +292,6 @@ def test_history_of_joint_forces(
     history_last_three_runs = np.zeros(panda.dofs() * 3)
 
     for _ in range(10):
-
         torques += 0.1
         assert panda.set_joint_generalized_force_targets(torques)
 

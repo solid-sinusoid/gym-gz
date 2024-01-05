@@ -9,12 +9,10 @@ from scenario import core as scenario
 
 class ModelWrapper(scenario.Model, abc.ABC):
     def __init__(self, model: scenario.Model):
-
         # No need to call scenario.Model.__init__()!
         abc.ABC.__init__(self)
 
         self.model = model
 
     def __getattr__(self, name):
-
         return getattr(self.model, name)

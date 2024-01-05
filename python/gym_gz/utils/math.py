@@ -15,7 +15,6 @@ def normalize(
     low: Union[Number, List[Number], np.ndarray],
     high: Union[Number, List[Number], np.ndarray],
 ) -> Union[Number, np.ndarray]:
-
     if low is None or high is None:
         return input
 
@@ -41,7 +40,6 @@ def denormalize(
     low: Union[Number, List[Number], np.ndarray],
     high: Union[Number, List[Number], np.ndarray],
 ) -> Union[Number, np.ndarray]:
-
     if low is None or high is None:
         return input
 

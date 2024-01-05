@@ -36,7 +36,6 @@ panda_pid_gains_1000Hz = {
 
 @pytest.mark.parametrize("default_world", [(1.0 / 1_000, 1.0, 1)], indirect=True)
 def test_position_pid(default_world: Tuple[scenario.GazeboSimulator, scenario.World]):
-
     # Get the simulator and the world
     gazebo, world = default_world
 
@@ -111,7 +110,6 @@ def test_position_pid(default_world: Tuple[scenario.GazeboSimulator, scenario.Wo
     )
 
     for _ in range(5_000):
-
         # Generate the new references
         joint1_reference = q0_joint1 + next(q_joint1)
         joint6_reference = q0_joint6 + next(q_joint6)

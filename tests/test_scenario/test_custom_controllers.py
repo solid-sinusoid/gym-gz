@@ -24,7 +24,6 @@ scenario.set_verbosity(scenario.Verbosity_debug)
     "gazebo", [(0.001, 5.0, 1)], indirect=True, ids=utils.id_gazebo_fn
 )
 def test_computed_torque_fixed_base(gazebo: scenario.GazeboSimulator):
-
     assert gazebo.initialize()
     step_size = gazebo.step_size()
 

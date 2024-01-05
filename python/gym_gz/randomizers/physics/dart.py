@@ -17,13 +17,10 @@ class DART(randomizers.abc.PhysicsRandomizer):
     """
 
     def __init__(self):
-
         super().__init__()
 
     def get_engine(self):
-
         return scenario.PhysicsEngine_dart
 
     def randomize_physics(self, task: gym_gz.base.task.Task, **kwargs) -> None:
-
         pass

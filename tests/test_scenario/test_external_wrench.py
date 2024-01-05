@@ -22,7 +22,6 @@ scenario.set_verbosity(scenario.Verbosity_debug)
 
 @pytest.mark.parametrize("default_world", [(1.0 / 1_000, 1.0, 1)], indirect=True)
 def test_fixed_base(default_world: Tuple[scenario.GazeboSimulator, scenario.World]):
-
     # Get the simulator and the world
     gazebo, world = default_world
 
