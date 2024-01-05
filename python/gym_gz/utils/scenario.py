@@ -4,7 +4,7 @@
 
 from typing import List, Tuple, Union
 
-import gym.spaces
+import gymnasium as gym
 import gym_gz_models
 import numpy as np
 

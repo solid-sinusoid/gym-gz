@@ -179,7 +179,7 @@ def import_gazebo() -> None:
     if os.environ.get("SCENARIO_DISABLE_TENSORFLOW_PRELOAD") != "1":
         preload_tensorflow_shared_libraries()
 
-    # Import gym before scenario.bindings.gazebo. Similarly to tensorflow, also gym
+    # import gymnasium before scenario.bindings.gazebo. Similarly to tensorflow, also gym
     # includes a module that imports protobuf, producing a similar segfault.
     if os.environ.get("SCENARIO_DISABLE_GYM_PREIMPORT") != "1":
         pre_import_gym()

@@ -4,7 +4,7 @@
 
 from typing import Dict, List, NewType, Tuple, Union
 
-import gym.spaces
+import gymnasium as gym
 import numpy as np
 
 Terminated = NewType("Terminated", bool)
