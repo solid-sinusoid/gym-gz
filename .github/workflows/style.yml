@@ -73,4 +73,4 @@ jobs:
       - name: "📝 isort"
         uses: isort/isort-action@master
         with:
-          configuration: --check --diff --color
+          configuration: --check --diff
