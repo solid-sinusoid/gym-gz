@@ -56,7 +56,7 @@ jobs:
           python-version: '3.10'
 
       - name: '🚚 Compilation cache'
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ env.CCACHE_DIR }}
           # We include the commit sha in the cache key, as new cache entries are
@@ -112,7 +112,7 @@ jobs:
       - name: '📦️ Compress the workspace'
         run: tar -I lz4 -cf /tmp/workspace_install.tar.lz4 /workspace/install
       - name: '⬆️ Upload the workspace'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           path: /tmp/workspace_install.tar.lz4
           name: workspace-${{ matrix.gazebo }}
@@ -194,7 +194,7 @@ jobs:
         run: sudo apt-get install -y --no-install-recommends gz-${{ matrix.gazebo }}
 
       - name: '[🧪|nightly] Download pre-built colcon workspace'
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         if: |
           contains(matrix.os, 'ubuntu') && (
             (github.event_name == 'push' && github.ref != 'refs/heads/master') ||
@@ -334,7 +334,7 @@ jobs:
         run: ls -lah dist/
 
       - name: '⬆️ Upload artifacts'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: matrix.type == 'User' && matrix.gazebo == 'gardern'
         with:
           path: dist/*
@@ -374,7 +374,7 @@ jobs:
           git diff
 
       - name: '⬆️ Upload website folder'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: matrix.type == 'User' && matrix.gazebo == 'garden' && contains(matrix.os, 'ubuntu')
         with:
           path: build/html
@@ -391,7 +391,7 @@ jobs:
     steps:
 
       - name: '⬇️ Download website folder'
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           path: build/html
           name: website
@@ -445,7 +445,7 @@ jobs:
       # ===============
 
       - name: '⬇️ Download scenario wheels'
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           path: dist
           name: dist
@@ -484,7 +484,7 @@ jobs:
         run: ls -lah dist/
 
       - name: '⬆️ Upload artifacts'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           path: dist/*
           name: dist
@@ -510,7 +510,7 @@ jobs:
         run: git fetch --prune --unshallow
 
       - name: '⬇️ Download Python packages'
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           path: dist
           name: dist
