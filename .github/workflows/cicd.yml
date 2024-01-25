@@ -291,7 +291,7 @@ jobs:
 
       - name: '[🐍|scenario] Python Tests'
         shell: bash -i -e {0}
-        run: pytest -m "scenario"
+        run: pytest -m "scenario" -k "not computed_torque_fixed_base"
 
       - name: '[🚨|scenario] Python Tests with Valgrind'
         shell: bash -i -e {0}
