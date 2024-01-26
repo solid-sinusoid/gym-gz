@@ -108,7 +108,7 @@ jobs:
           git clone https://github.com/robotology/idyntree.git
           cd ..
           colcon build \
-              --packages-select idyntree \
+              --packages-select iDynTree \
               --cmake-args \
                   -GNinja \
                   -DIDYNTREE_USES_PYTHON:BOOL=ON \
