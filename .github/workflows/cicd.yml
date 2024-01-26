@@ -49,6 +49,13 @@ jobs:
             ninja-build \
             build-essential \
             software-properties-common
+            libeigen3-dev \
+            libxml2-dev \
+            coinor-libipopt-dev \
+            libassimp-dev \
+            libirrlicht-dev \
+            libglfw3-dev \
+            swig 
 
       - name: '🐍 Initialize Python'
         uses: actions/setup-python@v5
@@ -94,6 +101,20 @@ jobs:
           xargs -a /workspace/install/pkg.txt sudo apt-get install -y --no-install-recommends
         env:
           TAGS_YAML: https://raw.githubusercontent.com/gazebo-tooling/gazebodistro/master/collection-${{ matrix.gazebo }}.yaml
+
+      - name: '🏗️ Build idyntree'
+        run: |
+          cd /workspace/src
+          git clone https://github.com/robotology/idyntree.git
+          cd ..
+          colcon build \
+              --packages-select idyntree \
+              --cmake-args \
+                  -GNinja \
+                  -DIDYNTREE_USES_PYTHON:BOOL=ON \
+                  -DIDYNTREE_USES_IPOPT:BOOL=ON
+                  -DCMAKE_BUILD_TYPE=Debug \
+              --merge-install
 
       - name: '🏗️ Build colcon workspace'
         run: |
@@ -227,7 +248,8 @@ jobs:
             libxml2-dev coinor-libipopt-dev libeigen3-dev libassimp-dev swig
       - name: '🤖 Install iDynTree'
         run: |
-          pip install idyntree
+          PYTHONPATH=/workspace/install/iDynTree/lib/python3/dist-packages:$PYTHONPATH 
+          echo "PYTHONPATH=$PYTHONPATH" >> $GITHUB_ENV
           IDYNTREE_PYTHON_PKG=$(python3 -c 'import idyntree, pathlib; print(pathlib.Path(idyntree.__file__).parent)')
           echo "CMAKE_PREFIX_PATH=$IDYNTREE_PYTHON_PKG" >> $GITHUB_ENV
 
