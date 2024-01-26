@@ -48,7 +48,7 @@ jobs:
             gpg-agent \
             ninja-build \
             build-essential \
-            software-properties-common
+            software-properties-common \
             libeigen3-dev \
             libxml2-dev \
             coinor-libipopt-dev \
