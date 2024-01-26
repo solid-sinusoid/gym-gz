@@ -57,12 +57,14 @@ class CartPoleDiscreteBalancing(task.Task, abc.ABC):
         )
 
         # Configure the reset space
-        self.reset_space = gym.spaces.Box(low=-high, high=high, dtype=np.float64)
+        self.reset_space = gym.spaces.Box(
+            low=np.float32(-high), high=np.float32(high), dtype=np.float32
+        )
 
         # Configure the observation space
         obs_high = high.copy() * 1.2
         observation_space = gym.spaces.Box(
-            low=-obs_high, high=obs_high, dtype=np.float64
+            low=np.float32(-obs_high), high=np.float32(obs_high), dtype=np.float32
         )
 
         return action_space, observation_space

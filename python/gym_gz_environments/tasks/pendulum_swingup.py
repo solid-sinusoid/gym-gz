@@ -33,12 +33,17 @@ class PendulumSwingUp(task.Task, abc.ABC):
 
     def create_spaces(self) -> Tuple[ActionSpace, ObservationSpace]:
         action_space = gym.spaces.Box(
-            low=-self._max_torque, high=self._max_torque, shape=(1,), dtype=np.float64
+            low=np.float32(-self._max_torque),
+            high=np.float32(self._max_torque),
+            shape=(1,),
+            dtype=np.float32,
         )
 
         high = np.array([1.0, 1.0, self._max_speed])  # cos(theta)  # sin(theta)
 
-        observation_space = gym.spaces.Box(low=-high, high=high, dtype=np.float64)
+        observation_space = gym.spaces.Box(
+            low=np.float32(-high), high=np.float32(high), dtype=np.float32
+        )
 
         return action_space, observation_space
 

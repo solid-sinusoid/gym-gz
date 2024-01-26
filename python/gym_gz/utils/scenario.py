@@ -113,7 +113,8 @@ def get_joint_positions_space(
 
     # Build the space
     space = gym.spaces.Box(
-        low=np.array(joint_limits.min), high=np.array(joint_limits.max)
+        low=np.float32(np.array(joint_limits.min)),
+        high=np.float32(np.array(joint_limits.max)),
     )
 
     return space
