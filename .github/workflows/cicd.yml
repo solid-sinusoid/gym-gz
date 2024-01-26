@@ -246,14 +246,14 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
-            libxml2-dev coinor-libipopt-dev libeigen3-dev libassimp-dev swig
+            libxml2-dev coinor-libipopt-dev libeigen3-dev libassimp-dev swig 
+          pip install numpy
       - name: '🤖 Install iDynTree'
         shell: bash -i -e {0}
         run: |
           export PYTHONPATH=/workspace/install/iDynTree/lib/python3/dist-packages:$PYTHONPATH 
-          printenv PYTHONPATH
           IDYNTREE_PYTHON_PKG=$(python3 -c 'import idyntree, pathlib; print(pathlib.Path(idyntree.__file__).parent)')
-          echo "PYTHONPATH=$/workspace/install/iDynTree/lib/python3/dist-packages:$PYTHONPATH" >> $GITHUB_ENV
+          echo "PYTHONPATH=/workspace/install/iDynTree/lib/python3/dist-packages:$PYTHONPATH" >> $GITHUB_ENV
           echo "CMAKE_PREFIX_PATH=$IDYNTREE_PYTHON_PKG" >> $GITHUB_ENV
 
       # Note: In order to execute the setup.sh script, the file /etc/bash.bashrc must be sourced.
