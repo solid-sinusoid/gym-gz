@@ -134,7 +134,7 @@ class CubeGazeboRobot(gazebo_robot.GazeboRobot):
 def get_cube_urdf() -> str:
     mass = 5.0
     edge = 0.2
-    i = 1 / 12 * mass * (edge**2 + edge**2)
+    i = 1 / 12 * mass * (edge ** 2 + edge ** 2)
     cube_urdf = f"""
     <robot name="cube_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
         <link name="cube">

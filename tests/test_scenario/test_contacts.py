@@ -25,7 +25,7 @@ scenario.set_verbosity(scenario.Verbosity_debug)
 def get_cube_urdf_string_double_collision() -> str:
     mass = 5.0
     edge = 0.2
-    i = 1 / 12 * mass * (edge**2 + edge**2)
+    i = 1 / 12 * mass * (edge ** 2 + edge ** 2)
     cube_urdf = f"""
     <robot name="cube_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
         <link name="cube">

@@ -248,7 +248,7 @@ class Task(abc.ABC):
         """
 
         # Create the seed if not passed
-        seed = np.random.randint(2**32 - 1) if seed is None else seed
+        seed = np.random.randint(2 ** 32 - 1) if seed is None else seed
 
         # Get an instance of the random number generator from gymnasium utils.
         # This is necessary to have an independent rng for each environment.

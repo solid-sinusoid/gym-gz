@@ -32,7 +32,7 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.githubpages",
     "sphinx.ext.napoleon",
-    "sphinx.ext.extlinks",
+    # "sphinx.ext.extlinks",
     "sphinx_autodoc_typehints",
     "sphinx_multiversion",
     "sphinx_fontawesome",
@@ -102,9 +102,11 @@ breathe_default_project = "scenario"
 
 # From: https://holzhaus.github.io/sphinx-multiversion
 smv_prefer_remote_refs = False
-smv_remote_whitelist = r"^(origin|upstream)$"
+# smv_remote_whitelist = r"^(origin|upstream)$"
+smv_remote_whitelist = None
 smv_tag_whitelist = r"^dummy"
-smv_branch_whitelist = r"^(master|devel|docs/.*)$"
+# smv_branch_whitelist = r"^(master|devel|docs/.*)$"
+smv_branch_whitelist = "devel"
 smv_released_pattern = r"^tags/.*$"
 smv_outputdir_format = "{ref.name}"
 

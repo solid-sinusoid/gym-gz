@@ -86,7 +86,7 @@ class PendulumSwingUp(task.Task, abc.ABC):
         tau = model.get_joint("pivot").generalized_force_target()
 
         # Calculate the cost
-        cost += (q**2) + 0.1 * (dq**2) + 0.001 * (tau**2)
+        cost += (q ** 2) + 0.1 * (dq ** 2) + 0.001 * (tau ** 2)
 
         return Reward(-cost)
 

@@ -111,7 +111,7 @@ class CartPoleContinuousSwingup(task.Task, abc.ABC):
         reward = (np.cos(q) + 1) / 2
 
         # Penalize cart velocities
-        reward -= 0.1 * (dx**2)
+        reward -= 0.1 * (dx ** 2)
 
         # Penalize positions close to the end of the rail
         reward -= 10.0 * (x >= 0.8 * self._x_threshold)
