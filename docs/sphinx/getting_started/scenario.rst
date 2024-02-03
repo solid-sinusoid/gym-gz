@@ -5,7 +5,7 @@ ScenarIO
 
 In this getting started section we show how to use the Gazebo ScenarIO library to simulate a pendulum system.
 We will use the models of the ground plane and the pendulum stored in the repository
-`gym_ignition_models <https://github.com/robotology/gym-ignition-models>`_.
+`gym_gz_models <https://github.com/andreaostuni/gym-gz-models>`_.
 
 The final outcome of this section is shown in the following GIF:
 
@@ -13,7 +13,7 @@ The final outcome of this section is shown in the following GIF:
    :align: center
 
 .. tip::
-    We fully support `Ignition Fuel <https://app.ignitionrobotics.org/dashboard>`_, a constantly enlarging database of SDF models.
+    We fully support `Gz Fuel <https://app.gazebosim.org/dashboard>`_, a constantly enlarging database of SDF models.
     You can use :py:meth:`~scenario.bindings.gazebo.get_model_file_from_fuel` to download any model of the database:
 
     .. code-block:: python
@@ -23,7 +23,7 @@ The final outcome of this section is shown in the following GIF:
       model_name = "Electrical Box"
 
       model_file = scenario_gazebo.get_model_file_from_fuel(
-          uri=f"https://fuel.ignitionrobotics.org/openrobotics/models/{model_name}")
+          uri=f"https://fuel.gazebosim.org/openrobotics/models/{model_name}")
 
 .. _getting_started_scenario_python:
 
@@ -36,7 +36,7 @@ Python
     .. code-block:: python
 
       import time
-      import gym_ignition_models
+      import gym_gz_models
       from scenario import gazebo as scenario_gazebo
 
       # Create the simulator
@@ -49,7 +49,7 @@ Python
 
       # Get the default world and insert the ground plane
       world = gazebo.get_world()
-      world.insert_model(gym_ignition_models.get_model_file("ground_plane"))
+      world.insert_model(gym_gz_models.get_model_file("ground_plane"))
 
       # Select the physics engine
       world.set_physics_engine(scenario_gazebo.PhysicsEngine_dart)
@@ -60,7 +60,7 @@ Python
       gazebo.run(paused=True)
 
       # Insert a pendulum
-      world.insert_model(gym_ignition_models.get_model_file("pendulum"))
+      world.insert_model(gym_gz_models.get_model_file("pendulum"))
       gazebo.run(paused=True)
       time.sleep(3)
 

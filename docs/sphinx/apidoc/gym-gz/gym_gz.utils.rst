@@ -1,5 +1,5 @@
 gym\_gz.utils
-===================
+=============
 
 .. automodule:: gym_gz.utils
    :members:
@@ -8,7 +8,7 @@ gym\_gz.utils
 
 
 gym\_gz.utils.logger
---------------------------
+--------------------
 
 .. automodule:: gym_gz.utils.logger
    :members:
@@ -16,7 +16,7 @@ gym\_gz.utils.logger
    :show-inheritance:
 
 gym\_gz.utils.math
-------------------------
+------------------
 
 .. automodule:: gym_gz.utils.math
    :members:
@@ -24,7 +24,7 @@ gym\_gz.utils.math
    :show-inheritance:
 
 gym\_gz.utils.misc
-------------------------
+------------------
 
 .. automodule:: gym_gz.utils.misc
    :members:
@@ -32,7 +32,7 @@ gym\_gz.utils.misc
    :show-inheritance:
 
 gym\_gz.utils.resource\_finder
-------------------------------------
+------------------------------
 
 .. automodule:: gym_gz.utils.resource_finder
    :members:
@@ -40,7 +40,7 @@ gym\_gz.utils.resource\_finder
    :show-inheritance:
 
 gym\_gz.utils.scenario
-----------------------------
+----------------------
 
 .. automodule:: gym_gz.utils.scenario
    :members:
@@ -48,7 +48,7 @@ gym\_gz.utils.scenario
    :show-inheritance:
 
 gym\_gz.utils.typing
---------------------------
+--------------------
 
 .. automodule:: gym_gz.utils.typing
    :members:

@@ -1,5 +1,5 @@
 gym\_gz\_environments.tasks
-=================================
+===========================
 
 .. automodule:: gym_gz_environments.tasks
    :members:
@@ -8,7 +8,7 @@ gym\_gz\_environments.tasks
 
 
 gym\_gz\_environments.tasks.cartpole\_continuous\_balancing
------------------------------------------------------------------
+-----------------------------------------------------------
 
 .. automodule:: gym_gz_environments.tasks.cartpole_continuous_balancing
    :members:
@@ -16,7 +16,7 @@ gym\_gz\_environments.tasks.cartpole\_continuous\_balancing
    :show-inheritance:
 
 gym\_gz\_environments.tasks.cartpole\_continuous\_swingup
----------------------------------------------------------------
+---------------------------------------------------------
 
 .. automodule:: gym_gz_environments.tasks.cartpole_continuous_swingup
    :members:
@@ -24,7 +24,7 @@ gym\_gz\_environments.tasks.cartpole\_continuous\_swingup
    :show-inheritance:
 
 gym\_gz\_environments.tasks.cartpole\_discrete\_balancing
----------------------------------------------------------------
+---------------------------------------------------------
 
 .. automodule:: gym_gz_environments.tasks.cartpole_discrete_balancing
    :members:
@@ -32,7 +32,7 @@ gym\_gz\_environments.tasks.cartpole\_discrete\_balancing
    :show-inheritance:
 
 gym\_gz\_environments.tasks.pendulum\_swingup
----------------------------------------------------
+---------------------------------------------
 
 .. automodule:: gym_gz_environments.tasks.pendulum_swingup
    :members:

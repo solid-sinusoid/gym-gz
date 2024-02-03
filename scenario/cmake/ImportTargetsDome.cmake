@@ -1,6 +1,6 @@
 include(AliasImportedTarget)
 
-# https://ignitionrobotics.org/docs/dome/install#dome-libraries
+# https://gazebosim.org/docs/dome/install#dome-libraries
 
 alias_imported_target(
     PACKAGE_ORIG sdformat10

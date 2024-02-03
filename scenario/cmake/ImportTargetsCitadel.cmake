@@ -1,6 +1,6 @@
 include(AliasImportedTarget)
 
-# https://ignitionrobotics.org/docs/citadel/install#citadel-libraries
+# https://gazebosim.org/docs/citadel/install#citadel-libraries
 
 alias_imported_target(
     PACKAGE_ORIG sdformat9

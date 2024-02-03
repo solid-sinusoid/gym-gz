@@ -4,7 +4,7 @@ Stable
 ======
 
 The stable channel is the easiest way to setup your system.
-As described in the :ref:`support policy <support_policy>`, this channel allows installing Ignition from binary packages.
+As described in the :ref:`support policy <support_policy>`, this channel allows installing Gz from binary packages.
 
 We publish updated stable packages after any tagged release of the ``master`` branch.
 
@@ -13,7 +13,7 @@ We publish updated stable packages after any tagged release of the ``master`` br
 PyPI Package
 ************
 
-We provide two different packages for ScenarIO and gym-ignition.
+We provide two different packages for ScenarIO and gym-gz.
 
 If you are interested in the ScenarIO package,
 install the `scenario <https://pypi.org/project/scenario/>`_ package from PyPI:
@@ -22,11 +22,11 @@ install the `scenario <https://pypi.org/project/scenario/>`_ package from PyPI:
 
    pip install scenario
 
-Instead, if you are interested in gym-ignition,
-install the `gym-ignition <https://pypi.org/project/gym-ignition/>`_ package from PyPI:
+Instead, if you are interested in gym-gz,
+install the `gym-gz <https://pypi.org/project/gym-gz/>`_ package from PyPI:
 
 .. code-block:: bash
 
-   pip install gym-ignition
+   pip install gym-gz
 
 It will download and install also ``scenario`` since it depends on it.

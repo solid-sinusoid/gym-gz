@@ -1,5 +1,5 @@
 gym\_gz
-=============
+=======
 
 .. automodule:: gym_gz
    :members:

@@ -67,7 +67,7 @@ html_theme = "sphinx_book_theme"
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-    "repository_url": "https://github.com/robotology/gym-ignition",
+    "repository_url": "https://github.com/andreaostuni/gym-gz",
     "use_repository_button": True,
     "use_issues_button": True,
     "use_edit_page_button": True,
@@ -75,7 +75,7 @@ html_theme_options = {
     "home_page_in_toc": True,
     "use_download_button": False,
     "use_fullscreen_button": True,
-    "single_page": False,
+
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -119,6 +119,6 @@ html_sidebars = {
 
 # -- Options for extlinks extension ----------------------------------
 extlinks = {
-    "issue": ("https://github.com/robotology/gym-ignition/issues/%s", "#"),
-    "pr": ("https://github.com/robotology/gym-ignition/pull/%s", "#"),
+    "issue": ("https://github.com/andreaostuni/gym-gz/issues/%s", "#"),
+    "pr": ("https://github.com/andreaostuni/gym-gz/pull/%s", "#"),
 }

@@ -1,5 +1,5 @@
 gym\_gz.randomizers.physics
-=================================
+===========================
 
 .. automodule:: gym_gz.randomizers.physics
    :members:
@@ -8,7 +8,7 @@ gym\_gz.randomizers.physics
 
 
 gym\_gz.randomizers.physics.dart
---------------------------------------
+--------------------------------
 
 .. automodule:: gym_gz.randomizers.physics.dart
    :members:

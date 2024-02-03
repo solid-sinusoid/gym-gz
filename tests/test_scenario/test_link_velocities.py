@@ -251,7 +251,7 @@ def test_linear_acceleration(
         assert world_linear_acceleration() == pytest.approx(world_acceleration, abs=0.5)
 
         # Test the BODY acceleration
-        # Note: https://github.com/ignitionrobotics/ign-gazebo/issues/87
+        # Note: https://github.com/gazebosim/gz-sim/issues/87
         W_R_L = to_matrix(orientation())
         body_acceleration = W_R_L.transpose() @ np.array(world_linear_acceleration())
         assert body_acceleration == pytest.approx(body_linear_acceleration())
@@ -314,7 +314,7 @@ def test_angular_acceleration(
             world_angular_acceleration(), abs=0.2
         )
 
-        # Note: https://github.com/ignitionrobotics/ign-gazebo/issues/87
+        # Note: https://github.com/gazebosim/gz-sim/issues/87
         W_R_L = to_matrix(orientation())
         body_acceleration = W_R_L.transpose() @ np.array(world_angular_acceleration())
         assert body_acceleration == pytest.approx(body_angular_acceleration())

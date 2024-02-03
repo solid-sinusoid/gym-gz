@@ -6,7 +6,7 @@ FAQ
 How to give credit?
 -------------------
 
-If you use **ScenarIO** or **gym-ignition** for your research,
+If you use **ScenarIO** or **gym-gz** for your research,
 please cite the following reference:
 
 .. code-block:: bibtex
@@ -27,7 +27,7 @@ Interaction with Tensorflow
 If your Python application imports both ``scenario`` and ``tensorflow``,
 you might experience segfaults with no error messages.
 Likely the problem is the `protobuf <https://github.com/protocolbuffers/protobuf>`_ library.
-In fact, both Tensorflow and Ignition Gazebo link agains protobuf, but while Gazebo uses the
+In fact, both Tensorflow and Gz sim link agains protobuf, but while Gazebo uses the
 default version of your OS, Tensorflow vendors a more recent version.
 If you import ``scenario`` before ``tensorflow``, the system protobuf is loaded, and
 Tensorflow will segfault.
@@ -42,20 +42,20 @@ Ogre2 and OpenGL
 
 On GNU/Linux distributions that ship an old OpenGL version, the GUI could fail to open printing
 error like *Unable to create the rendering window*.
-The reason is that Ignition Gazebo has `ogre-next <https://github.com/OGRECave/ogre-next>`_
+The reason is that Gz sim has `ogre-next <https://github.com/OGRECave/ogre-next>`_
 (also known as ogre2) as default rendering engine, and it requires OpenGL greater than 3.3.
-You can find more details `here <https://github.com/ignitionrobotics/docs/blob/master/fortress/troubleshooting.md#unable-to-create-the-rendering-window>`_.
+You can find more details `here <https://github.com/gazebosim/docs/blob/master/fortress/troubleshooting.md#unable-to-create-the-rendering-window>`_.
 
-The workaround we recommend is modifying the file ``~/.ignition/gazebo/gui.config`` as follows:
+The workaround we recommend is modifying the file ``~/.gz/sim/gui.config`` as follows:
 
 .. code-block:: diff
 
-   --- .ignition/gazebo/gui.config 2020-06-04 14:41:33.471804733 +0200
-   +++ .ignition/gazebo/gui.config 2020-06-04 14:42:47.826475035 +0200
+   --- .gz/sim/gui.config 2020-06-04 14:41:33.471804733 +0200
+   +++ .gz/sim/gui.config 2020-06-04 14:42:47.826475035 +0200
    @@ -30,7 +30,7 @@
         <property type='bool' key='showTitleBar'>false</property>
         <property type='string' key='state'>docked</property>
-      </ignition-gui>
+      </gz-gui>
    -  <engine>ogre2</engine>
    +  <engine>ogre</engine>
       <scene>scene</scene>
@@ -99,9 +99,9 @@ extracting it from the simulator with :cpp:func:`~scenario::gazebo::GazeboSimula
 
 .. note::
 
-   If you don't specify any GUI configuration, the default ``~/.ignition/gazebo/gui.config`` is used.
+   If you don't specify any GUI configuration, the default ``~/.gz/sim/gui.config`` is used.
    This is the preferred approach since it's easier to maintain and keep world files updated.
-   You can find more information in the upstream `default.sdf <https://github.com/ignitionrobotics/ign-gazebo/blob/master/examples/worlds/default.sdf>`_.
+   You can find more information in the upstream `default.sdf <https://github.com/gazebosim/gz-sim/blob/master/examples/worlds/default.sdf>`_.
 
 .. tip::
 

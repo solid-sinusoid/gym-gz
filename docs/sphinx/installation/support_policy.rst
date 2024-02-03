@@ -3,7 +3,7 @@
 Support policy
 ==============
 
-**gym-ignition** is an hybrid C++ and Python project and it requires finding in the system updated compile and runtime
+**gym-gz** is an hybrid C++ and Python project and it requires finding in the system updated compile and runtime
 dependencies, depending on the installation type you select.
 
 The project mostly supports all the major operating systems.
@@ -13,16 +13,16 @@ We do not yet provide official support to other operating systems.
 The table below recaps the project requirements of the :ref:`Stable <installation_stable>` and :ref:`Nightly <installation_nightly>` channels:
 
 +-------------+-----------------+--------+----------------------+----------+------------+---------+
-| Channel     |       C++       | Python |      Ignition        |  Ubuntu  | macOS [*]_ | Windows |
+| Channel     |       C++       | Python |      Gz        |  Ubuntu  | macOS [*]_ | Windows |
 +=============+=================+========+======================+==========+============+=========+
 | **Stable**  | >= gcc8, clang6 | >= 3.8 | `Fortress`_ (binary) | >= 20.04 |     No     |    No   |
 +-------------+-----------------+--------+----------------------+----------+------------+---------+
 | **Nightly** | >= gcc8, clang6 | >= 3.8 | `Fortress`_ (source) | >= 20.04 |     No     |    No   |
 +-------------+-----------------+--------+----------------------+----------+------------+---------+
 
-.. _`Fortress`: https://ignitionrobotics.org/docs/fortress/install
+.. _`Fortress`: https://gazebosim.org/docs/fortress/install
 
-.. [*] Ignition officially supports macOS and also ``gym-ignition`` could be installed on this platform.
+.. [*] Gz officially supports macOS and also ``gym-gz`` could be installed on this platform.
        However, we do not currently test this configuration and we cannot guarantee support.
 
 .. important::

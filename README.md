@@ -1,5 +1,5 @@
 <p align="center">
-<h1 align="center">gym-ignition</h1>
+<h1 align="center">gym-gz</h1>
 </p>
 
 <div align="center">
@@ -56,40 +56,40 @@
 
 ## Description
 
-**gym-ignition** is a framework to create **reproducible robotics environments** for reinforcement learning research.
+**gym-gz** is a framework to create **reproducible robotics environments** for reinforcement learning research.
 
-It is based on the [ScenarIO](scenario/) project which provides the low-level APIs to interface with the Ignition Gazebo simulator.
+It is based on the [ScenarIO](scenario/) project which provides the low-level APIs to interface with the Gz sim simulator.
 By default, RL environments share a lot of boilerplate code, e.g. for initializing the simulator or structuring the classes
 to expose the `gym.Env` interface.
-Gym-ignition provides the [`Task`](python/gym_ignition/base/task.py) and [`Runtime`](python/gym_ignition/base/runtime.py)
+Gym-gz provides the [`Task`](python/gym_gz/base/task.py) and [`Runtime`](python/gym_gz/base/runtime.py)
 abstractions that help you focusing on the development of the decision-making logic rather than engineering.
-It includes [randomizers](python/gym_ignition/randomizers) to simplify the implementation of domain randomization
+It includes [randomizers](python/gym_gz/randomizers) to simplify the implementation of domain randomization
 of models, physics, and tasks.
-Gym-ignition also provides powerful dynamics algorithms compatible with both fixed-base and floating-based robots by
+Gym-gz also provides powerful dynamics algorithms compatible with both fixed-base and floating-based robots by
 exploiting [robotology/idyntree](https://github.com/robotology/idyntree/) and exposing
-[high-level functionalities](python/gym_ignition/rbd/idyntree).
+[high-level functionalities](python/gym_gz/rbd/idyntree).
 
-Gym-ignition does not provide out-of-the-box environments ready to be used.
+Gym-gz does not provide out-of-the-box environments ready to be used.
 Rather, its aim is simplifying and streamlining their development.
 Nonetheless, for illustrative purpose, it includes canonical examples in the
-[`gym_ignition_environments`](python/gym_ignition_environments) package.
+[`gym_gz_environments`](python/gym_gz_environments) package.
 
 Visit the [website][website] for more information about the project.
 
-[website]: https://robotology.github.io/gym-ignition
+[website]: https://robotology.github.io/gym-gz
 
 ## Installation
 
 1. First, follow the installation instructions of [ScenarIO](scenario/).
-2. `pip install gym-ignition`, preferably in a [virtual environment](https://docs.python.org/3.8/tutorial/venv.html).
+2. `pip install gym-gz`, preferably in a [virtual environment](https://docs.python.org/3.8/tutorial/venv.html).
 
 ## Contributing
 
 You can visit our community forum hosted in [GitHub Discussions](https://github.com/robotology/gym-ignition/discussions).
 Even without coding skills, replying user's questions is a great way of contributing.
-If you use gym-ignition in your application and want to show it off, visit the
+If you use gym-gz in your application and want to show it off, visit the
 [Show and tell](https://github.com/robotology/gym-ignition/discussions/categories/show-and-tell) section!
-You can advertise there your environments created with gym-ignition.
+You can advertise there your environments created with gym-gz.
 
 Pull requests are welcome.
 
@@ -115,4 +115,4 @@ first to propose what you would like to change.
 
 ---
 
-**Disclaimer:** Gym-ignition is an independent project and is not related by any means to OpenAI and Open Robotics.
+**Disclaimer:** Gym-gz is an independent project and is not related by any means to OpenAI and Open Robotics.

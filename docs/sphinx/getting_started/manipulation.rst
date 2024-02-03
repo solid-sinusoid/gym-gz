@@ -3,18 +3,18 @@
 Manipulation example
 ********************
 
-This example provides a wider overview of the functionalities currently implemented in gym-ignition.
+This example provides a wider overview of the functionalities currently implemented in gym-gz.
 
 The code reported below is taken from the example
-`panda_pick_and_place.py <https://github.com/robotology/gym-ignition/blob/master/examples/panda_pick_and_place.py>`_.
+`panda_pick_and_place.py <https://github.com/andreaostuni/gym-gz/blob/master/examples/panda_pick_and_place.py>`_.
 It shows the following functionalities:
 
-- Download models from `Ignition Fuel <https://app.ignitionrobotics.org/dashboard>`_.
+- Download models from `Gz Fuel <https://app.gazebosim.org/dashboard>`_.
 - Insert and remove models during runtime.
-- Exploit the high-level :py:class:`~gym_ignition_environments.models.panda.Panda` helper class to insert the manipulator.
+- Exploit the high-level :py:class:`~gym_gz_environments.models.panda.Panda` helper class to insert the manipulator.
 - Enable custom C++ controllers (:cpp:class:`scenario::controllers::ComputedTorqueFixedBase`).
 - Detect contacts and read contact wrenches.
-- Exploit :py:class:`~gym_ignition.rbd.idyntree.inverse_kinematics_nlp.InverseKinematicsNLP`.
+- Exploit :py:class:`~gym_gz.rbd.idyntree.inverse_kinematics_nlp.InverseKinematicsNLP`.
 
 .. figure:: https://user-images.githubusercontent.com/469199/99905096-f29a0f80-2cce-11eb-9f1c-002f6c887bc6.png
    :align: center
@@ -22,7 +22,7 @@ It shows the following functionalities:
 .. tip::
 
    This example can be the starting point to develop manipulation environments for robot learning.
-   Visit the :ref:`getting_started_gym_ignition` page for more information about how to wrap this code in the resources provided by ``gym_ignition``.
+   Visit the :ref:`getting_started_gym_gz` page for more information about how to wrap this code in the resources provided by ``gym_gz``.
 
 .. note::
 
@@ -38,12 +38,12 @@ It shows the following functionalities:
     from functools import partial
     from typing import List
 
-    import gym_ignition
-    import gym_ignition_environments
+    import gym_gz
+    import gym_gz_environments
     import numpy as np
-    from gym_ignition.context.gazebo import controllers
-    from gym_ignition.rbd import conversions
-    from gym_ignition.rbd.idyntree import inverse_kinematics_nlp
+    from gym_gz.context.gazebo import controllers
+    from gym_gz.rbd import conversions
+    from gym_gz.rbd.idyntree import inverse_kinematics_nlp
     from scipy.spatial.transform import Rotation as R
 
     from scenario import core as scenario_core
@@ -57,7 +57,7 @@ It shows the following functionalities:
 
 
     def add_panda_controller(
-        panda: gym_ignition_environments.models.panda.Panda, controller_period: float
+        panda: gym_gz_environments.models.panda.Panda, controller_period: float
     ) -> None:
 
         # Set the controller period
@@ -89,7 +89,7 @@ It shows the following functionalities:
 
 
     def get_panda_ik(
-        panda: gym_ignition_environments.models.panda.Panda, optimized_joints: List[str]
+        panda: gym_gz_environments.models.panda.Panda, optimized_joints: List[str]
     ) -> inverse_kinematics_nlp.InverseKinematicsNLP:
 
         # Create IK
@@ -129,7 +129,7 @@ It shows the following functionalities:
     def insert_bucket(world: scenario_gazebo.World) -> scenario_gazebo.Model:
 
         # Insert objects from Fuel
-        uri = lambda org, name: f"https://fuel.ignitionrobotics.org/{org}/models/{name}"
+        uri = lambda org, name: f"https://fuel.gazebosim.org/{org}/models/{name}"
 
         # Download the cube SDF file
         bucket_sdf = scenario_gazebo.get_model_file_from_fuel(
@@ -155,7 +155,7 @@ It shows the following functionalities:
     def insert_table(world: scenario_gazebo.World) -> scenario_gazebo.Model:
 
         # Insert objects from Fuel
-        uri = lambda org, name: f"https://fuel.ignitionrobotics.org/{org}/models/{name}"
+        uri = lambda org, name: f"https://fuel.gazebosim.org/{org}/models/{name}"
 
         # Download the cube SDF file
         bucket_sdf = scenario_gazebo.get_model_file_from_fuel(
@@ -177,7 +177,7 @@ It shows the following functionalities:
     ) -> scenario_gazebo.Model:
 
         # Insert objects from Fuel
-        uri = lambda org, name: f"https://fuel.ignitionrobotics.org/{org}/models/{name}"
+        uri = lambda org, name: f"https://fuel.gazebosim.org/{org}/models/{name}"
 
         # Download the cube SDF file
         cube_sdf = scenario_gazebo.get_model_file_from_fuel(
@@ -188,7 +188,7 @@ It shows the following functionalities:
         random_position = np.random.uniform(low=[0.2, -0.3, 1.01], high=[0.4, 0.3, 1.01])
 
         # Get a unique name
-        model_name = gym_ignition.utils.scenario.get_unique_model_name(
+        model_name = gym_gz.utils.scenario.get_unique_model_name(
             world=world, model_name="cube"
         )
 
@@ -250,7 +250,7 @@ It shows the following functionalities:
 
 
     def move_fingers(
-        panda: gym_ignition_environments.models.panda.Panda, action: FingersAction
+        panda: gym_gz_environments.models.panda.Panda, action: FingersAction
     ) -> None:
 
         # Get the joints of the fingers
@@ -271,7 +271,7 @@ It shows the following functionalities:
     # ====================
 
     # Get the simulator and the world
-    gazebo, world = gym_ignition.utils.scenario.init_gazebo_sim(
+    gazebo, world = gym_gz.utils.scenario.init_gazebo_sim(
         step_size=0.001, real_time_factor=2.0, steps_per_run=1
     )
 
@@ -281,7 +281,7 @@ It shows the following functionalities:
     gazebo.run(paused=True)
 
     # Insert the Panda manipulator
-    panda = gym_ignition_environments.models.panda.Panda(
+    panda = gym_gz_environments.models.panda.Panda(
         world=world, position=[-0.1, 0, 1.0]
     )
 

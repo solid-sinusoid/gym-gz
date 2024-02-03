@@ -1,5 +1,5 @@
 gym\_gz.scenario
-======================
+================
 
 .. automodule:: gym_gz.scenario
    :members:
@@ -8,7 +8,7 @@ gym\_gz.scenario
 
 
 gym\_gz.scenario.model\_with\_file
-----------------------------------------
+----------------------------------
 
 .. automodule:: gym_gz.scenario.model_with_file
    :members:
@@ -16,7 +16,7 @@ gym\_gz.scenario.model\_with\_file
    :show-inheritance:
 
 gym\_gz.scenario.model\_wrapper
--------------------------------------
+-------------------------------
 
 .. automodule:: gym_gz.scenario.model_wrapper
    :members:

@@ -1,7 +1,7 @@
 ARG from=diegoferigo/gym-gz:base
 FROM ${from}
 
-# Install ignition gazebo
+# Install gz sim
 ARG gazebo_codename="garden"
 RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" \
         > /etc/apt/sources.list.d/gazebo-stable.list &&\

@@ -1,5 +1,5 @@
 gym\_gz.randomizers.model
-===============================
+=========================
 
 .. automodule:: gym_gz.randomizers.model
    :members:
@@ -8,7 +8,7 @@ gym\_gz.randomizers.model
 
 
 gym\_gz.randomizers.model.sdf
------------------------------------
+-----------------------------
 
 .. automodule:: gym_gz.randomizers.model.sdf
    :members:

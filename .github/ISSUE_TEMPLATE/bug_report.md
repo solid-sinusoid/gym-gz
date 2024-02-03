@@ -15,11 +15,11 @@ labels: issue::type::bug
 - [ ] I've already searched similar [issues][Issues] and [discussions][Discussions]
 - [ ] I've already updated to the most recent supported [release][Releases] (either Stable or Nightly)
 
-[Issues]: https://github.com/robotology/gym-ignition/issues
-[Releases]: https://github.com/robotology/gym-ignition/releases
-[FAQ]: https://robotology.github.io/gym-ignition/master/info/faq.html
-[Discussions]: https://github.com/robotology/gym-ignition/discussions
-[Support Policy]: https://robotology.github.io/gym-ignition/master/installation/support_policy.html
+[Issues]: https://github.com/andreaostuni/gym-gz/issues
+[Releases]: https://github.com/andreaostuni/gym-gz/releases
+[FAQ]: https://andreaostuni.github.io/gym-gz/master/info/faq.html
+[Discussions]: https://github.com/andreaostuni/gym-gz/discussions
+[Support Policy]: https://andreaostuni.github.io/gym-gz/master/installation/support_policy.html
     
 ## Description:
 
@@ -53,7 +53,7 @@ Content
 - OS: <!-- Insert the distribution, e.g. Ubuntu 20.04 -->
 - GPU: <!-- Insert your GPU, e.g. Intel XXX integrated -->    
 - Python: <!-- Insert the active Python version and provider, e.g. 3.8.X from virtualenv -->
-- Version: <!-- Insert the installed version of gym-ignition and scenario, e.g. v1.2.0 -->
+- Version: <!-- Insert the installed version of gym-gz and scenario, e.g. v1.2.0 -->
 - Channel:
   - [ ] Stable
   - [ ] Nightly

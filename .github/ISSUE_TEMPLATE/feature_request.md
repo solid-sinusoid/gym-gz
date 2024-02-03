@@ -8,7 +8,7 @@ labels: issue::type::enhancement
 
 ⚠️ If you're not sure on the specifics of the feature or would like a broader discussion, please consider posting a proposal to [Discussions][Discussions] instead.
 
-[Discussions]: https://github.com/robotology/gym-ignition/discussions
+[Discussions]: https://github.com/andreaostuni/gym-gz/discussions
 
 ## Summary
 

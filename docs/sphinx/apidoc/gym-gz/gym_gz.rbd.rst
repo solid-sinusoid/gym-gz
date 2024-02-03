@@ -1,5 +1,5 @@
 gym\_gz.rbd
-=================
+===========
 
 .. automodule:: gym_gz.rbd
    :members:
@@ -14,7 +14,7 @@ gym\_gz.rbd
 
 
 gym\_gz.rbd.conversions
------------------------------
+-----------------------
 
 .. automodule:: gym_gz.rbd.conversions
    :members:
@@ -22,7 +22,7 @@ gym\_gz.rbd.conversions
    :show-inheritance:
 
 gym\_gz.rbd.utils
------------------------
+-----------------
 
 .. automodule:: gym_gz.rbd.utils
    :members:

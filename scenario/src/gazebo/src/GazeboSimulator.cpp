@@ -695,7 +695,7 @@ std::shared_ptr<gz::sim::Server> GazeboSimulator::Impl::getServer()
 
     // Set the following environment variable to disable loading the default
     // server plugins, which include upstream's Physics that is not compatible.
-    // https://github.com/ignitionrobotics/ign-gazebo/pull/281
+    // https://github.com/gazebosim/gz-sim/pull/281
     // TODO: this will not likely work in Windows.
     std::string value;
     if (!gz::common::env(

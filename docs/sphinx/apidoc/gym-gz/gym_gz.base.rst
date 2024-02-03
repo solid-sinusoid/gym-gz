@@ -1,5 +1,5 @@
 gym\_gz.base
-==================
+============
 
 .. automodule:: gym_gz.base
    :members:
@@ -8,7 +8,7 @@ gym\_gz.base
 
 
 gym\_gz.base.runtime
---------------------------
+--------------------
 
 .. automodule:: gym_gz.base.runtime
    :members:
@@ -16,7 +16,7 @@ gym\_gz.base.runtime
    :show-inheritance:
 
 gym\_gz.base.task
------------------------
+-----------------
 
 .. automodule:: gym_gz.base.task
    :members:

@@ -1,5 +1,5 @@
 gym\_gz\_environments.models
-==================================
+============================
 
 .. automodule:: gym_gz_environments.models
    :members:
@@ -8,7 +8,7 @@ gym\_gz\_environments.models
 
 
 gym\_gz\_environments.models.cartpole
--------------------------------------------
+-------------------------------------
 
 .. automodule:: gym_gz_environments.models.cartpole
    :members:
@@ -16,7 +16,7 @@ gym\_gz\_environments.models.cartpole
    :show-inheritance:
 
 gym\_gz\_environments.models.icub
----------------------------------------
+---------------------------------
 
 .. automodule:: gym_gz_environments.models.icub
    :members:
@@ -24,7 +24,7 @@ gym\_gz\_environments.models.icub
    :show-inheritance:
 
 gym\_gz\_environments.models.panda
-----------------------------------------
+----------------------------------
 
 .. automodule:: gym_gz_environments.models.panda
    :members:
@@ -32,7 +32,7 @@ gym\_gz\_environments.models.panda
    :show-inheritance:
 
 gym\_gz\_environments.models.pendulum
--------------------------------------------
+-------------------------------------
 
 .. automodule:: gym_gz_environments.models.pendulum
    :members:

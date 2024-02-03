@@ -1,5 +1,5 @@
 gym\_gz\_environments.randomizers
-=======================================
+=================================
 
 .. automodule:: gym_gz_environments.randomizers
    :members:
@@ -8,7 +8,7 @@ gym\_gz\_environments.randomizers
 
 
 gym\_gz\_environments.randomizers.cartpole
-------------------------------------------------
+------------------------------------------
 
 .. automodule:: gym_gz_environments.randomizers.cartpole
    :members:
@@ -16,7 +16,7 @@ gym\_gz\_environments.randomizers.cartpole
    :show-inheritance:
 
 gym\_gz\_environments.randomizers.cartpole\_no\_rand
-----------------------------------------------------------
+----------------------------------------------------
 
 .. automodule:: gym_gz_environments.randomizers.cartpole_no_rand
    :members:

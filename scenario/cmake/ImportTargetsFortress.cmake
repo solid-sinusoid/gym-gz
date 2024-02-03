@@ -1,6 +1,6 @@
 include(AliasImportedTarget)
 
-# https://ignitionrobotics.org/docs/fortress/install#fortress-libraries
+# https://gazebosim.org/docs/fortress/install#fortress-libraries
 
 alias_imported_target(
     PACKAGE_ORIG sdformat12

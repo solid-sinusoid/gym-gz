@@ -1,11 +1,11 @@
 System Configuration
 ********************
 
-This section applies only to the installations that require building Ignition from sources.
+This section applies only to the installations that require building Gz from sources.
 
-If you installed Ignition from sources, you likely used ``colcon`` and therefore the entire suite was installed in a custom folder called workspace.
-The workspace contains all the shared libraries and executables of Ignition, including the plugins loaded during runtime.
-Since we cannot know in advance where you created the workspace, ``gym-ignition`` is not able to find the physics plugins.
+If you installed Gz from sources, you likely used ``colcon`` and therefore the entire suite was installed in a custom folder called workspace.
+The workspace contains all the shared libraries and executables of Gz, including the plugins loaded during runtime.
+Since we cannot know in advance where you created the workspace, ``gym-gz`` is not able to find the physics plugins.
 
 After you enabled the workspace by sourcing its bash script, you may need to also export the following variable:
 

@@ -41,7 +41,7 @@ These interfaces can be implemented to operate on different scenarios,
 including robots operating on either simulated worlds or in real-time.
 
 ScenarIO currently fully implements **Gazebo ScenarIO**, 
-a simulated back-end that interacts with [Gz Sim](https://ignitionrobotics.org).
+a simulated back-end that interacts with [Gz Sim](https://gazebosim.org).
 The result allows stepping the simulator programmatically, ensuring a fully reproducible behaviour.
 It relates closely to other projects like
 [pybullet](https://github.com/bulletphysics/bullet3) and [mujoco-py](https://github.com/openai/mujoco-py).
@@ -62,7 +62,7 @@ Visit our [Support Policy](https://robotology.github.io/gym-ignition/master/inst
 to check the distribution currently supported.
 
 Then, install the supported Ignition suite following the 
-[official instructions](https://ignitionrobotics.org/docs/fortress).
+[official instructions](https://gazebosim.org/docs/fortress).
 
 ### Python
 

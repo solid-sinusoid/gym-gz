@@ -1,6 +1,6 @@
 include(AliasImportedTarget)
 
-# https://ignitionrobotics.org/docs/edifice/install#edifice-libraries
+# https://gazebosim.org/docs/edifice/install#edifice-libraries
 
 alias_imported_target(
     PACKAGE_ORIG sdformat11

@@ -9,7 +9,7 @@ this installation type provides a simplified setup for development, VCS integrat
 
 Depending on whether you want to target the ``Stable`` or ``Nightly`` channels,
 you have to clone respectively the ``master`` or ``devel`` branch.
-Check our :ref:`support policy <support_policy>` to select the right distribution of Ignition to install.
+Check our :ref:`support policy <support_policy>` to select the right distribution of Gz to install.
 
 Dependencies
 ************
@@ -17,7 +17,7 @@ Dependencies
 The developer installation requires finding in the system other dependencies not required by the other installation types.
 In those cases, we rely on setuptools to download, install, and find all the necessary third-party dependencies.
 
-1. **iDynTree**: ``gym_ignition`` provides helper classes to manipulate the kinematics and the dynamics of rigid-bodies.
+1. **iDynTree**: ``gym_gz`` provides helper classes to manipulate the kinematics and the dynamics of rigid-bodies.
    Among the many existing solutions, we selected the algorithms implemented in `iDynTree <https://github.com/robotology/idyntree/>`_.
 
    Follow the `official installation instructions <https://github.com/robotology/idyntree/#installation>`__ and make sure
@@ -71,7 +71,7 @@ to install it again.
 .. note::
 
     The ``scenario`` editable installation is just a placeholder.
-    It is necessary to prevent the editable installation of ``gym-ignition`` to override the resources installed by
+    It is necessary to prevent the editable installation of ``gym-gz`` to override the resources installed by
     the manual CMake execution.
     Otherwise, the ``scenario`` package from PyPI would be pulled, resulting with a wrong version.
 

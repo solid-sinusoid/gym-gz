@@ -1,5 +1,5 @@
 gym\_gz.rbd.idyntree
-==========================
+====================
 
 .. automodule:: gym_gz.rbd.idyntree
    :members:
@@ -8,7 +8,7 @@ gym\_gz.rbd.idyntree
 
 
 gym\_gz.rbd.idyntree.helpers
-----------------------------------
+----------------------------
 
 .. automodule:: gym_gz.rbd.idyntree.helpers
    :members:
@@ -16,7 +16,7 @@ gym\_gz.rbd.idyntree.helpers
    :show-inheritance:
 
 gym\_gz.rbd.idyntree.inverse\_kinematics\_nlp
----------------------------------------------------
+---------------------------------------------
 
 .. automodule:: gym_gz.rbd.idyntree.inverse_kinematics_nlp
    :members:
@@ -24,7 +24,7 @@ gym\_gz.rbd.idyntree.inverse\_kinematics\_nlp
    :show-inheritance:
 
 gym\_gz.rbd.idyntree.kindyncomputations
----------------------------------------------
+---------------------------------------
 
 .. automodule:: gym_gz.rbd.idyntree.kindyncomputations
    :members:
@@ -32,7 +32,7 @@ gym\_gz.rbd.idyntree.kindyncomputations
    :show-inheritance:
 
 gym\_gz.rbd.idyntree.numpy
---------------------------------
+--------------------------
 
 .. automodule:: gym_gz.rbd.idyntree.numpy
    :members:

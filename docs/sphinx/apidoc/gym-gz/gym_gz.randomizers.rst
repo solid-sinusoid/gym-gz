@@ -1,5 +1,5 @@
 gym\_gz.randomizers
-=========================
+===================
 
 .. automodule:: gym_gz.randomizers
    :members:
@@ -15,7 +15,7 @@ gym\_gz.randomizers
 
 
 gym\_gz.randomizers.abc
------------------------------
+-----------------------
 
 .. automodule:: gym_gz.randomizers.abc
    :members:
@@ -23,7 +23,7 @@ gym\_gz.randomizers.abc
    :show-inheritance:
 
 gym\_gz.randomizers.gazebo\_env\_randomizer
--------------------------------------------------
+-------------------------------------------
 
 .. automodule:: gym_gz.randomizers.gazebo_env_randomizer
    :members:
