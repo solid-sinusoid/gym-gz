@@ -75,6 +75,7 @@ html_theme_options = {
     "home_page_in_toc": True,
     "use_download_button": False,
     "use_fullscreen_button": True,
+    "navigation_with_keys": False,
 
 }
 
@@ -115,7 +116,6 @@ html_sidebars = {
         "sbt-sidebar-nav.html",
         "versioning.html",
         "search-field.html",
-        "sbt-sidebar-footer.html",
     ]
 }
 

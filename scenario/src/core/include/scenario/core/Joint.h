@@ -175,7 +175,7 @@ public:
     /**
      * Get the history of applied joint forces.
      *
-     * The vector is populated with #DoFs values at each physics step.
+     * The vector is populated with # DoFs values at each physics step.
      *
      * @return The vector containing the history of joint forces.
      */

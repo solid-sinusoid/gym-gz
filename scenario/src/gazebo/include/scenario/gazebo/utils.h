@@ -182,7 +182,7 @@ namespace scenario::gazebo::utils {
     /**
      * Convert a URDF string to a SDF string.
      *
-     * @param urdfFile A URDF string.
+     * @param urdfString A URDF string.
      * @return The SDF string if the URDF string was successfully
      *         converted, an empty string otherwise.
      */
