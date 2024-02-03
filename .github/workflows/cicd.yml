@@ -352,8 +352,10 @@ jobs:
       - name: '📝 Rename scenario wheel'
         if: matrix.type == 'User' && contains(matrix.os, 'ubuntu')
         run: |
+          sudo apt update
+          sudo apt install rename
           ls dist/
-          find dist/ -type f -name "*.whl" -exec rename.ul linux manylinux2014 {} +
+          find dist/ -type f -name "*.whl" -exec rename "s/linux/manylinux2014/g" {} +
           ls dist/
 
       - name: '🔍 Inspect dist folder'

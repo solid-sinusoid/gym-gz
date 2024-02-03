@@ -7,7 +7,7 @@ Sensors support
 Gz sim supports a wide variety of `sensors <https://gazebosim.org/docs/citadel/comparison#sensors>`_,
 like cameras, lidars, ...
 However, ScenarI/O and consequently gym-gz are not yet able to extract data from sensors.
-Follow :issue:`199` if you're interested in sensors support.
+Follow :old_issue:`199` if you're interested in sensors support.
 
 Performance
 -----------

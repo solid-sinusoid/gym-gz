@@ -13,7 +13,7 @@ We do not yet provide official support to other operating systems.
 The table below recaps the project requirements of the :ref:`Stable <installation_stable>` and :ref:`Nightly <installation_nightly>` channels:
 
 +-------------+-----------------+--------+----------------------+----------+------------+---------+
-| Channel     |       C++       | Python |      Gz        |  Ubuntu  | macOS [*]_ | Windows |
+| Channel     |       C++       | Python |          Gz          |  Ubuntu  | macOS [*]_ | Windows |
 +=============+=================+========+======================+==========+============+=========+
 | **Stable**  | >= gcc8, clang6 | >= 3.8 | `Fortress`_ (binary) | >= 20.04 |     No     |    No   |
 +-------------+-----------------+--------+----------------------+----------+------------+---------+
@@ -39,4 +39,4 @@ The table below recaps the project requirements of the :ref:`Stable <installatio
 
 .. admonition:: Fun fact
 
-    In the same spirit of `ubuntu/+bug/1 <https://bugs.launchpad.net/ubuntu/+bug/1>`_, we have our own :issue:`1`.
+    In the same spirit of `ubuntu/+bug/1 <https://bugs.launchpad.net/ubuntu/+bug/1>`_, we have our own :old_issue:`1`.

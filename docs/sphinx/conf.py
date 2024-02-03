@@ -32,7 +32,7 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.githubpages",
     "sphinx.ext.napoleon",
-    # "sphinx.ext.extlinks",
+    "sphinx.ext.extlinks",
     "sphinx_autodoc_typehints",
     "sphinx_multiversion",
     "sphinx_fontawesome",
@@ -121,6 +121,8 @@ html_sidebars = {
 
 # -- Options for extlinks extension ----------------------------------
 extlinks = {
-    "issue": ("https://github.com/andreaostuni/gym-gz/issues/%s", "#"),
-    "pr": ("https://github.com/andreaostuni/gym-gz/pull/%s", "#"),
+    "old_issue": ("https://github.com/andreaostuni/gym-ignition/issues/%s", "#%s"),
+    "old_pr": ("https://github.com/robotology/gym-ignition/pull/%s", "#%s"),
+    "issue": ("https://github.com/andreaostuni/gym-gz/issues/%s", "#%s"),
+    "pr": ("https://github.com/andreaostuni/gym-gz/pull/%s", "#%s"),
 }
