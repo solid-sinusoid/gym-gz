@@ -1,0 +1,1368 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>scenario &#8212; gym-gz  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=266695fe" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apidoc/scenario/scenario';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    ScenarIO and gym-gz
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">What</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../what/what_is_scenario.html">What is ScenarIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../what/what_is_gym_gz.html">What is gym-gz?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Why</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../why/motivations.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../why/why_scenario.html">Why ScenarIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../why/why_gz_sim.html">Why Gz sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../why/why_gym_gz.html">Why gym-gz</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Installation (How)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../installation/support_policy.html">Support policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/stable.html">Stable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/nightly.html">Nightly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/developer.html">Developer Installation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/scenario.html">ScenarIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/manipulation.html">Manipulation example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/gym-gz.html">gym-gz</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">ScenarIO C++ API:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../breathe/core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../breathe/gazebo.html">Gazebo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Packages</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="scenario.bindings.html">scenario.bindings</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gym-gz/gym_gz.html">gym_gz</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gym-gz/gym_gz.base.html">gym_gz.base</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../gym-gz/gym_gz.context.html">gym_gz.context</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../gym-gz/gym_gz.context.gazebo.html">gym_gz.context.gazebo</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../gym-gz/gym_gz.randomizers.html">gym_gz.randomizers</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../gym-gz/gym_gz.randomizers.model.html">gym_gz.randomizers.model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gym-gz/gym_gz.randomizers.physics.html">gym_gz.randomizers.physics</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../gym-gz/gym_gz.rbd.html">gym_gz.rbd</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../gym-gz/gym_gz.rbd.idyntree.html">gym_gz.rbd.idyntree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../gym-gz/gym_gz.runtimes.html">gym_gz.runtimes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gym-gz/gym_gz.scenario.html">gym_gz.scenario</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gym-gz/gym_gz.utils.html">gym_gz.utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gym-gz-environments/gym_gz_environments.html">gym_gz_environments</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gym-gz-environments/gym_gz_environments.models.html">gym_gz_environments.models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gym-gz-environments/gym_gz_environments.randomizers.html">gym_gz_environments.randomizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gym-gz-environments/gym_gz_environments.tasks.html">gym_gz_environments.tasks</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Information</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../info/faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../info/limitations.html">Limitations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<nav id="bd-docs-nav" class="bd-links" aria-label="Versions navigation">
+  <div class="bd-toc-item active">
+    <p class="caption">
+      <span class="caption-text">Doc Versions</span>
+    </p>
+    <ul class="nav bd-sidenav">
+      <li class="toctree-l1"><a class="reference internal" href="scenario.html">devel</a></li>
+    </ul>
+  </div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/andreaostuni/gym-gz" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/andreaostuni/gym-gz/edit/main/docs/sphinx/apidoc/scenario/scenario.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/andreaostuni/gym-gz/issues/new?title=Issue%20on%20page%20%2Fapidoc/scenario/scenario.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>scenario</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.InstallMode"><code class="docutils literal notranslate"><span class="pre">InstallMode</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.InstallMode.CondaBuild"><code class="docutils literal notranslate"><span class="pre">InstallMode.CondaBuild</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.InstallMode.Developer"><code class="docutils literal notranslate"><span class="pre">InstallMode.Developer</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.InstallMode.User"><code class="docutils literal notranslate"><span class="pre">InstallMode.User</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.check_gazebo_installation"><code class="docutils literal notranslate"><span class="pre">check_gazebo_installation()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.create_home_dot_folder"><code class="docutils literal notranslate"><span class="pre">create_home_dot_folder()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.detect_install_mode"><code class="docutils literal notranslate"><span class="pre">detect_install_mode()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.import_gazebo"><code class="docutils literal notranslate"><span class="pre">import_gazebo()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.pre_import_gym"><code class="docutils literal notranslate"><span class="pre">pre_import_gym()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.preload_tensorflow_shared_libraries"><code class="docutils literal notranslate"><span class="pre">preload_tensorflow_shared_libraries()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.setup_gazebo_environment"><code class="docutils literal notranslate"><span class="pre">setup_gazebo_environment()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.supported_versions_specifier_set"><code class="docutils literal notranslate"><span class="pre">supported_versions_specifier_set()</span></code></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-scenario">
+<span id="scenario"></span><h1>scenario<a class="headerlink" href="#module-scenario" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="scenario.InstallMode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">scenario.</span></span><span class="sig-name descname"><span class="pre">InstallMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scenario.InstallMode" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scenario.InstallMode.CondaBuild">
+<span class="sig-name descname"><span class="pre">CondaBuild</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#scenario.InstallMode.CondaBuild" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scenario.InstallMode.Developer">
+<span class="sig-name descname"><span class="pre">Developer</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#scenario.InstallMode.Developer" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scenario.InstallMode.User">
+<span class="sig-name descname"><span class="pre">User</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#scenario.InstallMode.User" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scenario.check_gazebo_installation">
+<span class="sig-prename descclassname"><span class="pre">scenario.</span></span><span class="sig-name descname"><span class="pre">check_gazebo_installation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scenario.check_gazebo_installation" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scenario.create_home_dot_folder">
+<span class="sig-prename descclassname"><span class="pre">scenario.</span></span><span class="sig-name descname"><span class="pre">create_home_dot_folder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scenario.create_home_dot_folder" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scenario.detect_install_mode">
+<span class="sig-prename descclassname"><span class="pre">scenario.</span></span><span class="sig-name descname"><span class="pre">detect_install_mode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scenario.detect_install_mode" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scenario.import_gazebo">
+<span class="sig-prename descclassname"><span class="pre">scenario.</span></span><span class="sig-name descname"><span class="pre">import_gazebo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scenario.import_gazebo" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scenario.pre_import_gym">
+<span class="sig-prename descclassname"><span class="pre">scenario.</span></span><span class="sig-name descname"><span class="pre">pre_import_gym</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scenario.pre_import_gym" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scenario.preload_tensorflow_shared_libraries">
+<span class="sig-prename descclassname"><span class="pre">scenario.</span></span><span class="sig-name descname"><span class="pre">preload_tensorflow_shared_libraries</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scenario.preload_tensorflow_shared_libraries" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scenario.setup_gazebo_environment">
+<span class="sig-prename descclassname"><span class="pre">scenario.</span></span><span class="sig-name descname"><span class="pre">setup_gazebo_environment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scenario.setup_gazebo_environment" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scenario.supported_versions_specifier_set">
+<span class="sig-prename descclassname"><span class="pre">scenario.</span></span><span class="sig-name descname"><span class="pre">supported_versions_specifier_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scenario.supported_versions_specifier_set" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scenario.bindings.html">scenario.bindings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scenario.bindings.html#module-scenario.bindings.core">scenario.bindings.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array3d"><code class="docutils literal notranslate"><span class="pre">Array3d</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array3d.back"><code class="docutils literal notranslate"><span class="pre">Array3d.back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array3d.begin"><code class="docutils literal notranslate"><span class="pre">Array3d.begin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array3d.empty"><code class="docutils literal notranslate"><span class="pre">Array3d.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array3d.end"><code class="docutils literal notranslate"><span class="pre">Array3d.end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array3d.fill"><code class="docutils literal notranslate"><span class="pre">Array3d.fill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array3d.front"><code class="docutils literal notranslate"><span class="pre">Array3d.front()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array3d.iterator"><code class="docutils literal notranslate"><span class="pre">Array3d.iterator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array3d.rbegin"><code class="docutils literal notranslate"><span class="pre">Array3d.rbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array3d.rend"><code class="docutils literal notranslate"><span class="pre">Array3d.rend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array3d.size"><code class="docutils literal notranslate"><span class="pre">Array3d.size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array3d.swap"><code class="docutils literal notranslate"><span class="pre">Array3d.swap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array3d.thisown"><code class="docutils literal notranslate"><span class="pre">Array3d.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array4d"><code class="docutils literal notranslate"><span class="pre">Array4d</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array4d.back"><code class="docutils literal notranslate"><span class="pre">Array4d.back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array4d.begin"><code class="docutils literal notranslate"><span class="pre">Array4d.begin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array4d.empty"><code class="docutils literal notranslate"><span class="pre">Array4d.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array4d.end"><code class="docutils literal notranslate"><span class="pre">Array4d.end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array4d.fill"><code class="docutils literal notranslate"><span class="pre">Array4d.fill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array4d.front"><code class="docutils literal notranslate"><span class="pre">Array4d.front()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array4d.iterator"><code class="docutils literal notranslate"><span class="pre">Array4d.iterator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array4d.rbegin"><code class="docutils literal notranslate"><span class="pre">Array4d.rbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array4d.rend"><code class="docutils literal notranslate"><span class="pre">Array4d.rend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array4d.size"><code class="docutils literal notranslate"><span class="pre">Array4d.size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array4d.swap"><code class="docutils literal notranslate"><span class="pre">Array4d.swap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array4d.thisown"><code class="docutils literal notranslate"><span class="pre">Array4d.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array6d"><code class="docutils literal notranslate"><span class="pre">Array6d</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array6d.back"><code class="docutils literal notranslate"><span class="pre">Array6d.back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array6d.begin"><code class="docutils literal notranslate"><span class="pre">Array6d.begin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array6d.empty"><code class="docutils literal notranslate"><span class="pre">Array6d.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array6d.end"><code class="docutils literal notranslate"><span class="pre">Array6d.end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array6d.fill"><code class="docutils literal notranslate"><span class="pre">Array6d.fill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array6d.front"><code class="docutils literal notranslate"><span class="pre">Array6d.front()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array6d.iterator"><code class="docutils literal notranslate"><span class="pre">Array6d.iterator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array6d.rbegin"><code class="docutils literal notranslate"><span class="pre">Array6d.rbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array6d.rend"><code class="docutils literal notranslate"><span class="pre">Array6d.rend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array6d.size"><code class="docutils literal notranslate"><span class="pre">Array6d.size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array6d.swap"><code class="docutils literal notranslate"><span class="pre">Array6d.swap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Array6d.thisown"><code class="docutils literal notranslate"><span class="pre">Array6d.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Contact"><code class="docutils literal notranslate"><span class="pre">Contact</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Contact.body_a"><code class="docutils literal notranslate"><span class="pre">Contact.body_a</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Contact.body_b"><code class="docutils literal notranslate"><span class="pre">Contact.body_b</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Contact.points"><code class="docutils literal notranslate"><span class="pre">Contact.points</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Contact.thisown"><code class="docutils literal notranslate"><span class="pre">Contact.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.ContactPoint"><code class="docutils literal notranslate"><span class="pre">ContactPoint</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.ContactPoint.depth"><code class="docutils literal notranslate"><span class="pre">ContactPoint.depth</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.ContactPoint.force"><code class="docutils literal notranslate"><span class="pre">ContactPoint.force</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.ContactPoint.normal"><code class="docutils literal notranslate"><span class="pre">ContactPoint.normal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.ContactPoint.position"><code class="docutils literal notranslate"><span class="pre">ContactPoint.position</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.ContactPoint.thisown"><code class="docutils literal notranslate"><span class="pre">ContactPoint.thisown</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.ContactPoint.torque"><code class="docutils literal notranslate"><span class="pre">ContactPoint.torque</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint"><code class="docutils literal notranslate"><span class="pre">Joint</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.acceleration"><code class="docutils literal notranslate"><span class="pre">Joint.acceleration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.acceleration_target"><code class="docutils literal notranslate"><span class="pre">Joint.acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.control_mode"><code class="docutils literal notranslate"><span class="pre">Joint.control_mode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.controller_period"><code class="docutils literal notranslate"><span class="pre">Joint.controller_period()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.coulomb_friction"><code class="docutils literal notranslate"><span class="pre">Joint.coulomb_friction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.dofs"><code class="docutils literal notranslate"><span class="pre">Joint.dofs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.enable_history_of_applied_joint_forces"><code class="docutils literal notranslate"><span class="pre">Joint.enable_history_of_applied_joint_forces()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.generalized_force"><code class="docutils literal notranslate"><span class="pre">Joint.generalized_force()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.generalized_force_target"><code class="docutils literal notranslate"><span class="pre">Joint.generalized_force_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.history_of_applied_joint_forces"><code class="docutils literal notranslate"><span class="pre">Joint.history_of_applied_joint_forces()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.history_of_applied_joint_forces_enabled"><code class="docutils literal notranslate"><span class="pre">Joint.history_of_applied_joint_forces_enabled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.joint_acceleration"><code class="docutils literal notranslate"><span class="pre">Joint.joint_acceleration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.joint_acceleration_target"><code class="docutils literal notranslate"><span class="pre">Joint.joint_acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.joint_generalized_force"><code class="docutils literal notranslate"><span class="pre">Joint.joint_generalized_force()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.joint_generalized_force_target"><code class="docutils literal notranslate"><span class="pre">Joint.joint_generalized_force_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.joint_max_generalized_force"><code class="docutils literal notranslate"><span class="pre">Joint.joint_max_generalized_force()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.joint_position"><code class="docutils literal notranslate"><span class="pre">Joint.joint_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.joint_position_limit"><code class="docutils literal notranslate"><span class="pre">Joint.joint_position_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.joint_position_target"><code class="docutils literal notranslate"><span class="pre">Joint.joint_position_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.joint_velocity"><code class="docutils literal notranslate"><span class="pre">Joint.joint_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.joint_velocity_limit"><code class="docutils literal notranslate"><span class="pre">Joint.joint_velocity_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.joint_velocity_target"><code class="docutils literal notranslate"><span class="pre">Joint.joint_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.max_generalized_force"><code class="docutils literal notranslate"><span class="pre">Joint.max_generalized_force()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.name"><code class="docutils literal notranslate"><span class="pre">Joint.name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.pid"><code class="docutils literal notranslate"><span class="pre">Joint.pid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.position"><code class="docutils literal notranslate"><span class="pre">Joint.position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.position_limit"><code class="docutils literal notranslate"><span class="pre">Joint.position_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.position_target"><code class="docutils literal notranslate"><span class="pre">Joint.position_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.set_acceleration_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.set_control_mode"><code class="docutils literal notranslate"><span class="pre">Joint.set_control_mode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.set_generalized_force_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_generalized_force_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.set_joint_acceleration_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_joint_acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.set_joint_generalized_force_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_joint_generalized_force_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.set_joint_max_generalized_force"><code class="docutils literal notranslate"><span class="pre">Joint.set_joint_max_generalized_force()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.set_joint_position_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_joint_position_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.set_joint_velocity_limit"><code class="docutils literal notranslate"><span class="pre">Joint.set_joint_velocity_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.set_joint_velocity_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_joint_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.set_max_generalized_force"><code class="docutils literal notranslate"><span class="pre">Joint.set_max_generalized_force()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.set_pid"><code class="docutils literal notranslate"><span class="pre">Joint.set_pid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.set_position_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_position_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.set_velocity_limit"><code class="docutils literal notranslate"><span class="pre">Joint.set_velocity_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.set_velocity_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.thisown"><code class="docutils literal notranslate"><span class="pre">Joint.thisown</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.to_gazebo"><code class="docutils literal notranslate"><span class="pre">Joint.to_gazebo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.type"><code class="docutils literal notranslate"><span class="pre">Joint.type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.valid"><code class="docutils literal notranslate"><span class="pre">Joint.valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.velocity"><code class="docutils literal notranslate"><span class="pre">Joint.velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.velocity_limit"><code class="docutils literal notranslate"><span class="pre">Joint.velocity_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.velocity_target"><code class="docutils literal notranslate"><span class="pre">Joint.velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Joint.viscous_friction"><code class="docutils literal notranslate"><span class="pre">Joint.viscous_friction()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.JointControlMode_force"><code class="docutils literal notranslate"><span class="pre">JointControlMode_force</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.JointControlMode_idle"><code class="docutils literal notranslate"><span class="pre">JointControlMode_idle</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.JointControlMode_invalid"><code class="docutils literal notranslate"><span class="pre">JointControlMode_invalid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.JointControlMode_position"><code class="docutils literal notranslate"><span class="pre">JointControlMode_position</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.JointControlMode_position_interpolated"><code class="docutils literal notranslate"><span class="pre">JointControlMode_position_interpolated</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.JointControlMode_velocity"><code class="docutils literal notranslate"><span class="pre">JointControlMode_velocity</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.JointControlMode_velocity_follower_dart"><code class="docutils literal notranslate"><span class="pre">JointControlMode_velocity_follower_dart</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.JointLimit"><code class="docutils literal notranslate"><span class="pre">JointLimit</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.JointLimit.max"><code class="docutils literal notranslate"><span class="pre">JointLimit.max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.JointLimit.min"><code class="docutils literal notranslate"><span class="pre">JointLimit.min</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.JointLimit.thisown"><code class="docutils literal notranslate"><span class="pre">JointLimit.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Limit"><code class="docutils literal notranslate"><span class="pre">Limit</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Limit.max"><code class="docutils literal notranslate"><span class="pre">Limit.max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Limit.min"><code class="docutils literal notranslate"><span class="pre">Limit.min</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Limit.thisown"><code class="docutils literal notranslate"><span class="pre">Limit.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link"><code class="docutils literal notranslate"><span class="pre">Link</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.body_angular_acceleration"><code class="docutils literal notranslate"><span class="pre">Link.body_angular_acceleration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.body_angular_velocity"><code class="docutils literal notranslate"><span class="pre">Link.body_angular_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.body_linear_acceleration"><code class="docutils literal notranslate"><span class="pre">Link.body_linear_acceleration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.body_linear_velocity"><code class="docutils literal notranslate"><span class="pre">Link.body_linear_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.contact_wrench"><code class="docutils literal notranslate"><span class="pre">Link.contact_wrench()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.contacts"><code class="docutils literal notranslate"><span class="pre">Link.contacts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.contacts_enabled"><code class="docutils literal notranslate"><span class="pre">Link.contacts_enabled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.enable_contact_detection"><code class="docutils literal notranslate"><span class="pre">Link.enable_contact_detection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.in_contact"><code class="docutils literal notranslate"><span class="pre">Link.in_contact()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.mass"><code class="docutils literal notranslate"><span class="pre">Link.mass()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.name"><code class="docutils literal notranslate"><span class="pre">Link.name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.orientation"><code class="docutils literal notranslate"><span class="pre">Link.orientation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.position"><code class="docutils literal notranslate"><span class="pre">Link.position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.thisown"><code class="docutils literal notranslate"><span class="pre">Link.thisown</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.to_gazebo"><code class="docutils literal notranslate"><span class="pre">Link.to_gazebo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.valid"><code class="docutils literal notranslate"><span class="pre">Link.valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.world_angular_acceleration"><code class="docutils literal notranslate"><span class="pre">Link.world_angular_acceleration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.world_angular_velocity"><code class="docutils literal notranslate"><span class="pre">Link.world_angular_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.world_linear_acceleration"><code class="docutils literal notranslate"><span class="pre">Link.world_linear_acceleration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Link.world_linear_velocity"><code class="docutils literal notranslate"><span class="pre">Link.world_linear_velocity()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model"><code class="docutils literal notranslate"><span class="pre">Model</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.base_body_angular_velocity"><code class="docutils literal notranslate"><span class="pre">Model.base_body_angular_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.base_body_linear_velocity"><code class="docutils literal notranslate"><span class="pre">Model.base_body_linear_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.base_frame"><code class="docutils literal notranslate"><span class="pre">Model.base_frame()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.base_orientation"><code class="docutils literal notranslate"><span class="pre">Model.base_orientation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.base_orientation_target"><code class="docutils literal notranslate"><span class="pre">Model.base_orientation_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.base_position"><code class="docutils literal notranslate"><span class="pre">Model.base_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.base_position_target"><code class="docutils literal notranslate"><span class="pre">Model.base_position_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.base_world_angular_acceleration_target"><code class="docutils literal notranslate"><span class="pre">Model.base_world_angular_acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.base_world_angular_velocity"><code class="docutils literal notranslate"><span class="pre">Model.base_world_angular_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.base_world_angular_velocity_target"><code class="docutils literal notranslate"><span class="pre">Model.base_world_angular_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.base_world_linear_acceleration_target"><code class="docutils literal notranslate"><span class="pre">Model.base_world_linear_acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.base_world_linear_velocity"><code class="docutils literal notranslate"><span class="pre">Model.base_world_linear_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.base_world_linear_velocity_target"><code class="docutils literal notranslate"><span class="pre">Model.base_world_linear_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.contacts"><code class="docutils literal notranslate"><span class="pre">Model.contacts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.contacts_enabled"><code class="docutils literal notranslate"><span class="pre">Model.contacts_enabled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.controller_period"><code class="docutils literal notranslate"><span class="pre">Model.controller_period()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.dofs"><code class="docutils literal notranslate"><span class="pre">Model.dofs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.enable_contacts"><code class="docutils literal notranslate"><span class="pre">Model.enable_contacts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.enable_history_of_applied_joint_forces"><code class="docutils literal notranslate"><span class="pre">Model.enable_history_of_applied_joint_forces()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.get_joint"><code class="docutils literal notranslate"><span class="pre">Model.get_joint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.get_link"><code class="docutils literal notranslate"><span class="pre">Model.get_link()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.history_of_applied_joint_forces"><code class="docutils literal notranslate"><span class="pre">Model.history_of_applied_joint_forces()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.history_of_applied_joint_forces_enabled"><code class="docutils literal notranslate"><span class="pre">Model.history_of_applied_joint_forces_enabled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.joint_acceleration_targets"><code class="docutils literal notranslate"><span class="pre">Model.joint_acceleration_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.joint_accelerations"><code class="docutils literal notranslate"><span class="pre">Model.joint_accelerations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.joint_generalized_force_targets"><code class="docutils literal notranslate"><span class="pre">Model.joint_generalized_force_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.joint_generalized_forces"><code class="docutils literal notranslate"><span class="pre">Model.joint_generalized_forces()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.joint_limits"><code class="docutils literal notranslate"><span class="pre">Model.joint_limits()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.joint_names"><code class="docutils literal notranslate"><span class="pre">Model.joint_names()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.joint_position_targets"><code class="docutils literal notranslate"><span class="pre">Model.joint_position_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.joint_positions"><code class="docutils literal notranslate"><span class="pre">Model.joint_positions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.joint_velocities"><code class="docutils literal notranslate"><span class="pre">Model.joint_velocities()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.joint_velocity_targets"><code class="docutils literal notranslate"><span class="pre">Model.joint_velocity_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.joints"><code class="docutils literal notranslate"><span class="pre">Model.joints()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.link_names"><code class="docutils literal notranslate"><span class="pre">Model.link_names()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.links"><code class="docutils literal notranslate"><span class="pre">Model.links()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.links_in_contact"><code class="docutils literal notranslate"><span class="pre">Model.links_in_contact()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.name"><code class="docutils literal notranslate"><span class="pre">Model.name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.nr_of_joints"><code class="docutils literal notranslate"><span class="pre">Model.nr_of_joints()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.nr_of_links"><code class="docutils literal notranslate"><span class="pre">Model.nr_of_links()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.set_base_orientation_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_orientation_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.set_base_pose_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_pose_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.set_base_position_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_position_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.set_base_world_angular_acceleration_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_world_angular_acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.set_base_world_angular_velocity_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_world_angular_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.set_base_world_linear_acceleration_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_world_linear_acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.set_base_world_linear_velocity_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_world_linear_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.set_base_world_velocity_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_world_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.set_controller_period"><code class="docutils literal notranslate"><span class="pre">Model.set_controller_period()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.set_joint_acceleration_targets"><code class="docutils literal notranslate"><span class="pre">Model.set_joint_acceleration_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.set_joint_control_mode"><code class="docutils literal notranslate"><span class="pre">Model.set_joint_control_mode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.set_joint_generalized_force_targets"><code class="docutils literal notranslate"><span class="pre">Model.set_joint_generalized_force_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.set_joint_position_targets"><code class="docutils literal notranslate"><span class="pre">Model.set_joint_position_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.set_joint_velocity_targets"><code class="docutils literal notranslate"><span class="pre">Model.set_joint_velocity_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.thisown"><code class="docutils literal notranslate"><span class="pre">Model.thisown</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.to_gazebo"><code class="docutils literal notranslate"><span class="pre">Model.to_gazebo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.total_mass"><code class="docutils literal notranslate"><span class="pre">Model.total_mass()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Model.valid"><code class="docutils literal notranslate"><span class="pre">Model.valid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.PID"><code class="docutils literal notranslate"><span class="pre">PID</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.PID.cmd_max"><code class="docutils literal notranslate"><span class="pre">PID.cmd_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.PID.cmd_min"><code class="docutils literal notranslate"><span class="pre">PID.cmd_min</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.PID.cmd_offset"><code class="docutils literal notranslate"><span class="pre">PID.cmd_offset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.PID.d"><code class="docutils literal notranslate"><span class="pre">PID.d</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.PID.i"><code class="docutils literal notranslate"><span class="pre">PID.i</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.PID.i_max"><code class="docutils literal notranslate"><span class="pre">PID.i_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.PID.i_min"><code class="docutils literal notranslate"><span class="pre">PID.i_min</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.PID.p"><code class="docutils literal notranslate"><span class="pre">PID.p</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.PID.thisown"><code class="docutils literal notranslate"><span class="pre">PID.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Pose"><code class="docutils literal notranslate"><span class="pre">Pose</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Pose.identity"><code class="docutils literal notranslate"><span class="pre">Pose.identity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Pose.orientation"><code class="docutils literal notranslate"><span class="pre">Pose.orientation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Pose.position"><code class="docutils literal notranslate"><span class="pre">Pose.position</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Pose.thisown"><code class="docutils literal notranslate"><span class="pre">Pose.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.PosePair"><code class="docutils literal notranslate"><span class="pre">PosePair</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.PosePair.first"><code class="docutils literal notranslate"><span class="pre">PosePair.first</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.PosePair.second"><code class="docutils literal notranslate"><span class="pre">PosePair.second</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.PosePair.thisown"><code class="docutils literal notranslate"><span class="pre">PosePair.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.Pose_identity"><code class="docutils literal notranslate"><span class="pre">Pose_identity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.SwigPyIterator"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.SwigPyIterator.advance"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.advance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.SwigPyIterator.copy"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.copy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.SwigPyIterator.decr"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.decr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.SwigPyIterator.distance"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.SwigPyIterator.equal"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.equal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.SwigPyIterator.incr"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.incr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.SwigPyIterator.next"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.next()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.SwigPyIterator.previous"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.previous()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.SwigPyIterator.thisown"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.thisown</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.SwigPyIterator.value"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.value()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD"><code class="docutils literal notranslate"><span class="pre">VectorD</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.append"><code class="docutils literal notranslate"><span class="pre">VectorD.append()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.assign"><code class="docutils literal notranslate"><span class="pre">VectorD.assign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.back"><code class="docutils literal notranslate"><span class="pre">VectorD.back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.begin"><code class="docutils literal notranslate"><span class="pre">VectorD.begin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.capacity"><code class="docutils literal notranslate"><span class="pre">VectorD.capacity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.clear"><code class="docutils literal notranslate"><span class="pre">VectorD.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.empty"><code class="docutils literal notranslate"><span class="pre">VectorD.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.end"><code class="docutils literal notranslate"><span class="pre">VectorD.end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.erase"><code class="docutils literal notranslate"><span class="pre">VectorD.erase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.front"><code class="docutils literal notranslate"><span class="pre">VectorD.front()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.get_allocator"><code class="docutils literal notranslate"><span class="pre">VectorD.get_allocator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.insert"><code class="docutils literal notranslate"><span class="pre">VectorD.insert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.iterator"><code class="docutils literal notranslate"><span class="pre">VectorD.iterator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.pop"><code class="docutils literal notranslate"><span class="pre">VectorD.pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.pop_back"><code class="docutils literal notranslate"><span class="pre">VectorD.pop_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.push_back"><code class="docutils literal notranslate"><span class="pre">VectorD.push_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.rbegin"><code class="docutils literal notranslate"><span class="pre">VectorD.rbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.rend"><code class="docutils literal notranslate"><span class="pre">VectorD.rend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.reserve"><code class="docutils literal notranslate"><span class="pre">VectorD.reserve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.resize"><code class="docutils literal notranslate"><span class="pre">VectorD.resize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.size"><code class="docutils literal notranslate"><span class="pre">VectorD.size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.swap"><code class="docutils literal notranslate"><span class="pre">VectorD.swap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorD.thisown"><code class="docutils literal notranslate"><span class="pre">VectorD.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF"><code class="docutils literal notranslate"><span class="pre">VectorF</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.append"><code class="docutils literal notranslate"><span class="pre">VectorF.append()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.assign"><code class="docutils literal notranslate"><span class="pre">VectorF.assign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.back"><code class="docutils literal notranslate"><span class="pre">VectorF.back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.begin"><code class="docutils literal notranslate"><span class="pre">VectorF.begin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.capacity"><code class="docutils literal notranslate"><span class="pre">VectorF.capacity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.clear"><code class="docutils literal notranslate"><span class="pre">VectorF.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.empty"><code class="docutils literal notranslate"><span class="pre">VectorF.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.end"><code class="docutils literal notranslate"><span class="pre">VectorF.end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.erase"><code class="docutils literal notranslate"><span class="pre">VectorF.erase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.front"><code class="docutils literal notranslate"><span class="pre">VectorF.front()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.get_allocator"><code class="docutils literal notranslate"><span class="pre">VectorF.get_allocator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.insert"><code class="docutils literal notranslate"><span class="pre">VectorF.insert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.iterator"><code class="docutils literal notranslate"><span class="pre">VectorF.iterator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.pop"><code class="docutils literal notranslate"><span class="pre">VectorF.pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.pop_back"><code class="docutils literal notranslate"><span class="pre">VectorF.pop_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.push_back"><code class="docutils literal notranslate"><span class="pre">VectorF.push_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.rbegin"><code class="docutils literal notranslate"><span class="pre">VectorF.rbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.rend"><code class="docutils literal notranslate"><span class="pre">VectorF.rend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.reserve"><code class="docutils literal notranslate"><span class="pre">VectorF.reserve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.resize"><code class="docutils literal notranslate"><span class="pre">VectorF.resize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.size"><code class="docutils literal notranslate"><span class="pre">VectorF.size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.swap"><code class="docutils literal notranslate"><span class="pre">VectorF.swap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorF.thisown"><code class="docutils literal notranslate"><span class="pre">VectorF.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI"><code class="docutils literal notranslate"><span class="pre">VectorI</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.append"><code class="docutils literal notranslate"><span class="pre">VectorI.append()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.assign"><code class="docutils literal notranslate"><span class="pre">VectorI.assign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.back"><code class="docutils literal notranslate"><span class="pre">VectorI.back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.begin"><code class="docutils literal notranslate"><span class="pre">VectorI.begin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.capacity"><code class="docutils literal notranslate"><span class="pre">VectorI.capacity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.clear"><code class="docutils literal notranslate"><span class="pre">VectorI.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.empty"><code class="docutils literal notranslate"><span class="pre">VectorI.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.end"><code class="docutils literal notranslate"><span class="pre">VectorI.end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.erase"><code class="docutils literal notranslate"><span class="pre">VectorI.erase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.front"><code class="docutils literal notranslate"><span class="pre">VectorI.front()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.get_allocator"><code class="docutils literal notranslate"><span class="pre">VectorI.get_allocator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.insert"><code class="docutils literal notranslate"><span class="pre">VectorI.insert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.iterator"><code class="docutils literal notranslate"><span class="pre">VectorI.iterator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.pop"><code class="docutils literal notranslate"><span class="pre">VectorI.pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.pop_back"><code class="docutils literal notranslate"><span class="pre">VectorI.pop_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.push_back"><code class="docutils literal notranslate"><span class="pre">VectorI.push_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.rbegin"><code class="docutils literal notranslate"><span class="pre">VectorI.rbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.rend"><code class="docutils literal notranslate"><span class="pre">VectorI.rend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.reserve"><code class="docutils literal notranslate"><span class="pre">VectorI.reserve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.resize"><code class="docutils literal notranslate"><span class="pre">VectorI.resize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.size"><code class="docutils literal notranslate"><span class="pre">VectorI.size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.swap"><code class="docutils literal notranslate"><span class="pre">VectorI.swap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorI.thisown"><code class="docutils literal notranslate"><span class="pre">VectorI.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.append"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.append()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.assign"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.assign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.back"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.begin"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.begin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.capacity"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.capacity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.clear"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.empty"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.end"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.erase"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.erase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.front"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.front()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.get_allocator"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.get_allocator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.insert"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.insert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.iterator"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.iterator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.pop"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.pop_back"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.pop_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.push_back"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.push_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.rbegin"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.rbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.rend"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.rend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.reserve"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.reserve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.resize"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.resize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.size"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.swap"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.swap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContactPoints.thisown"><code class="docutils literal notranslate"><span class="pre">VectorOfContactPoints.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.append"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.append()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.assign"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.assign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.back"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.begin"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.begin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.capacity"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.capacity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.clear"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.empty"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.end"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.erase"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.erase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.front"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.front()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.get_allocator"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.get_allocator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.insert"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.insert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.iterator"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.iterator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.pop"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.pop_back"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.pop_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.push_back"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.push_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.rbegin"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.rbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.rend"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.rend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.reserve"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.reserve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.resize"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.resize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.size"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.swap"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.swap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfContacts.thisown"><code class="docutils literal notranslate"><span class="pre">VectorOfContacts.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.append"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.append()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.assign"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.assign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.back"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.begin"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.begin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.capacity"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.capacity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.clear"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.empty"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.end"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.erase"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.erase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.front"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.front()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.get_allocator"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.get_allocator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.insert"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.insert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.iterator"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.iterator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.pop"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.pop_back"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.pop_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.push_back"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.push_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.rbegin"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.rbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.rend"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.rend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.reserve"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.reserve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.resize"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.resize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.size"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.swap"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.swap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfJoints.thisown"><code class="docutils literal notranslate"><span class="pre">VectorOfJoints.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.append"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.append()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.assign"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.assign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.back"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.begin"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.begin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.capacity"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.capacity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.clear"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.empty"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.end"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.erase"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.erase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.front"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.front()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.get_allocator"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.get_allocator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.insert"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.insert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.iterator"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.iterator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.pop"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.pop_back"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.pop_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.push_back"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.push_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.rbegin"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.rbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.rend"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.rend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.reserve"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.reserve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.resize"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.resize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.size"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.swap"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.swap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorOfLinks.thisown"><code class="docutils literal notranslate"><span class="pre">VectorOfLinks.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS"><code class="docutils literal notranslate"><span class="pre">VectorS</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.append"><code class="docutils literal notranslate"><span class="pre">VectorS.append()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.assign"><code class="docutils literal notranslate"><span class="pre">VectorS.assign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.back"><code class="docutils literal notranslate"><span class="pre">VectorS.back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.begin"><code class="docutils literal notranslate"><span class="pre">VectorS.begin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.capacity"><code class="docutils literal notranslate"><span class="pre">VectorS.capacity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.clear"><code class="docutils literal notranslate"><span class="pre">VectorS.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.empty"><code class="docutils literal notranslate"><span class="pre">VectorS.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.end"><code class="docutils literal notranslate"><span class="pre">VectorS.end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.erase"><code class="docutils literal notranslate"><span class="pre">VectorS.erase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.front"><code class="docutils literal notranslate"><span class="pre">VectorS.front()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.get_allocator"><code class="docutils literal notranslate"><span class="pre">VectorS.get_allocator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.insert"><code class="docutils literal notranslate"><span class="pre">VectorS.insert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.iterator"><code class="docutils literal notranslate"><span class="pre">VectorS.iterator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.pop"><code class="docutils literal notranslate"><span class="pre">VectorS.pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.pop_back"><code class="docutils literal notranslate"><span class="pre">VectorS.pop_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.push_back"><code class="docutils literal notranslate"><span class="pre">VectorS.push_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.rbegin"><code class="docutils literal notranslate"><span class="pre">VectorS.rbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.rend"><code class="docutils literal notranslate"><span class="pre">VectorS.rend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.reserve"><code class="docutils literal notranslate"><span class="pre">VectorS.reserve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.resize"><code class="docutils literal notranslate"><span class="pre">VectorS.resize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.size"><code class="docutils literal notranslate"><span class="pre">VectorS.size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.swap"><code class="docutils literal notranslate"><span class="pre">VectorS.swap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorS.thisown"><code class="docutils literal notranslate"><span class="pre">VectorS.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU"><code class="docutils literal notranslate"><span class="pre">VectorU</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.append"><code class="docutils literal notranslate"><span class="pre">VectorU.append()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.assign"><code class="docutils literal notranslate"><span class="pre">VectorU.assign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.back"><code class="docutils literal notranslate"><span class="pre">VectorU.back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.begin"><code class="docutils literal notranslate"><span class="pre">VectorU.begin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.capacity"><code class="docutils literal notranslate"><span class="pre">VectorU.capacity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.clear"><code class="docutils literal notranslate"><span class="pre">VectorU.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.empty"><code class="docutils literal notranslate"><span class="pre">VectorU.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.end"><code class="docutils literal notranslate"><span class="pre">VectorU.end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.erase"><code class="docutils literal notranslate"><span class="pre">VectorU.erase()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.front"><code class="docutils literal notranslate"><span class="pre">VectorU.front()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.get_allocator"><code class="docutils literal notranslate"><span class="pre">VectorU.get_allocator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.insert"><code class="docutils literal notranslate"><span class="pre">VectorU.insert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.iterator"><code class="docutils literal notranslate"><span class="pre">VectorU.iterator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.pop"><code class="docutils literal notranslate"><span class="pre">VectorU.pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.pop_back"><code class="docutils literal notranslate"><span class="pre">VectorU.pop_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.push_back"><code class="docutils literal notranslate"><span class="pre">VectorU.push_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.rbegin"><code class="docutils literal notranslate"><span class="pre">VectorU.rbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.rend"><code class="docutils literal notranslate"><span class="pre">VectorU.rend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.reserve"><code class="docutils literal notranslate"><span class="pre">VectorU.reserve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.resize"><code class="docutils literal notranslate"><span class="pre">VectorU.resize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.size"><code class="docutils literal notranslate"><span class="pre">VectorU.size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.swap"><code class="docutils literal notranslate"><span class="pre">VectorU.swap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.VectorU.thisown"><code class="docutils literal notranslate"><span class="pre">VectorU.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.World"><code class="docutils literal notranslate"><span class="pre">World</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.World.get_model"><code class="docutils literal notranslate"><span class="pre">World.get_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.World.gravity"><code class="docutils literal notranslate"><span class="pre">World.gravity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.World.model_names"><code class="docutils literal notranslate"><span class="pre">World.model_names()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.World.models"><code class="docutils literal notranslate"><span class="pre">World.models()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.World.name"><code class="docutils literal notranslate"><span class="pre">World.name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.World.thisown"><code class="docutils literal notranslate"><span class="pre">World.thisown</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.World.time"><code class="docutils literal notranslate"><span class="pre">World.time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.World.to_gazebo"><code class="docutils literal notranslate"><span class="pre">World.to_gazebo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.World.valid"><code class="docutils literal notranslate"><span class="pre">World.valid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.core.get_install_prefix"><code class="docutils literal notranslate"><span class="pre">get_install_prefix()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="scenario.bindings.html#module-scenario.bindings.gazebo">scenario.bindings.gazebo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboEntity"><code class="docutils literal notranslate"><span class="pre">GazeboEntity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboEntity.entity"><code class="docutils literal notranslate"><span class="pre">GazeboEntity.entity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboEntity.id"><code class="docutils literal notranslate"><span class="pre">GazeboEntity.id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboEntity.thisown"><code class="docutils literal notranslate"><span class="pre">GazeboEntity.thisown</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator.close"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator.close()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator.get_world"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator.get_world()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator.gui"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator.gui()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator.initialize"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator.initialize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator.initialized"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator.initialized()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator.insert_world_from_sdf"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator.insert_world_from_sdf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator.insert_worlds_from_sdf"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator.insert_worlds_from_sdf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator.pause"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator.pause()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator.real_time_factor"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator.real_time_factor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator.run"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator.running"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator.running()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator.step_size"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator.step_size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator.steps_per_run"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator.steps_per_run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator.thisown"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator.thisown</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.GazeboSimulator.world_names"><code class="docutils literal notranslate"><span class="pre">GazeboSimulator.world_names()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint"><code class="docutils literal notranslate"><span class="pre">Joint</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.acceleration"><code class="docutils literal notranslate"><span class="pre">Joint.acceleration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.acceleration_target"><code class="docutils literal notranslate"><span class="pre">Joint.acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.control_mode"><code class="docutils literal notranslate"><span class="pre">Joint.control_mode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.controller_period"><code class="docutils literal notranslate"><span class="pre">Joint.controller_period()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.coulomb_friction"><code class="docutils literal notranslate"><span class="pre">Joint.coulomb_friction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.dofs"><code class="docutils literal notranslate"><span class="pre">Joint.dofs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.enable_history_of_applied_joint_forces"><code class="docutils literal notranslate"><span class="pre">Joint.enable_history_of_applied_joint_forces()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.generalized_force"><code class="docutils literal notranslate"><span class="pre">Joint.generalized_force()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.generalized_force_target"><code class="docutils literal notranslate"><span class="pre">Joint.generalized_force_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.history_of_applied_joint_forces"><code class="docutils literal notranslate"><span class="pre">Joint.history_of_applied_joint_forces()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.history_of_applied_joint_forces_enabled"><code class="docutils literal notranslate"><span class="pre">Joint.history_of_applied_joint_forces_enabled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.id"><code class="docutils literal notranslate"><span class="pre">Joint.id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.insert_joint_plugin"><code class="docutils literal notranslate"><span class="pre">Joint.insert_joint_plugin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.joint_acceleration"><code class="docutils literal notranslate"><span class="pre">Joint.joint_acceleration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.joint_acceleration_target"><code class="docutils literal notranslate"><span class="pre">Joint.joint_acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.joint_generalized_force"><code class="docutils literal notranslate"><span class="pre">Joint.joint_generalized_force()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.joint_generalized_force_target"><code class="docutils literal notranslate"><span class="pre">Joint.joint_generalized_force_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.joint_max_generalized_force"><code class="docutils literal notranslate"><span class="pre">Joint.joint_max_generalized_force()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.joint_position"><code class="docutils literal notranslate"><span class="pre">Joint.joint_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.joint_position_limit"><code class="docutils literal notranslate"><span class="pre">Joint.joint_position_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.joint_position_target"><code class="docutils literal notranslate"><span class="pre">Joint.joint_position_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.joint_velocity"><code class="docutils literal notranslate"><span class="pre">Joint.joint_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.joint_velocity_limit"><code class="docutils literal notranslate"><span class="pre">Joint.joint_velocity_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.joint_velocity_target"><code class="docutils literal notranslate"><span class="pre">Joint.joint_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.max_generalized_force"><code class="docutils literal notranslate"><span class="pre">Joint.max_generalized_force()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.name"><code class="docutils literal notranslate"><span class="pre">Joint.name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.pid"><code class="docutils literal notranslate"><span class="pre">Joint.pid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.position"><code class="docutils literal notranslate"><span class="pre">Joint.position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.position_limit"><code class="docutils literal notranslate"><span class="pre">Joint.position_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.position_target"><code class="docutils literal notranslate"><span class="pre">Joint.position_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.reset"><code class="docutils literal notranslate"><span class="pre">Joint.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.reset_joint"><code class="docutils literal notranslate"><span class="pre">Joint.reset_joint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.reset_joint_position"><code class="docutils literal notranslate"><span class="pre">Joint.reset_joint_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.reset_joint_velocity"><code class="docutils literal notranslate"><span class="pre">Joint.reset_joint_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.reset_position"><code class="docutils literal notranslate"><span class="pre">Joint.reset_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.reset_velocity"><code class="docutils literal notranslate"><span class="pre">Joint.reset_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_acceleration_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_control_mode"><code class="docutils literal notranslate"><span class="pre">Joint.set_control_mode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_coulomb_friction"><code class="docutils literal notranslate"><span class="pre">Joint.set_coulomb_friction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_generalized_force_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_generalized_force_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_joint_acceleration_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_joint_acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_joint_generalized_force_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_joint_generalized_force_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_joint_max_generalized_force"><code class="docutils literal notranslate"><span class="pre">Joint.set_joint_max_generalized_force()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_joint_position_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_joint_position_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_joint_velocity_limit"><code class="docutils literal notranslate"><span class="pre">Joint.set_joint_velocity_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_joint_velocity_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_joint_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_max_generalized_force"><code class="docutils literal notranslate"><span class="pre">Joint.set_max_generalized_force()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_pid"><code class="docutils literal notranslate"><span class="pre">Joint.set_pid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_position_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_position_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_velocity_limit"><code class="docutils literal notranslate"><span class="pre">Joint.set_velocity_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_velocity_target"><code class="docutils literal notranslate"><span class="pre">Joint.set_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.set_viscous_friction"><code class="docutils literal notranslate"><span class="pre">Joint.set_viscous_friction()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.thisown"><code class="docutils literal notranslate"><span class="pre">Joint.thisown</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.type"><code class="docutils literal notranslate"><span class="pre">Joint.type()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.valid"><code class="docutils literal notranslate"><span class="pre">Joint.valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.velocity"><code class="docutils literal notranslate"><span class="pre">Joint.velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.velocity_limit"><code class="docutils literal notranslate"><span class="pre">Joint.velocity_limit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.velocity_target"><code class="docutils literal notranslate"><span class="pre">Joint.velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Joint.viscous_friction"><code class="docutils literal notranslate"><span class="pre">Joint.viscous_friction()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link"><code class="docutils literal notranslate"><span class="pre">Link</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.apply_world_force"><code class="docutils literal notranslate"><span class="pre">Link.apply_world_force()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.apply_world_torque"><code class="docutils literal notranslate"><span class="pre">Link.apply_world_torque()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.apply_world_wrench"><code class="docutils literal notranslate"><span class="pre">Link.apply_world_wrench()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.apply_world_wrench_to_co_m"><code class="docutils literal notranslate"><span class="pre">Link.apply_world_wrench_to_co_m()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.body_angular_acceleration"><code class="docutils literal notranslate"><span class="pre">Link.body_angular_acceleration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.body_angular_velocity"><code class="docutils literal notranslate"><span class="pre">Link.body_angular_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.body_linear_acceleration"><code class="docutils literal notranslate"><span class="pre">Link.body_linear_acceleration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.body_linear_velocity"><code class="docutils literal notranslate"><span class="pre">Link.body_linear_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.contact_wrench"><code class="docutils literal notranslate"><span class="pre">Link.contact_wrench()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.contacts"><code class="docutils literal notranslate"><span class="pre">Link.contacts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.contacts_enabled"><code class="docutils literal notranslate"><span class="pre">Link.contacts_enabled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.enable_contact_detection"><code class="docutils literal notranslate"><span class="pre">Link.enable_contact_detection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.id"><code class="docutils literal notranslate"><span class="pre">Link.id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.in_contact"><code class="docutils literal notranslate"><span class="pre">Link.in_contact()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.insert_link_plugin"><code class="docutils literal notranslate"><span class="pre">Link.insert_link_plugin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.mass"><code class="docutils literal notranslate"><span class="pre">Link.mass()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.name"><code class="docutils literal notranslate"><span class="pre">Link.name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.orientation"><code class="docutils literal notranslate"><span class="pre">Link.orientation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.position"><code class="docutils literal notranslate"><span class="pre">Link.position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.thisown"><code class="docutils literal notranslate"><span class="pre">Link.thisown</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.valid"><code class="docutils literal notranslate"><span class="pre">Link.valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.world_angular_acceleration"><code class="docutils literal notranslate"><span class="pre">Link.world_angular_acceleration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.world_angular_velocity"><code class="docutils literal notranslate"><span class="pre">Link.world_angular_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.world_linear_acceleration"><code class="docutils literal notranslate"><span class="pre">Link.world_linear_acceleration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Link.world_linear_velocity"><code class="docutils literal notranslate"><span class="pre">Link.world_linear_velocity()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model"><code class="docutils literal notranslate"><span class="pre">Model</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.base_body_angular_velocity"><code class="docutils literal notranslate"><span class="pre">Model.base_body_angular_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.base_body_linear_velocity"><code class="docutils literal notranslate"><span class="pre">Model.base_body_linear_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.base_frame"><code class="docutils literal notranslate"><span class="pre">Model.base_frame()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.base_orientation"><code class="docutils literal notranslate"><span class="pre">Model.base_orientation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.base_orientation_target"><code class="docutils literal notranslate"><span class="pre">Model.base_orientation_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.base_position"><code class="docutils literal notranslate"><span class="pre">Model.base_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.base_position_target"><code class="docutils literal notranslate"><span class="pre">Model.base_position_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.base_world_angular_acceleration_target"><code class="docutils literal notranslate"><span class="pre">Model.base_world_angular_acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.base_world_angular_velocity"><code class="docutils literal notranslate"><span class="pre">Model.base_world_angular_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.base_world_angular_velocity_target"><code class="docutils literal notranslate"><span class="pre">Model.base_world_angular_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.base_world_linear_acceleration_target"><code class="docutils literal notranslate"><span class="pre">Model.base_world_linear_acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.base_world_linear_velocity"><code class="docutils literal notranslate"><span class="pre">Model.base_world_linear_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.base_world_linear_velocity_target"><code class="docutils literal notranslate"><span class="pre">Model.base_world_linear_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.contacts"><code class="docutils literal notranslate"><span class="pre">Model.contacts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.contacts_enabled"><code class="docutils literal notranslate"><span class="pre">Model.contacts_enabled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.controller_period"><code class="docutils literal notranslate"><span class="pre">Model.controller_period()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.dofs"><code class="docutils literal notranslate"><span class="pre">Model.dofs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.enable_contacts"><code class="docutils literal notranslate"><span class="pre">Model.enable_contacts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.enable_history_of_applied_joint_forces"><code class="docutils literal notranslate"><span class="pre">Model.enable_history_of_applied_joint_forces()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.enable_self_collisions"><code class="docutils literal notranslate"><span class="pre">Model.enable_self_collisions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.get_joint"><code class="docutils literal notranslate"><span class="pre">Model.get_joint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.get_link"><code class="docutils literal notranslate"><span class="pre">Model.get_link()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.history_of_applied_joint_forces"><code class="docutils literal notranslate"><span class="pre">Model.history_of_applied_joint_forces()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.history_of_applied_joint_forces_enabled"><code class="docutils literal notranslate"><span class="pre">Model.history_of_applied_joint_forces_enabled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.id"><code class="docutils literal notranslate"><span class="pre">Model.id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.insert_model_plugin"><code class="docutils literal notranslate"><span class="pre">Model.insert_model_plugin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.joint_acceleration_targets"><code class="docutils literal notranslate"><span class="pre">Model.joint_acceleration_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.joint_accelerations"><code class="docutils literal notranslate"><span class="pre">Model.joint_accelerations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.joint_generalized_force_targets"><code class="docutils literal notranslate"><span class="pre">Model.joint_generalized_force_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.joint_generalized_forces"><code class="docutils literal notranslate"><span class="pre">Model.joint_generalized_forces()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.joint_limits"><code class="docutils literal notranslate"><span class="pre">Model.joint_limits()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.joint_names"><code class="docutils literal notranslate"><span class="pre">Model.joint_names()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.joint_position_targets"><code class="docutils literal notranslate"><span class="pre">Model.joint_position_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.joint_positions"><code class="docutils literal notranslate"><span class="pre">Model.joint_positions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.joint_velocities"><code class="docutils literal notranslate"><span class="pre">Model.joint_velocities()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.joint_velocity_targets"><code class="docutils literal notranslate"><span class="pre">Model.joint_velocity_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.joints"><code class="docutils literal notranslate"><span class="pre">Model.joints()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.link_names"><code class="docutils literal notranslate"><span class="pre">Model.link_names()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.links"><code class="docutils literal notranslate"><span class="pre">Model.links()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.links_in_contact"><code class="docutils literal notranslate"><span class="pre">Model.links_in_contact()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.name"><code class="docutils literal notranslate"><span class="pre">Model.name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.nr_of_joints"><code class="docutils literal notranslate"><span class="pre">Model.nr_of_joints()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.nr_of_links"><code class="docutils literal notranslate"><span class="pre">Model.nr_of_links()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.reset_base_orientation"><code class="docutils literal notranslate"><span class="pre">Model.reset_base_orientation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.reset_base_pose"><code class="docutils literal notranslate"><span class="pre">Model.reset_base_pose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.reset_base_position"><code class="docutils literal notranslate"><span class="pre">Model.reset_base_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.reset_base_world_angular_velocity"><code class="docutils literal notranslate"><span class="pre">Model.reset_base_world_angular_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.reset_base_world_linear_velocity"><code class="docutils literal notranslate"><span class="pre">Model.reset_base_world_linear_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.reset_base_world_velocity"><code class="docutils literal notranslate"><span class="pre">Model.reset_base_world_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.reset_joint_positions"><code class="docutils literal notranslate"><span class="pre">Model.reset_joint_positions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.reset_joint_velocities"><code class="docutils literal notranslate"><span class="pre">Model.reset_joint_velocities()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.self_collisions_enabled"><code class="docutils literal notranslate"><span class="pre">Model.self_collisions_enabled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.set_base_orientation_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_orientation_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.set_base_pose_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_pose_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.set_base_position_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_position_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.set_base_world_angular_acceleration_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_world_angular_acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.set_base_world_angular_velocity_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_world_angular_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.set_base_world_linear_acceleration_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_world_linear_acceleration_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.set_base_world_linear_velocity_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_world_linear_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.set_base_world_velocity_target"><code class="docutils literal notranslate"><span class="pre">Model.set_base_world_velocity_target()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.set_controller_period"><code class="docutils literal notranslate"><span class="pre">Model.set_controller_period()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.set_joint_acceleration_targets"><code class="docutils literal notranslate"><span class="pre">Model.set_joint_acceleration_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.set_joint_control_mode"><code class="docutils literal notranslate"><span class="pre">Model.set_joint_control_mode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.set_joint_generalized_force_targets"><code class="docutils literal notranslate"><span class="pre">Model.set_joint_generalized_force_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.set_joint_position_targets"><code class="docutils literal notranslate"><span class="pre">Model.set_joint_position_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.set_joint_velocity_targets"><code class="docutils literal notranslate"><span class="pre">Model.set_joint_velocity_targets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.thisown"><code class="docutils literal notranslate"><span class="pre">Model.thisown</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.total_mass"><code class="docutils literal notranslate"><span class="pre">Model.total_mass()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.Model.valid"><code class="docutils literal notranslate"><span class="pre">Model.valid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.PhysicsEngine_dart"><code class="docutils literal notranslate"><span class="pre">PhysicsEngine_dart</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.SwigPyIterator"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.SwigPyIterator.advance"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.advance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.SwigPyIterator.copy"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.copy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.SwigPyIterator.decr"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.decr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.SwigPyIterator.distance"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.SwigPyIterator.equal"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.equal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.SwigPyIterator.incr"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.incr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.SwigPyIterator.next"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.next()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.SwigPyIterator.previous"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.previous()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.SwigPyIterator.thisown"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.thisown</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.SwigPyIterator.value"><code class="docutils literal notranslate"><span class="pre">SwigPyIterator.value()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.ToGazeboJoint"><code class="docutils literal notranslate"><span class="pre">ToGazeboJoint()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.ToGazeboLink"><code class="docutils literal notranslate"><span class="pre">ToGazeboLink()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.ToGazeboModel"><code class="docutils literal notranslate"><span class="pre">ToGazeboModel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.ToGazeboWorld"><code class="docutils literal notranslate"><span class="pre">ToGazeboWorld()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World"><code class="docutils literal notranslate"><span class="pre">World</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.get_model"><code class="docutils literal notranslate"><span class="pre">World.get_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.gravity"><code class="docutils literal notranslate"><span class="pre">World.gravity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.id"><code class="docutils literal notranslate"><span class="pre">World.id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.insert_model"><code class="docutils literal notranslate"><span class="pre">World.insert_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.insert_model_from_file"><code class="docutils literal notranslate"><span class="pre">World.insert_model_from_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.insert_model_from_string"><code class="docutils literal notranslate"><span class="pre">World.insert_model_from_string()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.insert_world_plugin"><code class="docutils literal notranslate"><span class="pre">World.insert_world_plugin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.model_names"><code class="docutils literal notranslate"><span class="pre">World.model_names()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.models"><code class="docutils literal notranslate"><span class="pre">World.models()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.name"><code class="docutils literal notranslate"><span class="pre">World.name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.remove_model"><code class="docutils literal notranslate"><span class="pre">World.remove_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.set_gravity"><code class="docutils literal notranslate"><span class="pre">World.set_gravity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.set_physics_engine"><code class="docutils literal notranslate"><span class="pre">World.set_physics_engine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.thisown"><code class="docutils literal notranslate"><span class="pre">World.thisown</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.time"><code class="docutils literal notranslate"><span class="pre">World.time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.World.valid"><code class="docutils literal notranslate"><span class="pre">World.valid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.denormalize"><code class="docutils literal notranslate"><span class="pre">denormalize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.find_sdf_file"><code class="docutils literal notranslate"><span class="pre">find_sdf_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.get_empty_world"><code class="docutils literal notranslate"><span class="pre">get_empty_world()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.get_model_file_from_fuel"><code class="docutils literal notranslate"><span class="pre">get_model_file_from_fuel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.get_model_name_from_sdf"><code class="docutils literal notranslate"><span class="pre">get_model_name_from_sdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.get_random_string"><code class="docutils literal notranslate"><span class="pre">get_random_string()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.get_sdf_string"><code class="docutils literal notranslate"><span class="pre">get_sdf_string()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.get_world_name_from_sdf"><code class="docutils literal notranslate"><span class="pre">get_world_name_from_sdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.insert_plugin_to_gazebo_entity"><code class="docutils literal notranslate"><span class="pre">insert_plugin_to_gazebo_entity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.normalize"><code class="docutils literal notranslate"><span class="pre">normalize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.sdf_string_valid"><code class="docutils literal notranslate"><span class="pre">sdf_string_valid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.set_verbosity"><code class="docutils literal notranslate"><span class="pre">set_verbosity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.urdffile_to_sdfstring"><code class="docutils literal notranslate"><span class="pre">urdffile_to_sdfstring()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scenario.bindings.html#scenario.bindings.gazebo.urdfstring_to_sdfstring"><code class="docutils literal notranslate"><span class="pre">urdfstring_to_sdfstring()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.InstallMode"><code class="docutils literal notranslate"><span class="pre">InstallMode</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.InstallMode.CondaBuild"><code class="docutils literal notranslate"><span class="pre">InstallMode.CondaBuild</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.InstallMode.Developer"><code class="docutils literal notranslate"><span class="pre">InstallMode.Developer</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.InstallMode.User"><code class="docutils literal notranslate"><span class="pre">InstallMode.User</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.check_gazebo_installation"><code class="docutils literal notranslate"><span class="pre">check_gazebo_installation()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.create_home_dot_folder"><code class="docutils literal notranslate"><span class="pre">create_home_dot_folder()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.detect_install_mode"><code class="docutils literal notranslate"><span class="pre">detect_install_mode()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.import_gazebo"><code class="docutils literal notranslate"><span class="pre">import_gazebo()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.pre_import_gym"><code class="docutils literal notranslate"><span class="pre">pre_import_gym()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.preload_tensorflow_shared_libraries"><code class="docutils literal notranslate"><span class="pre">preload_tensorflow_shared_libraries()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.setup_gazebo_environment"><code class="docutils literal notranslate"><span class="pre">setup_gazebo_environment()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario.supported_versions_specifier_set"><code class="docutils literal notranslate"><span class="pre">supported_versions_specifier_set()</span></code></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Diego Ferigo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Istituto Italiano di Tecnologia.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

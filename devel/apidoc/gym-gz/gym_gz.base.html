@@ -1,0 +1,914 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>gym_gz.base &#8212; gym-gz  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=266695fe" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apidoc/gym-gz/gym_gz.base';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="gym_gz.context" href="gym_gz.context.html" />
+    <link rel="prev" title="gym_gz" href="gym_gz.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    ScenarIO and gym-gz
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">What</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../what/what_is_scenario.html">What is ScenarIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../what/what_is_gym_gz.html">What is gym-gz?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Why</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../why/motivations.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../why/why_scenario.html">Why ScenarIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../why/why_gz_sim.html">Why Gz sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../why/why_gym_gz.html">Why gym-gz</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Installation (How)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../installation/support_policy.html">Support policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/stable.html">Stable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/nightly.html">Nightly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/developer.html">Developer Installation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/scenario.html">ScenarIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/manipulation.html">Manipulation example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/gym-gz.html">gym-gz</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">ScenarIO C++ API:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../breathe/core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../breathe/gazebo.html">Gazebo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Packages</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../scenario/scenario.bindings.html">scenario.bindings</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="gym_gz.html">gym_gz</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">gym_gz.base</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="gym_gz.context.html">gym_gz.context</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="gym_gz.context.gazebo.html">gym_gz.context.gazebo</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="gym_gz.randomizers.html">gym_gz.randomizers</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="gym_gz.randomizers.model.html">gym_gz.randomizers.model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gym_gz.randomizers.physics.html">gym_gz.randomizers.physics</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="gym_gz.rbd.html">gym_gz.rbd</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="gym_gz.rbd.idyntree.html">gym_gz.rbd.idyntree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gym_gz.runtimes.html">gym_gz.runtimes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gym_gz.scenario.html">gym_gz.scenario</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gym_gz.utils.html">gym_gz.utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gym-gz-environments/gym_gz_environments.html">gym_gz_environments</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gym-gz-environments/gym_gz_environments.models.html">gym_gz_environments.models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gym-gz-environments/gym_gz_environments.randomizers.html">gym_gz_environments.randomizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gym-gz-environments/gym_gz_environments.tasks.html">gym_gz_environments.tasks</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Information</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../info/faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../info/limitations.html">Limitations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<nav id="bd-docs-nav" class="bd-links" aria-label="Versions navigation">
+  <div class="bd-toc-item active">
+    <p class="caption">
+      <span class="caption-text">Doc Versions</span>
+    </p>
+    <ul class="nav bd-sidenav">
+      <li class="toctree-l1"><a class="reference internal" href="gym_gz.base.html">devel</a></li>
+    </ul>
+  </div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/andreaostuni/gym-gz" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/andreaostuni/gym-gz/edit/main/docs/sphinx/apidoc/gym-gz/gym_gz.base.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/andreaostuni/gym-gz/issues/new?title=Issue%20on%20page%20%2Fapidoc/gym-gz/gym_gz.base.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>gym_gz.base</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gym_gz.base.runtime">gym_gz.base.runtime</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.runtime.Runtime"><code class="docutils literal notranslate"><span class="pre">Runtime</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.runtime.Runtime.agent_rate"><code class="docutils literal notranslate"><span class="pre">Runtime.agent_rate</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.runtime.Runtime.task"><code class="docutils literal notranslate"><span class="pre">Runtime.task</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.runtime.Runtime.timestamp"><code class="docutils literal notranslate"><span class="pre">Runtime.timestamp()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gym_gz.base.task">gym_gz.base.task</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task"><code class="docutils literal notranslate"><span class="pre">Task</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.action_space"><code class="docutils literal notranslate"><span class="pre">Task.action_space</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.agent_rate"><code class="docutils literal notranslate"><span class="pre">Task.agent_rate</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.create_spaces"><code class="docutils literal notranslate"><span class="pre">Task.create_spaces()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.get_info"><code class="docutils literal notranslate"><span class="pre">Task.get_info()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.get_observation"><code class="docutils literal notranslate"><span class="pre">Task.get_observation()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.get_reward"><code class="docutils literal notranslate"><span class="pre">Task.get_reward()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.has_world"><code class="docutils literal notranslate"><span class="pre">Task.has_world()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.is_terminated"><code class="docutils literal notranslate"><span class="pre">Task.is_terminated()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.is_truncated"><code class="docutils literal notranslate"><span class="pre">Task.is_truncated()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.np_random"><code class="docutils literal notranslate"><span class="pre">Task.np_random</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.observation_space"><code class="docutils literal notranslate"><span class="pre">Task.observation_space</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.reset_task"><code class="docutils literal notranslate"><span class="pre">Task.reset_task()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.seed"><code class="docutils literal notranslate"><span class="pre">Task.seed</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.seed_task"><code class="docutils literal notranslate"><span class="pre">Task.seed_task()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.set_action"><code class="docutils literal notranslate"><span class="pre">Task.set_action()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.world"><code class="docutils literal notranslate"><span class="pre">Task.world</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-gym_gz.base">
+<span id="gym-gz-base"></span><h1>gym_gz.base<a class="headerlink" href="#module-gym_gz.base" title="Link to this heading">#</a></h1>
+<section id="module-gym_gz.base.runtime">
+<span id="gym-gz-base-runtime"></span><h2>gym_gz.base.runtime<a class="headerlink" href="#module-gym_gz.base.runtime" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gym_gz.base.runtime.Runtime">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gym_gz.base.runtime.</span></span><span class="sig-name descname"><span class="pre">Runtime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agent_rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz.base.runtime.Runtime" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Env</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Base class for defining executors of <a class="reference internal" href="#gym_gz.base.task.Task" title="gym_gz.base.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a> objects.</p>
+<p><a class="reference internal" href="#gym_gz.base.task.Task" title="gym_gz.base.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a> classes are supposed to be generic and are
+not tied to any specific runtime. Implementations of a runtime class contain all the
+logic to define how to execute the task, allowing to run the same
+<a class="reference internal" href="#gym_gz.base.task.Task" title="gym_gz.base.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a> class on different simulators or in a
+real-time setting.</p>
+<p>Runtimes are the real <code class="xref py py-class docutils literal notranslate"><span class="pre">gym.Env</span></code> objects returned to the users when they call
+the <code class="xref py py-class docutils literal notranslate"><span class="pre">gym.make</span></code> factory method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>task</strong> (<span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span>) – the <a class="reference internal" href="#gym_gz.base.task.Task" title="gym_gz.base.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a> object to handle.</p></li>
+<li><p><strong>agent_rate</strong> (<span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span>) – the rate at which the environment will be called. Sometimes tasks need
+to know this information.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>Here is minimal example of how the <a class="reference internal" href="#gym_gz.base.runtime.Runtime" title="gym_gz.base.runtime.Runtime"><code class="xref py py-class docutils literal notranslate"><span class="pre">Runtime</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">gym.Env</span></code> and
+<a class="reference internal" href="#gym_gz.base.task.Task" title="gym_gz.base.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a> could be integrated:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FooRuntime</span><span class="p">(</span><span class="n">Runtime</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span> <span class="n">agent_rate</span><span class="o">=</span><span class="n">agent_rate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action_space</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">observation_space</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">create_spaces</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">reset_task</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">get_observation</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">get_info</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">set_action</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+        <span class="c1"># [...] code that performs the real step [...]</span>
+
+        <span class="n">terminated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">is_terminated</span><span class="p">()</span>
+        <span class="n">truncated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">is_truncated</span><span class="p">()</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">get_reward</span><span class="p">()</span>
+        <span class="n">observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">get_observation</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Runtimes can handle only one <a class="reference internal" href="#gym_gz.base.task.Task" title="gym_gz.base.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a> object.</p>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gym_gz.base.runtime.Runtime.agent_rate">
+<span class="sig-name descname"><span class="pre">agent_rate</span></span><a class="headerlink" href="#gym_gz.base.runtime.Runtime.agent_rate" title="Link to this definition">#</a></dt>
+<dd><p>Rate of environment execution.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gym_gz.base.runtime.Runtime.task">
+<span class="sig-name descname"><span class="pre">task</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><em class="fa fa-glass"></em></em><a class="headerlink" href="#gym_gz.base.runtime.Runtime.task" title="Link to this definition">#</a></dt>
+<dd><p>Task handled by the runtime.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz.base.runtime.Runtime.timestamp">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">timestamp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz.base.runtime.Runtime.timestamp" title="Link to this definition">#</a></dt>
+<dd><p>Return the timestamp associated to the execution of the environment.</p>
+<p>In real-time environments, the timestamp is the time read from the host system.
+In simulated environments, the timestamp is the simulated time, which might not
+match the real-time in the case of a real-time factor different than 1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The current environment timestamp.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-gym_gz.base.task">
+<span id="gym-gz-base-task"></span><h2>gym_gz.base.task<a class="headerlink" href="#module-gym_gz.base.task" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gym_gz.base.task.</span></span><span class="sig-name descname"><span class="pre">Task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agent_rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz.base.task.Task" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Interface to define a decision-making task.</p>
+<p>The Task is the central interface of each environment implementation.
+It defines the logic of the environment in a format that is agnostic of both the
+runtime (either simulated or real-time) and the models it operates on.</p>
+<p><a class="reference internal" href="#gym_gz.base.runtime.Runtime" title="gym_gz.base.runtime.Runtime"><code class="xref py py-class docutils literal notranslate"><span class="pre">Runtime</span></code></a> instances are the real objects returned
+to the users when they call <code class="xref py py-class docutils literal notranslate"><span class="pre">gym.make</span></code>. Depending on the type of the
+runtime, it could contain one or more <a class="reference internal" href="#gym_gz.base.task.Task" title="gym_gz.base.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a> objects.
+The <a class="reference internal" href="#gym_gz.base.runtime.Runtime" title="gym_gz.base.runtime.Runtime"><code class="xref py py-class docutils literal notranslate"><span class="pre">Runtime</span></code></a> is a relay class that calls the
+logic of the <a class="reference internal" href="#gym_gz.base.task.Task" title="gym_gz.base.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a> from its interface methods and implements the real
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">gym.Env.step()</span></code>.
+Simulated runtimes step the physics engine, instead, real-time
+runtimes, enforce real-time execution.</p>
+<p>A <a class="reference internal" href="#gym_gz.base.task.Task" title="gym_gz.base.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a> object is meant to be:</p>
+<ul class="simple">
+<li><p>Independent from the selected <a class="reference internal" href="#gym_gz.base.runtime.Runtime" title="gym_gz.base.runtime.Runtime"><code class="xref py py-class docutils literal notranslate"><span class="pre">Runtime</span></code></a>.
+In fact, it defines only the decision making logic;</p></li>
+<li><p>Independent from the <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code> objects it operates on.
+This is achieved thanks to the model abstraction provided by
+<a class="reference internal" href="../../breathe/core.html#_CPPv4N8scenario4core5ModelE" title="scenario::core::Model"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">scenario::core::Model</span></code></a>.</p></li>
+</ul>
+<p>The population of the world where the task operates is demanded to a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">gym.Wrapper</span></code> object, that acts as an environment randomizer.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.action_space">
+<span class="sig-name descname"><span class="pre">action_space</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><em class="fa fa-glass"></em></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#gym_gz.base.task.Task.action_space" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.agent_rate">
+<span class="sig-name descname"><span class="pre">agent_rate</span></span><a class="headerlink" href="#gym_gz.base.task.Task.agent_rate" title="Link to this definition">#</a></dt>
+<dd><p>Rate of the agent.
+It matches the rate at which the <code class="xref py py-class docutils literal notranslate"><span class="pre">Gym.Env</span></code> methods are called.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.create_spaces">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_spaces</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz.base.task.Task.create_spaces" title="Link to this definition">#</a></dt>
+<dd><p>Create the action and observations spaces.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method does not currently have access to the Models part of the
+environment. If the Task is meant to work on different models, we recommend
+using their URDF / SDF model to extract the information you need
+(e.g. number of DoFs, joint position limits, etc). Since actions and
+observations are often normalized, in many cases there’s no need to extract
+a lot of information from the model file.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>RuntimeError</strong> – In case of failure.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple containing the action and observation spaces.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.get_info">
+<span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz.base.task.Task.get_info" title="Link to this definition">#</a></dt>
+<dd><p>Return the info dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <code class="docutils literal notranslate"><span class="pre">dict</span></code> with extra information of the task.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.get_observation">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_observation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz.base.task.Task.get_observation" title="Link to this definition">#</a></dt>
+<dd><p>Return the task observation.</p>
+<p>This method contains the logic for constructing the environment observation.
+It is called in the end of both <code class="xref py py-meth docutils literal notranslate"><span class="pre">gym.Env.reset()</span></code> and
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">gym.Env.step()</span></code> methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>RuntimeError</strong> – In case of failure.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The task observation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.get_reward">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_reward</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz.base.task.Task.get_reward" title="Link to this definition">#</a></dt>
+<dd><p>Return the task reward.</p>
+<p>This method contains the logic for computing the environment reward.
+It is called in the end of the <code class="xref py py-meth docutils literal notranslate"><span class="pre">gym.Env.step()</span></code> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>RuntimeError</strong> – In case of failure.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The scalar reward.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.has_world">
+<span class="sig-name descname"><span class="pre">has_world</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz.base.task.Task.has_world" title="Link to this definition">#</a></dt>
+<dd><p>Check if the world was stored.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the task has a valid world, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.is_terminated">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_terminated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz.base.task.Task.is_terminated" title="Link to this definition">#</a></dt>
+<dd><p>Return the task termination flag.</p>
+<p>This method contains the logic for defining when the environment has terminated.
+Subsequent calls to <a class="reference internal" href="#gym_gz.base.task.Task.set_action" title="gym_gz.base.task.Task.set_action"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Task.set_action()</span></code></a> should be preceded by a task
+reset through <a class="reference internal" href="#gym_gz.base.task.Task.reset_task" title="gym_gz.base.task.Task.reset_task"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Task.reset_task()</span></code></a>.</p>
+<p>It is called in the end of the <code class="xref py py-meth docutils literal notranslate"><span class="pre">gym.Env.step()</span></code> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>RuntimeError</strong> – In case of failure.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the environment terminated, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.is_truncated">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_truncated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz.base.task.Task.is_truncated" title="Link to this definition">#</a></dt>
+<dd><p>Return the task truncation flag.</p>
+<p>This method contains the logic for defining when the environment has truncated.
+Subsequent calls to <a class="reference internal" href="#gym_gz.base.task.Task.set_action" title="gym_gz.base.task.Task.set_action"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Task.set_action()</span></code></a> should be preceded by a task
+reset through <a class="reference internal" href="#gym_gz.base.task.Task.reset_task" title="gym_gz.base.task.Task.reset_task"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Task.reset_task()</span></code></a>.</p>
+<p>It is called in the end of the <code class="xref py py-meth docutils literal notranslate"><span class="pre">gym.Env.step()</span></code> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>RuntimeError</strong> – In case of failure.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the environment truncated, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.np_random">
+<span class="sig-name descname"><span class="pre">np_random</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><em class="fa fa-glass"></em></em><a class="headerlink" href="#gym_gz.base.task.Task.np_random" title="Link to this definition">#</a></dt>
+<dd><p>RNG available to the object to ensure reproducibility.
+Use it for all the random resources.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.observation_space">
+<span class="sig-name descname"><span class="pre">observation_space</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><em class="fa fa-glass"></em></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#gym_gz.base.task.Task.observation_space" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.reset_task">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reset_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz.base.task.Task.reset_task" title="Link to this definition">#</a></dt>
+<dd><p>Reset the task.</p>
+<p>This method contains the logic for resetting the task.
+It is called in the <code class="xref py py-meth docutils literal notranslate"><span class="pre">gym.Env.reset()</span></code> method of the corresponding
+environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>RuntimeError</strong> – In case of failure.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.seed">
+<span class="sig-name descname"><span class="pre">seed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><em class="fa fa-glass"></em></em><a class="headerlink" href="#gym_gz.base.task.Task.seed" title="Link to this definition">#</a></dt>
+<dd><p>The seed of the task</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.seed_task">
+<span class="sig-name descname"><span class="pre">seed_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz.base.task.Task.seed_task" title="Link to this definition">#</a></dt>
+<dd><p>Seed the task.</p>
+<p>This method configures the <a class="reference internal" href="#gym_gz.base.task.Task.np_random" title="gym_gz.base.task.Task.np_random"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Task.np_random</span></code></a> RNG.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>seed</strong> (<span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span>) – The seed number.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of seeds used by the task.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.set_action">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz.base.task.Task.set_action" title="Link to this definition">#</a></dt>
+<dd><p>Set the task action.</p>
+<p>This method contains the logic for setting the environment action.
+It is called in the beginning of the <code class="xref py py-meth docutils literal notranslate"><span class="pre">gym.Env.step()</span></code> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>action</strong> (<span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span>) – The action to set.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – In case of failure.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="gym_gz.base.task.Task.world">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">world</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../scenario/scenario.bindings.html#scenario.bindings.core.World" title="scenario.bindings.core.World"><span class="pre">World</span></a></em><a class="headerlink" href="#gym_gz.base.task.Task.world" title="Link to this definition">#</a></dt>
+<dd><p>Get the world where the task is operating.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The world object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="gym_gz.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">gym_gz</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="gym_gz.context.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">gym_gz.context</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gym_gz.base.runtime">gym_gz.base.runtime</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.runtime.Runtime"><code class="docutils literal notranslate"><span class="pre">Runtime</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.runtime.Runtime.agent_rate"><code class="docutils literal notranslate"><span class="pre">Runtime.agent_rate</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.runtime.Runtime.task"><code class="docutils literal notranslate"><span class="pre">Runtime.task</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.runtime.Runtime.timestamp"><code class="docutils literal notranslate"><span class="pre">Runtime.timestamp()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gym_gz.base.task">gym_gz.base.task</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task"><code class="docutils literal notranslate"><span class="pre">Task</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.action_space"><code class="docutils literal notranslate"><span class="pre">Task.action_space</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.agent_rate"><code class="docutils literal notranslate"><span class="pre">Task.agent_rate</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.create_spaces"><code class="docutils literal notranslate"><span class="pre">Task.create_spaces()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.get_info"><code class="docutils literal notranslate"><span class="pre">Task.get_info()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.get_observation"><code class="docutils literal notranslate"><span class="pre">Task.get_observation()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.get_reward"><code class="docutils literal notranslate"><span class="pre">Task.get_reward()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.has_world"><code class="docutils literal notranslate"><span class="pre">Task.has_world()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.is_terminated"><code class="docutils literal notranslate"><span class="pre">Task.is_terminated()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.is_truncated"><code class="docutils literal notranslate"><span class="pre">Task.is_truncated()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.np_random"><code class="docutils literal notranslate"><span class="pre">Task.np_random</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.observation_space"><code class="docutils literal notranslate"><span class="pre">Task.observation_space</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.reset_task"><code class="docutils literal notranslate"><span class="pre">Task.reset_task()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.seed"><code class="docutils literal notranslate"><span class="pre">Task.seed</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.seed_task"><code class="docutils literal notranslate"><span class="pre">Task.seed_task()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.set_action"><code class="docutils literal notranslate"><span class="pre">Task.set_action()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz.base.task.Task.world"><code class="docutils literal notranslate"><span class="pre">Task.world</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Diego Ferigo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Istituto Italiano di Tecnologia.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,699 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>gym_gz_environments.models &#8212; gym-gz  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=266695fe" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apidoc/gym-gz-environments/gym_gz_environments.models';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="gym_gz_environments.randomizers" href="gym_gz_environments.randomizers.html" />
+    <link rel="prev" title="gym_gz_environments" href="gym_gz_environments.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    ScenarIO and gym-gz
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">What</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../what/what_is_scenario.html">What is ScenarIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../what/what_is_gym_gz.html">What is gym-gz?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Why</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../why/motivations.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../why/why_scenario.html">Why ScenarIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../why/why_gz_sim.html">Why Gz sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../why/why_gym_gz.html">Why gym-gz</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Installation (How)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../installation/support_policy.html">Support policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/stable.html">Stable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/nightly.html">Nightly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/developer.html">Developer Installation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/scenario.html">ScenarIO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/manipulation.html">Manipulation example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/gym-gz.html">gym-gz</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">ScenarIO C++ API:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../breathe/core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../breathe/gazebo.html">Gazebo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Packages</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../scenario/scenario.bindings.html">scenario.bindings</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gym-gz/gym_gz.html">gym_gz</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gym-gz/gym_gz.base.html">gym_gz.base</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../gym-gz/gym_gz.context.html">gym_gz.context</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../gym-gz/gym_gz.context.gazebo.html">gym_gz.context.gazebo</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../gym-gz/gym_gz.randomizers.html">gym_gz.randomizers</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../gym-gz/gym_gz.randomizers.model.html">gym_gz.randomizers.model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gym-gz/gym_gz.randomizers.physics.html">gym_gz.randomizers.physics</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../gym-gz/gym_gz.rbd.html">gym_gz.rbd</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../gym-gz/gym_gz.rbd.idyntree.html">gym_gz.rbd.idyntree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../gym-gz/gym_gz.runtimes.html">gym_gz.runtimes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gym-gz/gym_gz.scenario.html">gym_gz.scenario</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gym-gz/gym_gz.utils.html">gym_gz.utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="gym_gz_environments.html">gym_gz_environments</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">gym_gz_environments.models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gym_gz_environments.randomizers.html">gym_gz_environments.randomizers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gym_gz_environments.tasks.html">gym_gz_environments.tasks</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Information</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../info/faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../info/limitations.html">Limitations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<nav id="bd-docs-nav" class="bd-links" aria-label="Versions navigation">
+  <div class="bd-toc-item active">
+    <p class="caption">
+      <span class="caption-text">Doc Versions</span>
+    </p>
+    <ul class="nav bd-sidenav">
+      <li class="toctree-l1"><a class="reference internal" href="gym_gz_environments.models.html">devel</a></li>
+    </ul>
+  </div>
+</nav>
+</div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/andreaostuni/gym-gz" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/andreaostuni/gym-gz/edit/main/docs/sphinx/apidoc/gym-gz-environments/gym_gz_environments.models.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/andreaostuni/gym-gz/issues/new?title=Issue%20on%20page%20%2Fapidoc/gym-gz-environments/gym_gz_environments.models.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>gym_gz_environments.models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gym_gz_environments.models.cartpole">gym_gz_environments.models.cartpole</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.cartpole.CartPole"><code class="docutils literal notranslate"><span class="pre">CartPole</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.cartpole.CartPole.get_model_file"><code class="docutils literal notranslate"><span class="pre">CartPole.get_model_file()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gym_gz_environments.models.icub">gym_gz_environments.models.icub</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazebo"><code class="docutils literal notranslate"><span class="pre">ICubGazebo</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazebo.get_model_file"><code class="docutils literal notranslate"><span class="pre">ICubGazebo.get_model_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazeboABC"><code class="docutils literal notranslate"><span class="pre">ICubGazeboABC</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazeboABC.DOFS"><code class="docutils literal notranslate"><span class="pre">ICubGazeboABC.DOFS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazeboABC.NUM_JOINTS"><code class="docutils literal notranslate"><span class="pre">ICubGazeboABC.NUM_JOINTS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazeboABC.NUM_LINKS"><code class="docutils literal notranslate"><span class="pre">ICubGazeboABC.NUM_LINKS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazeboABC.initial_positions"><code class="docutils literal notranslate"><span class="pre">ICubGazeboABC.initial_positions</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazeboSimpleCollisions"><code class="docutils literal notranslate"><span class="pre">ICubGazeboSimpleCollisions</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazeboSimpleCollisions.get_model_file"><code class="docutils literal notranslate"><span class="pre">ICubGazeboSimpleCollisions.get_model_file()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gym_gz_environments.models.panda">gym_gz_environments.models.panda</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.panda.Panda"><code class="docutils literal notranslate"><span class="pre">Panda</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.panda.Panda.get_model_file"><code class="docutils literal notranslate"><span class="pre">Panda.get_model_file()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gym_gz_environments.models.pendulum">gym_gz_environments.models.pendulum</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.pendulum.Pendulum"><code class="docutils literal notranslate"><span class="pre">Pendulum</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.pendulum.Pendulum.get_model_file"><code class="docutils literal notranslate"><span class="pre">Pendulum.get_model_file()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-gym_gz_environments.models">
+<span id="gym-gz-environments-models"></span><h1>gym_gz_environments.models<a class="headerlink" href="#module-gym_gz_environments.models" title="Link to this heading">#</a></h1>
+<section id="module-gym_gz_environments.models.cartpole">
+<span id="gym-gz-environments-models-cartpole"></span><h2>gym_gz_environments.models.cartpole<a class="headerlink" href="#module-gym_gz_environments.models.cartpole" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gym_gz_environments.models.cartpole.CartPole">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gym_gz_environments.models.cartpole.</span></span><span class="sig-name descname"><span class="pre">CartPole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz_environments.models.cartpole.CartPole" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../gym-gz/gym_gz.scenario.html#gym_gz.scenario.model_wrapper.ModelWrapper" title="gym_gz.scenario.model_wrapper.ModelWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelWrapper</span></code></a>, <a class="reference internal" href="../gym-gz/gym_gz.scenario.html#gym_gz.scenario.model_with_file.ModelWithFile" title="gym_gz.scenario.model_with_file.ModelWithFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelWithFile</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz_environments.models.cartpole.CartPole.get_model_file">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_model_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz_environments.models.cartpole.CartPole.get_model_file" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-gym_gz_environments.models.icub">
+<span id="gym-gz-environments-models-icub"></span><h2>gym_gz_environments.models.icub<a class="headerlink" href="#module-gym_gz_environments.models.icub" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gym_gz_environments.models.icub.ICubGazebo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gym_gz_environments.models.icub.</span></span><span class="sig-name descname"><span class="pre">ICubGazebo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.572)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">1.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz_environments.models.icub.ICubGazebo" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gym_gz_environments.models.icub.ICubGazeboABC" title="gym_gz_environments.models.icub.ICubGazeboABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">ICubGazeboABC</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz_environments.models.icub.ICubGazebo.get_model_file">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_model_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz_environments.models.icub.ICubGazebo.get_model_file" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gym_gz_environments.models.icub.ICubGazeboABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gym_gz_environments.models.icub.</span></span><span class="sig-name descname"><span class="pre">ICubGazeboABC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz_environments.models.icub.ICubGazeboABC" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../gym-gz/gym_gz.scenario.html#gym_gz.scenario.model_wrapper.ModelWrapper" title="gym_gz.scenario.model_wrapper.ModelWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelWrapper</span></code></a>, <a class="reference internal" href="../gym-gz/gym_gz.scenario.html#gym_gz.scenario.model_with_file.ModelWithFile" title="gym_gz.scenario.model_with_file.ModelWithFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelWithFile</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gym_gz_environments.models.icub.ICubGazeboABC.DOFS">
+<span class="sig-name descname"><span class="pre">DOFS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#gym_gz_environments.models.icub.ICubGazeboABC.DOFS" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gym_gz_environments.models.icub.ICubGazeboABC.NUM_JOINTS">
+<span class="sig-name descname"><span class="pre">NUM_JOINTS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#gym_gz_environments.models.icub.ICubGazeboABC.NUM_JOINTS" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gym_gz_environments.models.icub.ICubGazeboABC.NUM_LINKS">
+<span class="sig-name descname"><span class="pre">NUM_LINKS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">39</span></em><a class="headerlink" href="#gym_gz_environments.models.icub.ICubGazeboABC.NUM_LINKS" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gym_gz_environments.models.icub.ICubGazeboABC.initial_positions">
+<span class="sig-name descname"><span class="pre">initial_positions</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'l_ankle_pitch':</span> <span class="pre">-0.57,</span> <span class="pre">'l_ankle_roll':</span> <span class="pre">-0.024,</span> <span class="pre">'l_elbow':</span> <span class="pre">0.54,</span> <span class="pre">'l_hip_pitch':</span> <span class="pre">0.48,</span> <span class="pre">'l_hip_roll':</span> <span class="pre">0.023,</span> <span class="pre">'l_hip_yaw':</span> <span class="pre">-0.005,</span> <span class="pre">'l_knee':</span> <span class="pre">-1.05,</span> <span class="pre">'l_shoulder_pitch':</span> <span class="pre">-0.159,</span> <span class="pre">'l_shoulder_roll':</span> <span class="pre">0.435,</span> <span class="pre">'l_shoulder_yaw':</span> <span class="pre">0.183,</span> <span class="pre">'l_wrist_pitch':</span> <span class="pre">0.0,</span> <span class="pre">'l_wrist_prosup':</span> <span class="pre">0.0,</span> <span class="pre">'l_wrist_yaw':</span> <span class="pre">0.0,</span> <span class="pre">'neck_pitch':</span> <span class="pre">0.0,</span> <span class="pre">'neck_roll':</span> <span class="pre">0.0,</span> <span class="pre">'neck_yaw':</span> <span class="pre">0.0,</span> <span class="pre">'r_ankle_pitch':</span> <span class="pre">-0.57,</span> <span class="pre">'r_ankle_roll':</span> <span class="pre">-0.024,</span> <span class="pre">'r_elbow':</span> <span class="pre">0.54,</span> <span class="pre">'r_hip_pitch':</span> <span class="pre">0.48,</span> <span class="pre">'r_hip_roll':</span> <span class="pre">0.023,</span> <span class="pre">'r_hip_yaw':</span> <span class="pre">-0.005,</span> <span class="pre">'r_knee':</span> <span class="pre">-1.05,</span> <span class="pre">'r_shoulder_pitch':</span> <span class="pre">-0.159,</span> <span class="pre">'r_shoulder_roll':</span> <span class="pre">0.435,</span> <span class="pre">'r_shoulder_yaw':</span> <span class="pre">0.183,</span> <span class="pre">'r_wrist_pitch':</span> <span class="pre">0.0,</span> <span class="pre">'r_wrist_prosup':</span> <span class="pre">0.0,</span> <span class="pre">'r_wrist_yaw':</span> <span class="pre">0.0,</span> <span class="pre">'torso_pitch':</span> <span class="pre">0.1,</span> <span class="pre">'torso_roll':</span> <span class="pre">0.0,</span> <span class="pre">'torso_yaw':</span> <span class="pre">0.0}</span></em><a class="headerlink" href="#gym_gz_environments.models.icub.ICubGazeboABC.initial_positions" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gym_gz_environments.models.icub.ICubGazeboSimpleCollisions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gym_gz_environments.models.icub.</span></span><span class="sig-name descname"><span class="pre">ICubGazeboSimpleCollisions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.572)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">1.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz_environments.models.icub.ICubGazeboSimpleCollisions" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gym_gz_environments.models.icub.ICubGazeboABC" title="gym_gz_environments.models.icub.ICubGazeboABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">ICubGazeboABC</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz_environments.models.icub.ICubGazeboSimpleCollisions.get_model_file">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_model_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz_environments.models.icub.ICubGazeboSimpleCollisions.get_model_file" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-gym_gz_environments.models.panda">
+<span id="gym-gz-environments-models-panda"></span><h2>gym_gz_environments.models.panda<a class="headerlink" href="#module-gym_gz_environments.models.panda" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gym_gz_environments.models.panda.Panda">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gym_gz_environments.models.panda.</span></span><span class="sig-name descname"><span class="pre">Panda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz_environments.models.panda.Panda" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../gym-gz/gym_gz.scenario.html#gym_gz.scenario.model_wrapper.ModelWrapper" title="gym_gz.scenario.model_wrapper.ModelWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelWrapper</span></code></a>, <a class="reference internal" href="../gym-gz/gym_gz.scenario.html#gym_gz.scenario.model_with_file.ModelWithFile" title="gym_gz.scenario.model_with_file.ModelWithFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelWithFile</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz_environments.models.panda.Panda.get_model_file">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_model_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz_environments.models.panda.Panda.get_model_file" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-gym_gz_environments.models.pendulum">
+<span id="gym-gz-environments-models-pendulum"></span><h2>gym_gz_environments.models.pendulum<a class="headerlink" href="#module-gym_gz_environments.models.pendulum" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gym_gz_environments.models.pendulum.Pendulum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gym_gz_environments.models.pendulum.</span></span><span class="sig-name descname"><span class="pre">Pendulum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz_environments.models.pendulum.Pendulum" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../gym-gz/gym_gz.scenario.html#gym_gz.scenario.model_wrapper.ModelWrapper" title="gym_gz.scenario.model_wrapper.ModelWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelWrapper</span></code></a>, <a class="reference internal" href="../gym-gz/gym_gz.scenario.html#gym_gz.scenario.model_with_file.ModelWithFile" title="gym_gz.scenario.model_with_file.ModelWithFile"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelWithFile</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gym_gz_environments.models.pendulum.Pendulum.get_model_file">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_model_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gym_gz_environments.models.pendulum.Pendulum.get_model_file" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><em class="fa fa-glass"></em></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="gym_gz_environments.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">gym_gz_environments</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="gym_gz_environments.randomizers.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">gym_gz_environments.randomizers</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gym_gz_environments.models.cartpole">gym_gz_environments.models.cartpole</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.cartpole.CartPole"><code class="docutils literal notranslate"><span class="pre">CartPole</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.cartpole.CartPole.get_model_file"><code class="docutils literal notranslate"><span class="pre">CartPole.get_model_file()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gym_gz_environments.models.icub">gym_gz_environments.models.icub</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazebo"><code class="docutils literal notranslate"><span class="pre">ICubGazebo</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazebo.get_model_file"><code class="docutils literal notranslate"><span class="pre">ICubGazebo.get_model_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazeboABC"><code class="docutils literal notranslate"><span class="pre">ICubGazeboABC</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazeboABC.DOFS"><code class="docutils literal notranslate"><span class="pre">ICubGazeboABC.DOFS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazeboABC.NUM_JOINTS"><code class="docutils literal notranslate"><span class="pre">ICubGazeboABC.NUM_JOINTS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazeboABC.NUM_LINKS"><code class="docutils literal notranslate"><span class="pre">ICubGazeboABC.NUM_LINKS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazeboABC.initial_positions"><code class="docutils literal notranslate"><span class="pre">ICubGazeboABC.initial_positions</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazeboSimpleCollisions"><code class="docutils literal notranslate"><span class="pre">ICubGazeboSimpleCollisions</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.icub.ICubGazeboSimpleCollisions.get_model_file"><code class="docutils literal notranslate"><span class="pre">ICubGazeboSimpleCollisions.get_model_file()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gym_gz_environments.models.panda">gym_gz_environments.models.panda</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.panda.Panda"><code class="docutils literal notranslate"><span class="pre">Panda</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.panda.Panda.get_model_file"><code class="docutils literal notranslate"><span class="pre">Panda.get_model_file()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gym_gz_environments.models.pendulum">gym_gz_environments.models.pendulum</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.pendulum.Pendulum"><code class="docutils literal notranslate"><span class="pre">Pendulum</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gym_gz_environments.models.pendulum.Pendulum.get_model_file"><code class="docutils literal notranslate"><span class="pre">Pendulum.get_model_file()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Diego Ferigo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Istituto Italiano di Tecnologia.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
