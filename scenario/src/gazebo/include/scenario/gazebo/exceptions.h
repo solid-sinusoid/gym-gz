@@ -27,9 +27,9 @@
 #ifndef SCENARIO_GAZEBO_EXCEPTIONS_H
 #define SCENARIO_GAZEBO_EXCEPTIONS_H
 
-#include <gz/sim/Entity.hh>
-#include <gz/sim/Types.hh>
-#include <gz/sim/components/Factory.hh>
+#include <ignition/gazebo/Entity.hh>
+#include <ignition/gazebo/Types.hh>
+#include <ignition/gazebo/components/Factory.hh>
 
 #include <cstring>
 #include <stdexcept>
@@ -254,13 +254,13 @@ public:
 class scenario::gazebo::exceptions::ComponentNotFound
     : public std::runtime_error
 {
-    gz::sim::Entity entity;
-    gz::sim::ComponentTypeId id;
+    ignition::gazebo::Entity entity;
+    ignition::gazebo::ComponentTypeId id;
 
 public:
     explicit ComponentNotFound(
-        const gz::sim::ComponentTypeId id,
-        const gz::sim::Entity entity = gz::sim::kNullEntity)
+        const ignition::gazebo::ComponentTypeId id,
+        const ignition::gazebo::Entity entity = ignition::gazebo::kNullEntity)
         : std::runtime_error("")
         , entity(entity)
         , id(id)
@@ -270,13 +270,13 @@ public:
     {
         std::string prefix;
 
-        if (entity != gz::sim::kNullEntity) {
+        if (entity != ignition::gazebo::kNullEntity) {
             prefix = "[Entity=" + std::to_string(entity) + "] ";
         }
 
         // Get the name of the component from the factory
         std::string componentName =
-            gz::sim::components::Factory::Instance()->Name(id);
+            ignition::gazebo::components::Factory::Instance()->Name(id);
 
         // Build the message
         std::string what = prefix + "Component not found: " + componentName;

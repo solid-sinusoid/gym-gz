@@ -4,9 +4,9 @@
 
 # Workaround for https://github.com/osrf/sdformat/issues/227.
 # It has to be done before loading the bindings.
-import gym_gz_models
-
-gym_gz_models.setup_environment()
+# import gym_gz_models
+#
+# gym_gz_models.setup_environment()
 
 # Add GZ_SIM_RESOURCE_PATH to the default search path
 import os

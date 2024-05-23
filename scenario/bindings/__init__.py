@@ -12,7 +12,8 @@ import packaging.version
 
 
 def supported_versions_specifier_set() -> packaging.specifiers.SpecifierSet:
-    # If 7 is the Gazebo distribution major version, the following specifier enables
+
+    # If 6 is the Ignition distribution major version, the following specifier enables
     # the compatibility with all the following versions:
     #
     # 6.Y.Z.devK
@@ -22,7 +23,7 @@ def supported_versions_specifier_set() -> packaging.specifiers.SpecifierSet:
     # 6.Y.Z.preK
     # 6.Y.Z.postK
     #
-    return packaging.specifiers.SpecifierSet(">=7.0.0.pre,<8.0.0.dev")
+    return packaging.specifiers.SpecifierSet(">=6.0.0.pre,<7.0.0.dev")
 
 
 class InstallMode(Enum):
@@ -32,6 +33,7 @@ class InstallMode(Enum):
 
 
 def detect_install_mode() -> InstallMode:
+
     import scenario.bindings.core
 
     install_prefix = scenario.bindings.core.get_install_prefix()
@@ -49,13 +51,15 @@ def detect_install_mode() -> InstallMode:
 
 
 def setup_gazebo_environment() -> None:
+
     import scenario.bindings.core
 
     # Configure the environment
-    gz_sim_system_plugin_path = ""
+    ign_gazebo_system_plugin_path = ""
 
-    if "GZ_SIM_SYSTEM_PLUGIN_PATH" in os.environ:
-        gz_sim_system_plugin_path = os.environ.get("GZ_SIM_SYSTEM_PLUGIN_PATH")
+    if "IGN_GAZEBO_SYSTEM_PLUGIN_PATH" in os.environ:
+        ign_gazebo_system_plugin_path = os.environ.get("IGN_GAZEBO_SYSTEM_PLUGIN_PATH")
+
 
     # Exporting this env variable is done by the conda "libscenario" package
     if detect_install_mode() is InstallMode.CondaBuild:
@@ -75,12 +79,13 @@ def setup_gazebo_environment() -> None:
         raise ValueError(detect_install_mode())
 
     plugin_dir = install_prefix / "lib" / "scenario" / "plugins"
-    gz_sim_system_plugin_path += f":{str(plugin_dir)}"
+    ign_gazebo_system_plugin_path += f":{str(plugin_dir)}"
 
-    os.environ["GZ_SIM_SYSTEM_PLUGIN_PATH"] = gz_sim_system_plugin_path
+    os.environ["IGN_GAZEBO_SYSTEM_PLUGIN_PATH"] = ign_gazebo_system_plugin_path
 
 
 def preload_tensorflow_shared_libraries() -> None:
+
     # Check if tensorflow is installed
     import importlib.util
 
@@ -116,6 +121,7 @@ def preload_tensorflow_shared_libraries() -> None:
 
 
 def pre_import_gym() -> None:
+
     # Check if gym is installed
     import importlib.util
 
@@ -128,14 +134,15 @@ def pre_import_gym() -> None:
 
 
 def check_gazebo_installation() -> None:
+
     import subprocess
 
     try:
-        command = ["gz", "sim", "--versions"]
+        command = ["ign", "gazebo", "--versions"]
         result = subprocess.run(command, capture_output=True, text=True, check=True)
     except FileNotFoundError:
-        msg = "Failed to find the 'gz' command in your PATH. "
-        msg += "Make sure that Gazebo is installed "
+        msg = "Failed to find the 'ign' command in your PATH. "
+        msg += "Make sure that Ignition is installed "
         msg += "and your environment is properly configured."
         raise RuntimeError(msg)
     except subprocess.CalledProcessError:
@@ -149,7 +156,7 @@ def check_gazebo_installation() -> None:
     # be compatible with the 'packaging' package.
     gazebo_version_string_normalized = gazebo_versions_string.replace("~", ".")
 
-    # The output could be multiline, listing all the Gz Sim versions found
+    # The output could be multiline, listing all the Ignition Gazebo versions found
     gazebo_versions = gazebo_version_string_normalized.split(sep=os.linesep)
 
     try:
@@ -164,12 +171,13 @@ def check_gazebo_installation() -> None:
         if version in supported_versions_specifier_set():
             return
 
-    msg = f"Failed to find Gz Sim {supported_versions_specifier_set()} "
+    msg = f"Failed to find Ignition Gazebo {supported_versions_specifier_set()} "
     msg += f"(found incompatible version(s): {gazebo_versions_parsed})"
     raise RuntimeError(msg)
 
 
 def import_gazebo() -> None:
+
     # Check the the module was never loaded by someone else
     if "scenario.bindings._gazebo" in sys.modules:
         raise ImportError("Failed to load ScenarIO Gazebo with custom dlopen flags")
@@ -179,7 +187,7 @@ def import_gazebo() -> None:
     if os.environ.get("SCENARIO_DISABLE_TENSORFLOW_PRELOAD") != "1":
         preload_tensorflow_shared_libraries()
 
-    # import gymnasium before scenario.bindings.gazebo. Similarly to tensorflow, also gym
+    # Import gym before scenario.bindings.gazebo. Similarly to tensorflow, also gym
     # includes a module that imports protobuf, producing a similar segfault.
     if os.environ.get("SCENARIO_DISABLE_GYM_PREIMPORT") != "1":
         pre_import_gym()
@@ -188,6 +196,7 @@ def import_gazebo() -> None:
     # See https://github.com/robotology/gym-ignition/issues/7
     #     https://stackoverflow.com/a/45473441/12150968
     if sys.platform.startswith("linux") or sys.platform.startswith("darwin"):
+
         # Update the dlopen flags
         dlopen_flags = sys.getdlopenflags()
         sys.setdlopenflags(dlopen_flags | os.RTLD_GLOBAL)
@@ -202,8 +211,11 @@ def import_gazebo() -> None:
 
 
 def create_home_dot_folder() -> None:
+
     # Make sure that the dot folder in the user's home exists
-    Path("~/.gz/sim").expanduser().mkdir(mode=0o755, parents=True, exist_ok=True)
+    Path("~/.ignition/gazebo").expanduser().mkdir(
+        mode=0o755, parents=True, exist_ok=True
+    )
 
 
 # ===================
@@ -212,6 +224,7 @@ def create_home_dot_folder() -> None:
 
 # Find the _gazebo.* shared lib
 if len(list((Path(__file__).parent / "bindings").glob(pattern="_gazebo.*"))) == 1:
+
     check_gazebo_installation()
     import_gazebo()
     create_home_dot_folder()

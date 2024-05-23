@@ -42,7 +42,7 @@ class scenario::gazebo::GazeboSimulator
 {
 public:
     /**
-     * Class wrapping the Gz Sim simulator.
+     * Class wrapping the Ignition Gazebo simulator.
      *
      * The simulator can execute either unpaused or paused runs. Paused runs
      * update the internal state of the simulator without stepping the physics.
@@ -105,12 +105,26 @@ public:
     bool run(const bool paused = false);
 
     /**
-     * Open the Gz Sim GUI.
+     * Run the simulator for a single unpaused step.
+     *
+     */
+    bool step();
+
+    /**
+     * Open the Ignition Gazebo GUI.
      *
      * @param verbosity Configure the verbosity of the GUI (0-4)
      * @return True for success, false otherwise.
      */
     bool gui(const int verbosity = -1);
+
+    /**
+     * Determine whether scene broadcaster world plugin is already active.
+     *
+     * @param worldName Name of the world
+     * @return True if active, false otherwise.
+     */
+    bool sceneBroadcasterActive(const std::string& worldName);
 
     /**
      * Close the simulator and the GUI.
@@ -166,7 +180,7 @@ public:
      * @return True for success, false otherwise.
      *
      * @warning This is an experimental feature. Multiworld simulations are only
-     * partially supported by Gz Sim.
+     * partially supported by Ignition Gazebo.
      */
     bool insertWorldsFromSDF(const std::string& worldFile,
                              const std::vector<std::string>& worldNames = {});

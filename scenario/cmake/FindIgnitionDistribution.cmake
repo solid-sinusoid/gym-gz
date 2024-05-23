@@ -3,15 +3,14 @@
 # GNU Lesser General Public License v2.1 or any later version.
 
 # In this initial implementation, we support only specifying
-# the Gz Sim version to determine the Gazebo distribution.
+# the Ignition Gazebo version to determine the Ignition distribution.
 # In the future we could pull and parse the tags.yaml file.
-# set(GAZEBO_CITADEL_VER 3)
-# set(GAZEBO_DOME_VER 4)
-# set(GAZEBO_EDIFICE_VER 5)
-# set(GAZEBO_FORTRESS_VER 6)
-set(GZ-SIM_GARDEN_VER 7)
+set(IGNITION-GAZEBO_CITADEL_VER 3)
+set(IGNITION-GAZEBO_DOME_VER 4)
+set(IGNITION-GAZEBO_EDIFICE_VER 5)
+set(IGNITION-GAZEBO_FORTRESS_VER 6)
 
-macro(find_gazebo_distribution)
+macro(find_ignition_distribution)
 
     set(_prefix "fid")
     string(TOUPPER ${_prefix} _prefix)
@@ -38,12 +37,12 @@ macro(find_gazebo_distribution)
     # Example:
     # ${Citadel_FOUND}=TRUE
     set(${${_prefix}_CODENAME}_FOUND TRUE)
-    set(GAZEBO_FOUND FALSE)
+    set(IGNITION_FOUND FALSE)
 
     set(_pkgs_not_found)
 
     # Example:
-    # ${PKG}=gz-sim
+    # ${PKG}=ignition-gazebo
     foreach(PKG IN LISTS ${_prefix}_PACKAGES)
 
         # Example:
@@ -63,7 +62,7 @@ macro(find_gazebo_distribution)
         endif()
 
         # Example:
-        # ${_pkg_name}=gz-sim7
+        # ${_pkg_name}=ignition-gazebo3
         set(_pkg_name ${PKG}${${_rel_variable_name}})
 
         # Find the package
@@ -84,14 +83,14 @@ macro(find_gazebo_distribution)
 
     # Print missing packages
     if(NOT ${${_prefix}_CODENAME}_FOUND)
-        message(DEBUG "Missing packages of Gazebo ${${_prefix}_CODENAME}:")
+        message(DEBUG "Missing packages of Ignition ${${_prefix}_CODENAME}:")
         foreach(PKG IN LISTS _pkgs_not_found)
             message(DEBUG "  ${PKG}")
         endforeach()
     endif()
 
     if(${${_prefix}_CODENAME}_FOUND)
-        set(GAZEBO_FOUND TRUE)
+        set(IGNITION_FOUND TRUE)
     endif()
 
     unset(_prefix)

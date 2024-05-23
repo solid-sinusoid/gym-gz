@@ -33,17 +33,17 @@
 #include "scenario/gazebo/World.h"
 #include "scenario/gazebo/exceptions.h"
 
-#include <gz/sim/Entity.hh>
-#include <gz/sim/EntityComponentManager.hh>
-#include <gz/math/PID.hh>
-#include <gz/math/Pose3.hh>
-#include <gz/math/Quaternion.hh>
-#include <gz/math/Vector3.hh>
-#include <gz/math/Vector4.hh>
-#include <gz/msgs/Utility.hh>
-#include <gz/msgs/contacts.pb.h>
-#include <gz/msgs/vector3d.pb.h>
-#include <gz/msgs/wrench.pb.h>
+#include <ignition/gazebo/Entity.hh>
+#include <ignition/gazebo/EntityComponentManager.hh>
+#include <ignition/math/PID.hh>
+#include <ignition/math/Pose3.hh>
+#include <ignition/math/Quaternion.hh>
+#include <ignition/math/Vector3.hh>
+#include <ignition/math/Vector4.hh>
+#include <ignition/msgs/Utility.hh>
+#include <ignition/msgs/contacts.pb.h>
+#include <ignition/msgs/vector3d.pb.h>
+#include <ignition/msgs/wrench.pb.h>
 #include <sdf/Element.hh>
 #include <sdf/Joint.hh>
 #include <sdf/Root.hh>
@@ -115,36 +115,36 @@ namespace scenario::gazebo::utils {
     };
 
     template <typename ComponentTypeT, typename ComponentDataTypeT>
-    auto getComponent(gz::sim::EntityComponentManager* ecm,
-                      const gz::sim::Entity entity,
+    auto getComponent(ignition::gazebo::EntityComponentManager* ecm,
+                      const ignition::gazebo::Entity entity,
                       ComponentDataTypeT defaultValue = {});
 
     template <typename ComponentTypeT>
-    auto getExistingComponent(gz::sim::EntityComponentManager* ecm,
-                              const gz::sim::Entity entity);
+    auto getExistingComponent(ignition::gazebo::EntityComponentManager* ecm,
+                              const ignition::gazebo::Entity entity);
 
     template <typename ComponentTypeT>
-    auto getComponentData(gz::sim::EntityComponentManager* ecm,
-                          const gz::sim::Entity entity)
+    auto getComponentData(ignition::gazebo::EntityComponentManager* ecm,
+                          const ignition::gazebo::Entity entity)
         -> decltype(ComponentTypeT().Data());
 
     template <typename ComponentTypeT>
-    auto getExistingComponentData(gz::sim::EntityComponentManager* ecm,
-                                  const gz::sim::Entity entity)
+    auto getExistingComponentData(ignition::gazebo::EntityComponentManager* ecm,
+                                  const ignition::gazebo::Entity entity)
         -> decltype(ComponentTypeT().Data());
 
     scenario::core::Pose
-    fromGzPose(const gz::math::Pose3d& gzPose);
+    fromIgnitionPose(const ignition::math::Pose3d& ignitionPose);
 
-    gz::math::Pose3d toGzPose(const scenario::core::Pose& pose);
+    ignition::math::Pose3d toIgnitionPose(const scenario::core::Pose& pose);
 
     scenario::core::Contact
-    fromGzContactMsgs(gz::sim::EntityComponentManager* ecm,
-                            const gz::msgs::Contact& contactMsg);
+    fromIgnitionContactMsgs(ignition::gazebo::EntityComponentManager* ecm,
+                            const ignition::msgs::Contact& contactMsg);
 
     std::vector<scenario::core::Contact>
-    fromGzContactsMsgs(gz::sim::EntityComponentManager* ecm,
-                             const gz::msgs::Contacts& contactsMsg);
+    fromIgnitionContactsMsgs(ignition::gazebo::EntityComponentManager* ecm,
+                             const ignition::msgs::Contacts& contactsMsg);
 
     sdf::World renameSDFWorld(const sdf::World& world,
                               const std::string& newWorldName);
@@ -157,31 +157,34 @@ namespace scenario::gazebo::utils {
                           const double realTimeUpdateRate,
                           const size_t worldIndex = 0);
 
+    sdf::ElementPtr getPluginSDFElement(const std::string& libName,
+                                        const std::string& className);
+
     sdf::JointType toSdf(const scenario::core::JointType type);
     scenario::core::JointType fromSdf(const sdf::JointType sdfType);
 
-    gz::math::Vector3d fromModelToBaseLinearVelocity(
-        const gz::math::Vector3d& linModelVelocity,
-        const gz::math::Vector3d& angModelVelocity,
-        const gz::math::Pose3d& M_H_B,
-        const gz::math::Quaterniond& W_R_B);
+    ignition::math::Vector3d fromModelToBaseLinearVelocity(
+        const ignition::math::Vector3d& linModelVelocity,
+        const ignition::math::Vector3d& angModelVelocity,
+        const ignition::math::Pose3d& M_H_B,
+        const ignition::math::Quaterniond& W_R_B);
 
-    gz::math::Vector3d fromBaseToModelLinearVelocity(
-        const gz::math::Vector3d& linBaseVelocity,
-        const gz::math::Vector3d& angBaseVelocity,
-        const gz::math::Pose3d& M_H_B,
-        const gz::math::Quaterniond& W_R_B);
+    ignition::math::Vector3d fromBaseToModelLinearVelocity(
+        const ignition::math::Vector3d& linBaseVelocity,
+        const ignition::math::Vector3d& angBaseVelocity,
+        const ignition::math::Pose3d& M_H_B,
+        const ignition::math::Quaterniond& W_R_B);
 
     std::shared_ptr<World> getParentWorld(const GazeboEntity& gazeboEntity);
 
     std::shared_ptr<Model> getParentModel(const GazeboEntity& gazeboEntity);
 
     template <typename ComponentType>
-    gz::sim::Entity getFirstParentEntityWithComponent(
-        gz::sim::EntityComponentManager* ecm,
-        const gz::sim::Entity entity)
+    ignition::gazebo::Entity getFirstParentEntityWithComponent(
+        ignition::gazebo::EntityComponentManager* ecm,
+        const ignition::gazebo::Entity entity)
     {
-        gz::sim::Entity candidateEntity = entity;
+        ignition::gazebo::Entity candidateEntity = entity;
 
         auto hasComponent = [&]() -> bool {
             return ecm->EntityHasComponentType(candidateEntity,
@@ -189,7 +192,7 @@ namespace scenario::gazebo::utils {
         };
 
         auto isNull = [&]() -> bool {
-            return candidateEntity == gz::sim::kNullEntity;
+            return candidateEntity == ignition::gazebo::kNullEntity;
         };
 
         while (!(hasComponent() || isNull())) {
@@ -207,8 +210,8 @@ namespace scenario::gazebo::utils {
 
     template <typename ComponentTypeT, typename ComponentDataTypeT>
     auto setComponentData(
-        gz::sim::EntityComponentManager* ecm,
-        const gz::sim::Entity entity,
+        ignition::gazebo::EntityComponentManager* ecm,
+        const ignition::gazebo::Entity entity,
         const ComponentDataTypeT& data,
         const std::function<bool(const ComponentDataTypeT& a,
                                  const ComponentDataTypeT& b)>& eql =
@@ -216,48 +219,48 @@ namespace scenario::gazebo::utils {
 
     template <typename ComponentTypeT, typename ComponentDataTypeT>
     auto setExistingComponentData(
-        gz::sim::EntityComponentManager* ecm,
-        const gz::sim::Entity entity,
+        ignition::gazebo::EntityComponentManager* ecm,
+        const ignition::gazebo::Entity entity,
         const ComponentDataTypeT& data,
         const std::function<bool(const ComponentDataTypeT& a,
                                  const ComponentDataTypeT& b)>& eql =
             defaultEqualityOperator<ComponentDataTypeT>);
 
     static inline std::array<double, 3>
-    fromGzVector(const gz::math::Vector3d& gzVector)
+    fromIgnitionVector(const ignition::math::Vector3d& ignitionVector)
     {
-        return {gzVector.X(), gzVector.Y(), gzVector.Z()};
+        return {ignitionVector.X(), ignitionVector.Y(), ignitionVector.Z()};
     }
 
-    static inline std::array<double, 4> fromGzQuaternion(
-        const gz::math::Quaterniond& gzQuaternion)
+    static inline std::array<double, 4> fromIgnitionQuaternion(
+        const ignition::math::Quaterniond& ignitionQuaternion)
     {
-        return {gzQuaternion.W(),
-                gzQuaternion.X(),
-                gzQuaternion.Y(),
-                gzQuaternion.Z()};
+        return {ignitionQuaternion.W(),
+                ignitionQuaternion.X(),
+                ignitionQuaternion.Y(),
+                ignitionQuaternion.Z()};
     }
 
-    static inline gz::math::Vector3d
-    toGzVector3(const std::array<double, 3>& vector)
+    static inline ignition::math::Vector3d
+    toIgnitionVector3(const std::array<double, 3>& vector)
     {
         return {vector[0], vector[1], vector[2]};
     }
 
-    static inline gz::math::Vector4d
-    toGzVector4(const std::array<double, 4>& vector)
+    static inline ignition::math::Vector4d
+    toIgnitionVector4(const std::array<double, 4>& vector)
     {
         return {vector[0], vector[1], vector[2], vector[3]};
     }
 
-    static inline gz::math::Quaterniond
-    toGzQuaternion(const std::array<double, 4>& vector)
+    static inline ignition::math::Quaterniond
+    toIgnitionQuaternion(const std::array<double, 4>& vector)
     {
         return {vector[0], vector[1], vector[2], vector[3]};
     }
 
-    static inline gz::math::PID
-    toGzPID(const scenario::core::PID& pid)
+    static inline ignition::math::PID
+    toIgnitionPID(const scenario::core::PID& pid)
     {
         return {pid.p,
                 pid.i,
@@ -270,7 +273,7 @@ namespace scenario::gazebo::utils {
     }
 
     static inline scenario::core::PID
-    fromGzPID(const gz::math::PID& pid)
+    fromIgnitionPID(const ignition::math::PID& pid)
     {
         scenario::core::PID pidScenario(pid.PGain(), pid.IGain(), pid.DGain());
         pidScenario.cmdMin = pid.CmdMin();
@@ -286,7 +289,7 @@ namespace scenario::gazebo::utils {
     {
     public:
         WrenchWithDuration(
-            const gz::msgs::Wrench& wrench,
+            const ignition::msgs::Wrench& wrench,
             const std::chrono::steady_clock::duration& duration,
             const std::chrono::steady_clock::duration& curSimTime)
             : m_wrench(wrench)
@@ -294,14 +297,14 @@ namespace scenario::gazebo::utils {
         {}
 
         WrenchWithDuration(
-            const gz::math::Vector3d& force,
-            const gz::math::Vector3d& torque,
+            const ignition::math::Vector3d& force,
+            const ignition::math::Vector3d& torque,
             const std::chrono::steady_clock::duration& duration,
             const std::chrono::steady_clock::duration& curSimTime)
             : m_expiration(curSimTime + duration)
         {
-            gz::msgs::Set(m_wrench.mutable_force(), force);
-            gz::msgs::Set(m_wrench.mutable_torque(), torque);
+            ignition::msgs::Set(m_wrench.mutable_force(), force);
+            ignition::msgs::Set(m_wrench.mutable_torque(), torque);
         }
 
         WrenchWithDuration(
@@ -309,18 +312,18 @@ namespace scenario::gazebo::utils {
             const std::array<double, 3>& torque,
             const std::chrono::steady_clock::duration& duration,
             const std::chrono::steady_clock::duration& curSimTime)
-            : WrenchWithDuration(toGzVector3(force),
-                                 toGzVector3(torque),
+            : WrenchWithDuration(toIgnitionVector3(force),
+                                 toIgnitionVector3(torque),
                                  duration,
                                  curSimTime)
         {}
 
-        const gz::msgs::Vector3d& force() const
+        const ignition::msgs::Vector3d& force() const
         {
             return m_wrench.force();
         }
 
-        const gz::msgs::Vector3d& torque() const
+        const ignition::msgs::Vector3d& torque() const
         {
             return m_wrench.torque();
         }
@@ -337,7 +340,7 @@ namespace scenario::gazebo::utils {
         }
 
     private:
-        gz::msgs::Wrench m_wrench;
+        ignition::msgs::Wrench m_wrench;
         std::chrono::steady_clock::duration m_expiration;
     };
 
@@ -353,9 +356,9 @@ namespace scenario::gazebo::utils {
             m_wrenches.push_back(wrench);
         }
 
-        inline gz::msgs::Wrench totalWrench() const
+        inline ignition::msgs::Wrench totalWrench() const
         {
-            using namespace gz;
+            using namespace ignition;
 
             msgs::Wrench totalWrench;
             msgs::Set(totalWrench.mutable_force(), {0, 0, 0});
@@ -396,8 +399,8 @@ namespace scenario::gazebo::utils {
 
 template <typename ComponentTypeT, typename ComponentDataTypeT>
 auto scenario::gazebo::utils::getComponent(
-    gz::sim::EntityComponentManager* ecm,
-    const gz::sim::Entity entity,
+    ignition::gazebo::EntityComponentManager* ecm,
+    const ignition::gazebo::Entity entity,
     ComponentDataTypeT defaultValue)
 {
     if (!ecm) {
@@ -416,8 +419,8 @@ auto scenario::gazebo::utils::getComponent(
 
 template <typename ComponentTypeT>
 auto scenario::gazebo::utils::getExistingComponent(
-    gz::sim::EntityComponentManager* ecm,
-    const gz::sim::Entity entity)
+    ignition::gazebo::EntityComponentManager* ecm,
+    const ignition::gazebo::Entity entity)
 {
     if (!ecm) {
         throw std::runtime_error("ECM pointer not valid");
@@ -434,8 +437,8 @@ auto scenario::gazebo::utils::getExistingComponent(
 
 template <typename ComponentTypeT>
 auto scenario::gazebo::utils::getComponentData(
-    gz::sim::EntityComponentManager* ecm,
-    const gz::sim::Entity entity) -> decltype(ComponentTypeT().Data())
+    ignition::gazebo::EntityComponentManager* ecm,
+    const ignition::gazebo::Entity entity) -> decltype(ComponentTypeT().Data())
 {
     using ComponentDataType =
         typename std::remove_reference<decltype(ComponentTypeT().Data())>::type;
@@ -448,8 +451,8 @@ auto scenario::gazebo::utils::getComponentData(
 
 template <typename ComponentTypeT>
 auto scenario::gazebo::utils::getExistingComponentData(
-    gz::sim::EntityComponentManager* ecm,
-    const gz::sim::Entity entity) -> decltype(ComponentTypeT().Data())
+    ignition::gazebo::EntityComponentManager* ecm,
+    const ignition::gazebo::Entity entity) -> decltype(ComponentTypeT().Data())
 {
     auto component = getExistingComponent<ComponentTypeT>(ecm, entity);
 
@@ -458,8 +461,8 @@ auto scenario::gazebo::utils::getExistingComponentData(
 
 template <typename ComponentTypeT, typename ComponentDataTypeT>
 auto scenario::gazebo::utils::setComponentData(
-    gz::sim::EntityComponentManager* ecm,
-    const gz::sim::Entity entity,
+    ignition::gazebo::EntityComponentManager* ecm,
+    const ignition::gazebo::Entity entity,
     const ComponentDataTypeT& data,
     const std::function<bool(const ComponentDataTypeT&,
                              const ComponentDataTypeT&)>& eql)
@@ -472,8 +475,8 @@ auto scenario::gazebo::utils::setComponentData(
 
 template <typename ComponentTypeT, typename ComponentDataTypeT>
 auto scenario::gazebo::utils::setExistingComponentData(
-    gz::sim::EntityComponentManager* ecm,
-    const gz::sim::Entity entity,
+    ignition::gazebo::EntityComponentManager* ecm,
+    const ignition::gazebo::Entity entity,
     const ComponentDataTypeT& data,
     const std::function<bool(const ComponentDataTypeT&,
                              const ComponentDataTypeT&)>& eql)

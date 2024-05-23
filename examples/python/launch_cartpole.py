@@ -27,7 +27,7 @@ def make_env_from_id(env_id: str, **kwargs) -> gym.Env:
 
 
 # Create a partial function passing the environment id
-make_env = functools.partial(make_env_from_id, env_id=env_id)
+make_env = functools.partial(make_env_from_id, env_id=env_id, render_mode="human")
 
 # Wrap the environment with the randomizer.
 # This is a simple example no randomization are applied.
@@ -36,12 +36,13 @@ env = randomizers.cartpole_no_rand.CartpoleEnvNoRandomizations(env=make_env)
 # Wrap the environment with the randomizer.
 # This is a complex example that randomizes both the physics and the model.
 # env = randomizers.cartpole.CartpoleEnvRandomizer(
-#     env=make_env, seed=42, num_physics_rollouts=5)
+#     env=make_env, num_physics_rollouts=5)
 
 # Enable the rendering
-# env.render('human')
+# observation = env.reset(seed=42, options={})
+# env.render()
 
-for epoch in range(10):
+for epoch in range(1000):
     # Reset the environment
     # Initialize the seed
     observation = env.reset(seed=42, options={})
@@ -62,7 +63,7 @@ for epoch in range(10):
 
         # Render the environment.
         # It is not required to call this in the loop if physics is not randomized.
-        # env.render('human')
+        env.render()
 
         # Accumulate the reward
         totalReward += reward

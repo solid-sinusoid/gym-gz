@@ -38,21 +38,23 @@
 #include "scenario/gazebo/helpers.h"
 #include "scenario/gazebo/utils.h"
 
-#include <gz/common/Event.hh>
-#include <gz/sim/Events.hh>
-#include <gz/sim/Model.hh>
-#include <gz/sim/components/AngularVelocityCmd.hh>
-#include <gz/sim/components/CanonicalLink.hh>
-#include <gz/sim/components/Joint.hh>
-#include <gz/sim/components/LinearVelocityCmd.hh>
-#include <gz/sim/components/Link.hh>
-#include <gz/sim/components/Name.hh>
-#include <gz/sim/components/ParentEntity.hh>
-#include <gz/sim/components/Pose.hh>
-#include <gz/sim/components/PoseCmd.hh>
-#include <gz/sim/components/SelfCollide.hh>
-#include <gz/math/Pose3.hh>
-#include <gz/math/Vector3.hh>
+#include <ignition/common/Event.hh>
+#include <ignition/gazebo/Events.hh>
+#include <ignition/gazebo/Model.hh>
+#include <ignition/gazebo/components/AngularVelocityCmd.hh>
+#include <ignition/gazebo/components/CanonicalLink.hh>
+#include <ignition/gazebo/components/DetachableJoint.hh>
+#include <ignition/gazebo/components/Joint.hh>
+#include <ignition/gazebo/components/LinearVelocityCmd.hh>
+#include <ignition/gazebo/components/Link.hh>
+#include <ignition/gazebo/components/Model.hh>
+#include <ignition/gazebo/components/Name.hh>
+#include <ignition/gazebo/components/ParentEntity.hh>
+#include <ignition/gazebo/components/Pose.hh>
+#include <ignition/gazebo/components/PoseCmd.hh>
+#include <ignition/gazebo/components/SelfCollide.hh>
+#include <ignition/math/Pose3.hh>
+#include <ignition/math/Vector3.hh>
 #include <sdf/Element.hh>
 #include <sdf/Root.hh>
 
@@ -68,13 +70,15 @@ using namespace scenario::gazebo;
 class Model::Impl
 {
 public:
-    gz::sim::Model model;
+    ignition::gazebo::Model model;
 
     using LinkName = std::string;
     using JointName = std::string;
+    using DetachableJointName = std::string;
 
     std::unordered_map<LinkName, core::LinkPtr> links;
     std::unordered_map<JointName, core::JointPtr> joints;
+    std::unordered_map<DetachableJointName, ignition::gazebo::Entity> detachableJoints;
 
     struct
     {
@@ -118,11 +122,11 @@ uint64_t Model::id() const
     return std::hash<std::string>{}(scopedModelName);
 }
 
-bool Model::initialize(const gz::sim::Entity modelEntity,
-                       gz::sim::EntityComponentManager* ecm,
-                       gz::sim::EventManager* eventManager)
+bool Model::initialize(const ignition::gazebo::Entity modelEntity,
+                       ignition::gazebo::EntityComponentManager* ecm,
+                       ignition::gazebo::EventManager* eventManager)
 {
-    if (modelEntity == gz::sim::kNullEntity || !ecm || !eventManager) {
+    if (modelEntity == ignition::gazebo::kNullEntity || !ecm || !eventManager) {
         return false;
     }
 
@@ -131,7 +135,7 @@ bool Model::initialize(const gz::sim::Entity modelEntity,
     m_eventManager = eventManager;
 
     // Create the model
-    pImpl->model = gz::sim::Model(modelEntity);
+    pImpl->model = ignition::gazebo::Model(modelEntity);
 
     // Check that the model is valid
     if (!pImpl->model.Valid(*ecm)) {
@@ -148,9 +152,9 @@ bool Model::createECMResources()
 
     // When the model is inserted, store the time of creation
     if (!m_ecm->EntityHasComponentType(
-            m_entity, gz::sim::components::Timestamp::typeId)) {
+            m_entity, ignition::gazebo::components::Timestamp::typeId)) {
         const auto& parentWorld = utils::getParentWorld(*this);
-        utils::setComponentData<gz::sim::components::Timestamp>(
+        utils::setComponentData<ignition::gazebo::components::Timestamp>(
             m_ecm,
             m_entity,
             utils::doubleToSteadyClockDuration(parentWorld->time()));
@@ -183,7 +187,7 @@ bool Model::createECMResources()
     // In this way controllers are never updated unless a new period is
     // configured.
     m_ecm->CreateComponent(m_entity,
-                           gz::sim::components::JointControllerPeriod(
+                           ignition::gazebo::components::JointControllerPeriod(
                                std::chrono::steady_clock::duration().max()));
 
     return true;
@@ -228,16 +232,16 @@ bool Model::resetBasePose(const std::array<double, 3>& position,
 {
     // Construct the desired transform between world and base
     const core::Pose pose(position, orientation);
-    gz::math::Pose3d world_H_base = utils::toGzPose(pose);
+    ignition::math::Pose3d world_H_base = utils::toIgnitionPose(pose);
 
     // Get the entity of the canonical link
     const auto canonicalLinkEntity = m_ecm->EntityByComponents(
-        gz::sim::components::Link(),
-        gz::sim::components::CanonicalLink(),
-        gz::sim::components::Name(this->baseFrame()),
-        gz::sim::components::ParentEntity(m_entity));
+        ignition::gazebo::components::Link(),
+        ignition::gazebo::components::CanonicalLink(),
+        ignition::gazebo::components::Name(this->baseFrame()),
+        ignition::gazebo::components::ParentEntity(m_entity));
 
-    if (canonicalLinkEntity == gz::sim::kNullEntity) {
+    if (canonicalLinkEntity == ignition::gazebo::kNullEntity) {
         sError << "Failed to get entity of canonical link" << std::endl;
         return false;
     }
@@ -245,14 +249,14 @@ bool Model::resetBasePose(const std::array<double, 3>& position,
     // Get the Pose component of the canonical link.
     // This is the fixed transformation between the model and the base.
     auto& model_H_base = utils::getExistingComponentData< //
-        gz::sim::components::Pose>(m_ecm, canonicalLinkEntity);
+        ignition::gazebo::components::Pose>(m_ecm, canonicalLinkEntity);
 
     // Compute the robot pose that corresponds to the desired base pose
-    const gz::math::Pose3d& world_H_model =
+    const ignition::math::Pose3d& world_H_model =
         world_H_base * model_H_base.Inverse();
 
     // Store the new pose
-    utils::setComponentData<gz::sim::components::WorldPoseCmd>(
+    utils::setComponentData<ignition::gazebo::components::WorldPoseCmd>(
         m_ecm, m_entity, world_H_model);
 
     return true;
@@ -279,30 +283,30 @@ bool Model::resetBaseWorldLinearVelocity(const std::array<double, 3>& linear)
 
     // Get the entity of the canonical (base) link
     const auto canonicalLinkEntity = m_ecm->EntityByComponents(
-        gz::sim::components::Link(),
-        gz::sim::components::CanonicalLink(),
-        gz::sim::components::Name(this->baseFrame()),
-        gz::sim::components::ParentEntity(m_entity));
+        ignition::gazebo::components::Link(),
+        ignition::gazebo::components::CanonicalLink(),
+        ignition::gazebo::components::Name(this->baseFrame()),
+        ignition::gazebo::components::ParentEntity(m_entity));
 
     // Get the Pose component of the canonical link.
     // This is the fixed transformation between the model and the base.
     const auto& M_H_B = utils::getExistingComponentData< //
-        gz::sim::components::Pose>(m_ecm, canonicalLinkEntity);
+        ignition::gazebo::components::Pose>(m_ecm, canonicalLinkEntity);
 
     // Get the rotation between base link and world
-    const auto& W_R_B = utils::toGzQuaternion(
+    const auto& W_R_B = utils::toIgnitionQuaternion(
         this->getLink(this->baseFrame())->orientation());
 
     // Compute the linear part of the base link mixed velocity
-    const gz::math::Vector3d baseLinearWorldVelocity =
+    const ignition::math::Vector3d baseLinearWorldVelocity =
         utils::fromModelToBaseLinearVelocity(
-            utils::toGzVector3(linear),
-            utils::toGzVector3(this->baseWorldAngularVelocity()),
+            utils::toIgnitionVector3(linear),
+            utils::toIgnitionVector3(this->baseWorldAngularVelocity()),
             M_H_B,
             W_R_B);
 
     // Store the new velocity
-    utils::setComponentData<gz::sim::components::LinearVelocityCmd>(
+    utils::setComponentData<ignition::gazebo::components::LinearVelocityCmd>(
         m_ecm, m_entity, baseLinearWorldVelocity);
 
     return true;
@@ -314,8 +318,8 @@ bool Model::resetBaseWorldAngularVelocity(const std::array<double, 3>& angular)
     //       link and the canonical link (as the linear part).
     //       In fact, the angular velocity is invariant if there's a rigid
     //       transformation between the two frames, like in this case.
-    utils::setComponentData<gz::sim::components::AngularVelocityCmd>(
-        m_ecm, m_entity, utils::toGzVector3(angular));
+    utils::setComponentData<ignition::gazebo::components::AngularVelocityCmd>(
+        m_ecm, m_entity, utils::toIgnitionVector3(angular));
 
     return true;
 }
@@ -384,7 +388,7 @@ scenario::core::LinkPtr Model::getLink(const std::string& linkName) const
 
     const auto linkEntity = pImpl->model.LinkByName(*m_ecm, linkName);
 
-    if (linkEntity == gz::sim::kNullEntity) {
+    if (linkEntity == ignition::gazebo::kNullEntity) {
         throw exceptions::LinkNotFound(linkName);
     }
 
@@ -410,7 +414,7 @@ scenario::core::JointPtr Model::getJoint(const std::string& jointName) const
 
     const auto jointEntity = pImpl->model.JointByName(*m_ecm, jointName);
 
-    if (jointEntity == gz::sim::kNullEntity) {
+    if (jointEntity == ignition::gazebo::kNullEntity) {
         throw exceptions::JointNotFound(jointName);
     }
 
@@ -439,13 +443,13 @@ std::vector<std::string> Model::linkNames(const bool scoped) const
 
     std::vector<std::string> linkNames;
 
-    m_ecm->Each<gz::sim::components::Name,
-                gz::sim::components::Link,
-                gz::sim::components::ParentEntity>(
-        [&](const gz::sim::Entity& /*entity*/,
-            gz::sim::components::Name* nameComponent,
-            gz::sim::components::Link* /*linkComponent*/,
-            gz::sim::components::ParentEntity* parentEntityComponent)
+    m_ecm->Each<ignition::gazebo::components::Name,
+                ignition::gazebo::components::Link,
+                ignition::gazebo::components::ParentEntity>(
+        [&](const ignition::gazebo::Entity& /*entity*/,
+            ignition::gazebo::components::Name* nameComponent,
+            ignition::gazebo::components::Link* /*linkComponent*/,
+            ignition::gazebo::components::ParentEntity* parentEntityComponent)
             -> bool {
             assert(nameComponent);
             assert(parentEntityComponent);
@@ -487,13 +491,13 @@ std::vector<std::string> Model::jointNames(const bool scoped) const
 
     std::vector<std::string> jointNames;
 
-    m_ecm->Each<gz::sim::components::Name,
-                gz::sim::components::Joint,
-                gz::sim::components::ParentEntity>(
-        [&](const gz::sim::Entity& /*jointEntity*/,
-            gz::sim::components::Name* nameComponent,
-            gz::sim::components::Joint* /*jointComponent*/,
-            gz::sim::components::ParentEntity* parentEntityComponent)
+    m_ecm->Each<ignition::gazebo::components::Name,
+                ignition::gazebo::components::Joint,
+                ignition::gazebo::components::ParentEntity>(
+        [&](const ignition::gazebo::Entity& /*jointEntity*/,
+            ignition::gazebo::components::Name* nameComponent,
+            ignition::gazebo::components::Joint* /*jointComponent*/,
+            ignition::gazebo::components::ParentEntity* parentEntityComponent)
             -> bool {
             assert(nameComponent);
             assert(parentEntityComponent);
@@ -532,7 +536,7 @@ std::vector<std::string> Model::jointNames(const bool scoped) const
 double Model::controllerPeriod() const
 {
     const auto& duration = utils::getExistingComponentData< //
-        gz::sim::components::JointControllerPeriod>(m_ecm, m_entity);
+        ignition::gazebo::components::JointControllerPeriod>(m_ecm, m_entity);
 
     return utils::steadyClockDurationToDouble(duration);
 }
@@ -547,7 +551,7 @@ bool Model::setControllerPeriod(const double period)
 
     // Store the new period in the ECM
     utils::setExistingComponentData<
-        gz::sim::components::JointControllerPeriod>(
+        ignition::gazebo::components::JointControllerPeriod>(
         m_ecm, m_entity, utils::doubleToSteadyClockDuration(period));
     return true;
 }
@@ -652,7 +656,7 @@ bool Model::enableContacts(const bool enable)
 bool Model::selfCollisionsEnabled() const
 {
     const bool selfCollisionsEnabled = utils::getExistingComponentData<
-        gz::sim::components::SelfCollide>(m_ecm, m_entity);
+        ignition::gazebo::components::SelfCollide>(m_ecm, m_entity);
 
     return selfCollisionsEnabled;
 }
@@ -671,8 +675,72 @@ bool Model::enableSelfCollisions(const bool enable)
         return false;
     }
 
-    utils::setExistingComponentData<gz::sim::components::SelfCollide>(
+    utils::setExistingComponentData<ignition::gazebo::components::SelfCollide>(
         m_ecm, m_entity, enable);
+
+    return true;
+}
+
+bool Model::attachLink(const std::string& parentLink,
+                       const std::string& childModel,
+                       const std::string& childLink)
+{
+    // Get entity of the parent link
+    auto parentLinkEntity = m_ecm->EntityByComponents(
+        ignition::gazebo::components::Link(),
+        ignition::gazebo::components::ParentEntity(m_entity),
+        ignition::gazebo::components::Name(parentLink));
+    if (ignition::gazebo::kNullEntity == parentLinkEntity) {
+        sError << "Link '" << parentLink << "' does not exist" << std::endl;
+        return false;
+    }
+
+    // Get entity for children link
+    auto childModelEntity = m_ecm->EntityByComponents(
+        ignition::gazebo::components::Model(),
+        ignition::gazebo::components::Name(childModel));
+    if (ignition::gazebo::kNullEntity == childModelEntity) {
+        sError << "Model '" << childModel << "' does not exist" << std::endl;
+        return false;
+    }
+    auto childLinkEntity = m_ecm->EntityByComponents(
+        ignition::gazebo::components::Link(),
+        ignition::gazebo::components::ParentEntity(childModelEntity),
+        ignition::gazebo::components::Name(childLink));
+    if (ignition::gazebo::kNullEntity == childLinkEntity) {
+        sError << "Link '" << childLink << "' does not exist" << std::endl;
+        return false;
+    }
+
+    // Attach the links with a detachable fixed joint
+    auto key = parentLink + " " + childModel + "::" + childLink;
+    auto newEntity = m_ecm->CreateEntity();
+    m_ecm->CreateComponent(newEntity,
+                           ignition::gazebo::components::DetachableJoint(
+                               {parentLinkEntity, childLinkEntity, "fixed"}));
+
+    // Add to map to enable detaching
+    pImpl->detachableJoints.insert({key, newEntity});
+
+    return true;
+}
+
+bool Model::detachLink(const std::string& parentLink,
+                       const std::string& childModel,
+                       const std::string& childLink)
+{
+    // Get entity from map that corresponds to the detachable joint
+    auto key = parentLink + " " + childModel + "::" + childLink;
+    auto entity = pImpl->detachableJoints.at(key);
+    if (!pImpl->detachableJoints.count(key)) {
+        sError << "Detachable joint '" << key << "' does not exist"
+               << std::endl;
+        return false;
+    }
+
+    // Remove the detachable joint (entity and map entry)
+    m_ecm->RequestRemoveEntity(entity);
+    pImpl->detachableJoints.erase(key);
 
     return true;
 }
@@ -908,8 +976,8 @@ std::string Model::baseFrame() const
 {
     // Get all the canonical links of the model
     auto candidateBaseLinks = m_ecm->EntitiesByComponents(
-        gz::sim::components::CanonicalLink(),
-        gz::sim::components::ParentEntity(pImpl->model.Entity()));
+        ignition::gazebo::components::CanonicalLink(),
+        ignition::gazebo::components::ParentEntity(pImpl->model.Entity()));
 
     if (candidateBaseLinks.size() == 0) {
         throw exceptions::ModelError("Failed to find the canonical link",
@@ -923,7 +991,7 @@ std::string Model::baseFrame() const
 
     // Get the name of the base link
     std::string baseLinkName = utils::getExistingComponentData< //
-        gz::sim::components::Name>(m_ecm, candidateBaseLinks.front());
+        ignition::gazebo::components::Name>(m_ecm, candidateBaseLinks.front());
 
     return baseLinkName;
 }
@@ -931,48 +999,48 @@ std::string Model::baseFrame() const
 std::array<double, 3> Model::basePosition() const
 {
     // Get the model pose
-    const gz::math::Pose3d& world_H_model =
-        utils::getExistingComponentData<gz::sim::components::Pose>(
+    const ignition::math::Pose3d& world_H_model =
+        utils::getExistingComponentData<ignition::gazebo::components::Pose>(
             m_ecm, m_entity);
 
-    return utils::fromGzPose(world_H_model).position;
+    return utils::fromIgnitionPose(world_H_model).position;
 }
 
 std::array<double, 4> Model::baseOrientation() const
 {
     // Get the model pose
-    const gz::math::Pose3d& world_H_model =
-        utils::getExistingComponentData<gz::sim::components::Pose>(
+    const ignition::math::Pose3d& world_H_model =
+        utils::getExistingComponentData<ignition::gazebo::components::Pose>(
             m_ecm, m_entity);
 
-    return utils::fromGzPose(world_H_model).orientation;
+    return utils::fromIgnitionPose(world_H_model).orientation;
 }
 
 std::array<double, 3> Model::baseBodyLinearVelocity() const
 {
     const auto& baseWorldLinearVelocity =
-        utils::toGzVector3(this->baseWorldLinearVelocity());
+        utils::toIgnitionVector3(this->baseWorldLinearVelocity());
 
     // Get the model pose
-    const gz::math::Pose3d& world_H_model =
-        utils::getExistingComponentData<gz::sim::components::Pose>(
+    const ignition::math::Pose3d& world_H_model =
+        utils::getExistingComponentData<ignition::gazebo::components::Pose>(
             m_ecm, m_entity);
 
-    return utils::fromGzVector( //
+    return utils::fromIgnitionVector( //
         world_H_model.Inverse().Rot() * baseWorldLinearVelocity);
 }
 
 std::array<double, 3> Model::baseBodyAngularVelocity() const
 {
     const auto& baseWorldAngularVelocity =
-        utils::toGzVector3(this->baseWorldAngularVelocity());
+        utils::toIgnitionVector3(this->baseWorldAngularVelocity());
 
     // Get the model pose
-    const gz::math::Pose3d& world_H_model =
-        utils::getExistingComponentData<gz::sim::components::Pose>(
+    const ignition::math::Pose3d& world_H_model =
+        utils::getExistingComponentData<ignition::gazebo::components::Pose>(
             m_ecm, m_entity);
 
-    return utils::fromGzVector( //
+    return utils::fromIgnitionVector( //
         world_H_model.Inverse().Rot() * baseWorldAngularVelocity);
 }
 
@@ -980,28 +1048,28 @@ std::array<double, 3> Model::baseWorldLinearVelocity() const
 {
     // Get the entity of the canonical link
     const auto canonicalLinkEntity = m_ecm->EntityByComponents(
-        gz::sim::components::Link(),
-        gz::sim::components::CanonicalLink(),
-        gz::sim::components::Name(this->baseFrame()),
-        gz::sim::components::ParentEntity(m_entity));
+        ignition::gazebo::components::Link(),
+        ignition::gazebo::components::CanonicalLink(),
+        ignition::gazebo::components::Name(this->baseFrame()),
+        ignition::gazebo::components::ParentEntity(m_entity));
 
     // Get the Pose component of the canonical link.
     // This is the fixed transformation between the model and the base.
     const auto& M_H_B = utils::getExistingComponentData< //
-        gz::sim::components::Pose>(m_ecm, canonicalLinkEntity);
+        ignition::gazebo::components::Pose>(m_ecm, canonicalLinkEntity);
 
     // Get the rotation between base link and world
-    const auto& W_R_B = utils::toGzQuaternion(
+    const auto& W_R_B = utils::toIgnitionQuaternion(
         this->getLink(this->baseFrame())->orientation());
 
     // Get the linear velocity of the canonical link
-    const gz::math::Vector3d& canonicalLinkLinearVelocity =
-        utils::toGzVector3(
+    const ignition::math::Vector3d& canonicalLinkLinearVelocity =
+        utils::toIgnitionVector3(
             this->getLink(this->baseFrame())->worldLinearVelocity());
 
     // Get the angular velocity of the canonical link
-    const gz::math::Vector3d& canonicalLinkAngularVelocity =
-        utils::toGzVector3(
+    const ignition::math::Vector3d& canonicalLinkAngularVelocity =
+        utils::toIgnitionVector3(
             this->getLink(this->baseFrame())->worldAngularVelocity());
 
     // Convert the base velocity to the model mixed velocity
@@ -1012,7 +1080,7 @@ std::array<double, 3> Model::baseWorldLinearVelocity() const
         W_R_B);
 
     // Return the linear part
-    return utils::fromGzVector(modelLinearVelocity);
+    return utils::fromIgnitionVector(modelLinearVelocity);
 }
 
 std::array<double, 3> Model::baseWorldAngularVelocity() const
@@ -1032,10 +1100,10 @@ std::array<double, 3> Model::baseWorldAngularVelocity() const
 bool Model::setBasePoseTarget(const std::array<double, 3>& position,
                               const std::array<double, 4>& orientation)
 {
-    const gz::math::Pose3d& basePoseTarget =
-        utils::toGzPose(core::Pose{position, orientation});
+    const ignition::math::Pose3d& basePoseTarget =
+        utils::toIgnitionPose(core::Pose{position, orientation});
 
-    utils::setComponentData<gz::sim::components::BasePoseTarget>(
+    utils::setComponentData<ignition::gazebo::components::BasePoseTarget>(
         m_ecm, m_entity, basePoseTarget);
 
     return true;
@@ -1044,15 +1112,15 @@ bool Model::setBasePoseTarget(const std::array<double, 3>& position,
 bool Model::setBasePositionTarget(const std::array<double, 3>& position)
 {
     const auto& basePoseTargetComponent = utils::getComponent< //
-        gz::sim::components::BasePoseTarget>(
-        m_ecm, m_entity, gz::math::Pose3d::Zero);
+        ignition::gazebo::components::BasePoseTarget>(
+        m_ecm, m_entity, ignition::math::Pose3d::Zero);
 
     const auto basePoseTarget =
-        gz::math::Pose3d(utils::toGzVector3(position),
+        ignition::math::Pose3d(utils::toIgnitionVector3(position),
                                basePoseTargetComponent->Data().Rot());
 
     utils::setExistingComponentData<
-        gz::sim::components::BasePoseTarget>(
+        ignition::gazebo::components::BasePoseTarget>(
         m_ecm, m_entity, basePoseTarget);
 
     return true;
@@ -1061,14 +1129,14 @@ bool Model::setBasePositionTarget(const std::array<double, 3>& position)
 bool Model::setBaseOrientationTarget(const std::array<double, 4>& orientation)
 {
     const auto& basePoseTargetComponent = utils::getComponent< //
-        gz::sim::components::BasePoseTarget,
-        gz::math::Pose3d>(m_ecm, m_entity);
+        ignition::gazebo::components::BasePoseTarget,
+        ignition::math::Pose3d>(m_ecm, m_entity);
 
     const auto basePoseTarget =
-        gz::math::Pose3d(basePoseTargetComponent->Data().Pos(),
-                               utils::toGzQuaternion(orientation));
+        ignition::math::Pose3d(basePoseTargetComponent->Data().Pos(),
+                               utils::toIgnitionQuaternion(orientation));
 
-    utils::setComponentData<gz::sim::components::BasePoseTarget>(
+    utils::setComponentData<ignition::gazebo::components::BasePoseTarget>(
         m_ecm, m_entity, basePoseTarget);
 
     return true;
@@ -1086,11 +1154,11 @@ bool Model::setBaseWorldVelocityTarget(const std::array<double, 3>& linear,
 bool Model::setBaseWorldLinearVelocityTarget(
     const std::array<double, 3>& linear)
 {
-    const gz::math::Vector3d& baseWorldLinearVelocity =
-        utils::toGzVector3(linear);
+    const ignition::math::Vector3d& baseWorldLinearVelocity =
+        utils::toIgnitionVector3(linear);
 
     utils::setComponentData<
-        gz::sim::components::BaseWorldLinearVelocityTarget>(
+        ignition::gazebo::components::BaseWorldLinearVelocityTarget>(
         m_ecm, m_entity, baseWorldLinearVelocity);
 
     return true;
@@ -1099,11 +1167,11 @@ bool Model::setBaseWorldLinearVelocityTarget(
 bool Model::setBaseWorldAngularVelocityTarget(
     const std::array<double, 3>& angular)
 {
-    const gz::math::Vector3d& baseWorldAngularVelocity =
-        utils::toGzVector3(angular);
+    const ignition::math::Vector3d& baseWorldAngularVelocity =
+        utils::toIgnitionVector3(angular);
 
     utils::setComponentData<
-        gz::sim::components::BaseWorldAngularVelocityTarget>(
+        ignition::gazebo::components::BaseWorldAngularVelocityTarget>(
         m_ecm, m_entity, baseWorldAngularVelocity);
 
     return true;
@@ -1112,15 +1180,15 @@ bool Model::setBaseWorldAngularVelocityTarget(
 bool Model::setBaseWorldLinearAccelerationTarget(
     const std::array<double, 3>& linear)
 {
-    const gz::math::Vector3d& baseWorldLinearAcceleration =
-        utils::toGzVector3(linear);
+    const ignition::math::Vector3d& baseWorldLinearAcceleration =
+        utils::toIgnitionVector3(linear);
 
     // TODO: do we need to convert the model acceleration to base link
     //       acceleration? Contrarily to the velocity, this component
     //       is not used in gazebo but from custom controllers.
 
     utils::setComponentData<
-        gz::sim::components::BaseWorldLinearAccelerationTarget>(
+        ignition::gazebo::components::BaseWorldLinearAccelerationTarget>(
         m_ecm, m_entity, baseWorldLinearAcceleration);
 
     return true;
@@ -1129,11 +1197,11 @@ bool Model::setBaseWorldLinearAccelerationTarget(
 bool Model::setBaseWorldAngularAccelerationTarget(
     const std::array<double, 3>& angular)
 {
-    const gz::math::Vector3d& baseWorldAngularAcceleration =
-        utils::toGzVector3(angular);
+    const ignition::math::Vector3d& baseWorldAngularAcceleration =
+        utils::toIgnitionVector3(angular);
 
     utils::setComponentData<
-        gz::sim::components::BaseWorldAngularAccelerationTarget>(
+        ignition::gazebo::components::BaseWorldAngularAccelerationTarget>(
         m_ecm, m_entity, baseWorldAngularAcceleration);
 
     return true;
@@ -1141,60 +1209,60 @@ bool Model::setBaseWorldAngularAccelerationTarget(
 
 std::array<double, 3> Model::basePositionTarget() const
 {
-    const gz::math::Pose3d& basePoseTarget =
+    const ignition::math::Pose3d& basePoseTarget =
         utils::getExistingComponentData<
-            gz::sim::components::BasePoseTarget>(m_ecm, m_entity);
+            ignition::gazebo::components::BasePoseTarget>(m_ecm, m_entity);
 
-    return utils::fromGzPose(basePoseTarget).position;
+    return utils::fromIgnitionPose(basePoseTarget).position;
 }
 
 std::array<double, 4> Model::baseOrientationTarget() const
 {
-    const gz::math::Pose3d& basePoseTarget =
+    const ignition::math::Pose3d& basePoseTarget =
         utils::getExistingComponentData<
-            gz::sim::components::BasePoseTarget>(m_ecm, m_entity);
+            ignition::gazebo::components::BasePoseTarget>(m_ecm, m_entity);
 
-    return utils::fromGzPose(basePoseTarget).orientation;
+    return utils::fromIgnitionPose(basePoseTarget).orientation;
 }
 
 std::array<double, 3> Model::baseWorldLinearVelocityTarget() const
 {
-    const gz::math::Vector3d& baseLinTarget =
+    const ignition::math::Vector3d& baseLinTarget =
         utils::getExistingComponentData<
-            gz::sim::components::BaseWorldLinearVelocityTarget>(
+            ignition::gazebo::components::BaseWorldLinearVelocityTarget>(
             m_ecm, m_entity);
 
-    return utils::fromGzVector(baseLinTarget);
+    return utils::fromIgnitionVector(baseLinTarget);
 }
 
 std::array<double, 3> Model::baseWorldAngularVelocityTarget() const
 {
-    const gz::math::Vector3d& baseAngTarget =
+    const ignition::math::Vector3d& baseAngTarget =
         utils::getExistingComponentData<
-            gz::sim::components::BaseWorldAngularVelocityTarget>(
+            ignition::gazebo::components::BaseWorldAngularVelocityTarget>(
             m_ecm, m_entity);
 
-    return utils::fromGzVector(baseAngTarget);
+    return utils::fromIgnitionVector(baseAngTarget);
 }
 
 std::array<double, 3> Model::baseWorldLinearAccelerationTarget() const
 {
-    const gz::math::Vector3d& baseLinTarget =
+    const ignition::math::Vector3d& baseLinTarget =
         utils::getExistingComponentData<
-            gz::sim::components::BaseWorldLinearAccelerationTarget>(
+            ignition::gazebo::components::BaseWorldLinearAccelerationTarget>(
             m_ecm, m_entity);
 
-    return utils::fromGzVector(baseLinTarget);
+    return utils::fromIgnitionVector(baseLinTarget);
 }
 
 std::array<double, 3> Model::baseWorldAngularAccelerationTarget() const
 {
-    const gz::math::Vector3d& baseAngTarget =
+    const ignition::math::Vector3d& baseAngTarget =
         utils::getExistingComponentData<
-            gz::sim::components::BaseWorldAngularAccelerationTarget>(
+            ignition::gazebo::components::BaseWorldAngularAccelerationTarget>(
             m_ecm, m_entity);
 
-    return utils::fromGzVector(baseAngTarget);
+    return utils::fromIgnitionVector(baseAngTarget);
 }
 
 // ======================

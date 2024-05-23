@@ -30,9 +30,9 @@
 #include "scenario/core/Model.h"
 #include "scenario/gazebo/GazeboEntity.h"
 
-#include <gz/sim/Entity.hh>
-#include <gz/sim/EntityComponentManager.hh>
-#include <gz/sim/EventManager.hh>
+#include <ignition/gazebo/Entity.hh>
+#include <ignition/gazebo/EntityComponentManager.hh>
+#include <ignition/gazebo/EventManager.hh>
 
 #include <array>
 #include <memory>
@@ -58,9 +58,9 @@ public:
 
     uint64_t id() const override;
 
-    bool initialize(const gz::sim::Entity modelEntity,
-                    gz::sim::EntityComponentManager* ecm,
-                    gz::sim::EventManager* eventManager) override;
+    bool initialize(const ignition::gazebo::Entity modelEntity,
+                    ignition::gazebo::EntityComponentManager* ecm,
+                    ignition::gazebo::EventManager* eventManager) override;
     bool createECMResources() override;
 
     // ============
@@ -68,7 +68,7 @@ public:
     // ============
 
     /**
-     * Insert a Gz Gazebo plugin to the model.
+     * Insert a Ignition Gazebo plugin to the model.
      *
      * @param libName The library name of the plugin.
      * @param className The class name (or alias) of the plugin.
@@ -181,6 +181,37 @@ public:
      * @return True for success, false otherwise.
      */
     bool enableSelfCollisions(const bool enable = true);
+
+
+    /**
+     * Attach a link of another model to link of this model by using a fixed
+     * joint. This connection can later be detached via `detachLink()`.
+     *
+     * @param parentLink Name of this model's link that will be attached to
+     * `childLink`.
+     * @param childModel Name of the child model that contains `childLink`.
+     * @param childLink Name of the child's model link that will be attached to
+     * `parentLink`.
+     * @return True for success, false otherwise.
+     */
+    bool attachLink(const std::string& parentLink,
+                    const std::string& childModel,
+                    const std::string& childLink);
+
+    /**
+     * Detach a link of another model to link of this model that was previously
+     * attached via `attachLink()`.
+     *
+     * @param parentLink Name of this model's link that will be detached from
+     * `childLink`.
+     * @param childModel Name of the child model that contains `childLink`.
+     * @param childLink Name of the child's model link that will be detached
+     * from `parentLink`.
+     * @return True for success, false otherwise.
+     */
+    bool detachLink(const std::string& parentLink,
+                    const std::string& childModel,
+                    const std::string& childLink);
 
     // ==========
     // Model Core

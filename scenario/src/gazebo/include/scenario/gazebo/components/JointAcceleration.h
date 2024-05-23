@@ -24,20 +24,20 @@
  * limitations under the License.
  */
 
-#ifndef GZ_SIM_COMPONENTS_JOINTACCELERATION_H
-#define GZ_SIM_COMPONENTS_JOINTACCELERATION_H
+#ifndef IGNITION_GAZEBO_COMPONENTS_JOINTACCELERATION_H
+#define IGNITION_GAZEBO_COMPONENTS_JOINTACCELERATION_H
 
 #include <vector>
 
-#include <gz/sim/components/Component.hh>
-#include <gz/sim/components/Factory.hh>
-#include <gz/sim/components/Serialization.hh>
-#include <gz/sim/config.hh>
+#include <ignition/gazebo/components/Component.hh>
+#include <ignition/gazebo/components/Factory.hh>
+#include <ignition/gazebo/components/Serialization.hh>
+#include <ignition/gazebo/config.hh>
 
-namespace gz {
-    namespace sim {
+namespace ignition {
+    namespace gazebo {
         // Inline bracket to help doxygen filtering.
-        inline namespace GZ_SIM_VERSION_NAMESPACE {
+        inline namespace IGNITION_GAZEBO_VERSION_NAMESPACE {
             namespace components {
                 /// \brief Joint acceleration in SI units (rad/s/s for revolute,
                 /// m/s/s for prismatic). The component wraps a std::vector of
@@ -46,12 +46,12 @@ namespace gz {
                     Component<std::vector<double>,
                               class JointAccelerationTag,
                               serializers::VectorDoubleSerializer>;
-                GZ_SIM_REGISTER_COMPONENT(
-                    "gz_sim_components.JointAcceleration",
+                IGN_GAZEBO_REGISTER_COMPONENT(
+                    "ign_gazebo_components.JointAcceleration",
                     JointAcceleration)
             } // namespace components
-        } // namespace GZ_SIM_VERSION_NAMESPACE
-    } // namespace sim
-} // namespace gz
+        } // namespace IGNITION_GAZEBO_VERSION_NAMESPACE
+    } // namespace gazebo
+} // namespace ignition
 
-#endif // GZ_SIM_COMPONENTS_JOINTACCELERATION_H
+#endif // IGNITION_GAZEBO_COMPONENTS_JOINTACCELERATION_H

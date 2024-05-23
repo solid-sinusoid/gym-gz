@@ -29,17 +29,24 @@
 #include "scenario/gazebo/helpers.h"
 
 #include <Eigen/Dense>
-#include <gz/common/Console.hh>
 #include <gz/common/Filesystem.hh>
 #include <gz/common/SystemPaths.hh>
-#include <gz/common/URI.hh>
-#include <gz/fuel_tools/ClientConfig.hh>
-#include <gz/fuel_tools/FuelClient.hh>
-#include <gz/fuel_tools/Interface.hh>
-#include <gz/fuel_tools/Result.hh>
 #include <gz/sim/Events.hh>
-#include <gz/sim/config.hh>
-#include <gz/sim/InstallationDirectories.hh>
+#include <ignition/common/Console.hh>
+#include <ignition/common/Filesystem.hh>
+#include <ignition/common/SystemPaths.hh>
+#include <ignition/common/URI.hh>
+#include <ignition/fuel_tools/ClientConfig.hh>
+#include <ignition/fuel_tools/CollectionIdentifier.hh>
+#include <ignition/fuel_tools/FuelClient.hh>
+#include <ignition/fuel_tools/Interface.hh>
+#include <ignition/fuel_tools/LocalCache.hh>
+#include <ignition/fuel_tools/ModelIdentifier.hh>
+#include <ignition/fuel_tools/ModelIter.hh>
+#include <ignition/fuel_tools/Result.hh>
+#include <ignition/gazebo/Events.hh>
+#include <ignition/gazebo/config.hh>
+#include <ostream>
 #include <sdf/Element.hh>
 #include <sdf/Model.hh>
 #include <sdf/Root.hh>
@@ -49,12 +56,13 @@
 #include <cassert>
 #include <exception>
 #include <memory>
+#include <vector>
 
 using namespace scenario::gazebo;
 
 void utils::setVerbosity(const Verbosity level)
 {
-    gz::common::Console::SetVerbosity(static_cast<int>(level));
+    ignition::common::Console::SetVerbosity(static_cast<int>(level));
 }
 
 std::string utils::findSdfFile(const std::string& fileName)
@@ -64,16 +72,16 @@ std::string utils::findSdfFile(const std::string& fileName)
         return {};
     }
 
-    gz::common::SystemPaths systemPaths;
-    systemPaths.SetFilePathEnv("GZ_SIM_RESOURCE_PATH");
-    systemPaths.AddFilePaths(gz::sim::getWorldInstallDir());
-
+    ignition::common::SystemPaths systemPaths;
+    systemPaths.SetFilePathEnv("IGN_GAZEBO_RESOURCE_PATH");
+    systemPaths.AddFilePaths(IGN_GAZEBO_WORLD_INSTALL_DIR);
+    
     // Find the file
     std::string sdfFilePath = systemPaths.FindFile(fileName);
 
     if (sdfFilePath.empty()) {
         sError << "Failed to find " << fileName << std::endl;
-        sError << "Check that it is part of GZ_SIM_RESOURCE_PATH"
+        sError << "Check that it is part of IGN_GAZEBO_RESOURCE_PATH"
                << std::endl;
         return {};
     }
@@ -90,19 +98,22 @@ std::string utils::getSdfString(const std::string& fileName)
 {
     // NOTE: We could use std::filesystem for the following, but compilers
     //       support is still rough even with C++17 enabled :/
-    std::string sdfFileAbsPath;
+    std::string sdfFileAbsPath = fileName;
+    std::shared_ptr<sdf::Root> root;
 
-    if (!gz::common::isFile(fileName)) {
+    if (!ignition::common::isFile(fileName)) {
         sdfFileAbsPath = findSdfFile(fileName);
+        root = getSdfRootFromFile(fileName);
+    } else {
+        root = getSdfRootFromString(sdfFileAbsPath);
     }
 
     if (sdfFileAbsPath.empty()) {
         return {};
     }
 
-    auto root = getSdfRootFromString(sdfFileAbsPath);
-
     if (!root) {
+        sError << "Failed to get SDF string" << std::endl;
         return {};
     }
 
@@ -111,24 +122,22 @@ std::string utils::getSdfString(const std::string& fileName)
 
 std::string utils::getModelNameFromSdf(const std::string& fileName)
 {
-    std::string absFileName = findSdfFile(fileName);
+    std::string sdfFileAbsPath = fileName;
+    std::shared_ptr<sdf::Root> root;
 
-    if (absFileName.empty()) {
-        sError << "Failed to find file " << fileName << std::endl;
-        return {};
+    if (ignition::common::isFile(fileName)) {
+        sdfFileAbsPath = findSdfFile(fileName);
+        root = getSdfRootFromFile(fileName);
+    } else {
+        root = getSdfRootFromString(sdfFileAbsPath);
     }
 
-    const auto root = utils::getSdfRootFromFile(absFileName);
-
-    if (!root) {
-        return {};
-    }
-
-    if (const auto model = root->Model()) {
+    if (const auto& model = root->Model()) {
+        sError << "Failed to get SDF string" << std::endl;
         return model->Name();
     }
 
-    sError << "No model found in file " << fileName << std::endl;
+    sError << "No model found in SDF" << std::endl;
     return {};
 }
 
@@ -195,8 +204,8 @@ std::string utils::getModelFileFromFuel(const std::string& URI,
                                         const bool useCache)
 {
     std::string modelFilePath;
-    sError << "URI" << URI;
-    using namespace gz;
+    sError << "URI: " << URI;
+    using namespace ignition;
 
     if (!useCache) {
         modelFilePath = fuel_tools::fetchResource(URI);
@@ -228,6 +237,80 @@ std::string utils::getModelFileFromFuel(const std::string& URI,
     }
 
     return modelFile;
+}
+
+std::vector<std::string>
+utils::getFuelCollectionModelPaths(const std::string& collectionURI)
+{
+    std::vector<std::string> out;
+
+    ignition::fuel_tools::ClientConfig cfg;
+    ignition::fuel_tools::FuelClient client(cfg);
+    ignition::fuel_tools::CollectionIdentifier collection;
+
+    if (!client.ParseCollectionUrl(ignition::common::URI(collectionURI),
+                                   collection)) {
+        return out;
+    }
+
+    auto modelIter = client.Models(collection);
+    for (; modelIter; ++modelIter) {
+        client.DownloadModel(modelIter->Identification());
+        out.push_back(modelIter->PathToModel());
+    }
+    return out;
+}
+
+std::vector<std::string>
+utils::getFuelCollectionModelURIs(const std::string& collectionURI)
+{
+    std::vector<std::string> out;
+
+    ignition::fuel_tools::ClientConfig cfg;
+    ignition::fuel_tools::FuelClient client(cfg);
+    ignition::fuel_tools::CollectionIdentifier collection;
+
+    if (!client.ParseCollectionUrl(ignition::common::URI(collectionURI),
+                                   collection)) {
+        return out;
+    }
+
+    auto modelIter = client.Models(collection);
+    for (; modelIter; ++modelIter) {
+        out.push_back(modelIter->Identification().UniqueName());
+    }
+    return out;
+}
+
+std::vector<std::string>
+utils::getLocalCacheModelPaths(const std::string& owner = "",
+                               const std::string& name = "")
+{
+    std::vector<std::string> out;
+
+    ignition::fuel_tools::ClientConfig cfg;
+    ignition::fuel_tools::LocalCache localCache(&cfg);
+
+    if (!owner.empty() || !name.empty()) {
+        ignition::fuel_tools::ModelIdentifier filter;
+        if (!owner.empty()) {
+            filter.SetOwner(owner);
+        }
+        if (!name.empty()) {
+            filter.SetName(name);
+        }
+        auto modelIter = localCache.MatchingModels(filter);
+        for (; modelIter; ++modelIter) {
+            out.push_back(modelIter->PathToModel());
+        }
+    }
+    else {
+        auto modelIter = localCache.AllModels();
+        for (; modelIter; ++modelIter) {
+            out.push_back(modelIter->PathToModel());
+        }
+    }
+    return out;
 }
 
 std::string utils::getRandomString(const size_t length)
@@ -377,6 +460,9 @@ bool utils::insertPluginToGazeboEntity(const GazeboEntity& gazeboEntity,
                                        const std::string& className,
                                        const std::string& context)
 {
+    // ignition::common::SystemPaths systemPaths;
+    // systemPaths.SetFilePathEnv("IGN_GAZEBO_RESOURCE_PATH");
+    // systemPaths.AddFilePaths("/home/bill-finger/ros2_ws/install/ign_ros2_control/lib/libign_ros2_control-system.so");
     if (!gazeboEntity.validEntity()) {
         sError << "The Gazebo Entity is not valid" << std::endl;
         return false;
@@ -393,6 +479,9 @@ bool utils::insertPluginToGazeboEntity(const GazeboEntity& gazeboEntity,
          << gazeboEntity.entity() << "]" << std::endl;
 
     // Create a new <plugin name="" filename=""> element without context
+    // sdf::ElementPtr pluginElement =
+    //     utils::getPluginSDFElement(libName, className);
+    
     auto pluginElement = sdf::Plugin(libName, className);
 
     // Insert the context into the plugin element
@@ -416,11 +505,14 @@ bool utils::insertPluginToGazeboEntity(const GazeboEntity& gazeboEntity,
         }
     }
 
+    // The plugin element must be wrapped in another element, otherwise
+    // who receives it does not get the additional context
+    // const auto wrapped = sdf::SDF::WrapInRoot(pluginElement);
     auto pluginElements = std::vector<sdf::Plugin>();
     pluginElements.push_back(pluginElement);
 
     // Trigger the plugin loading
-    gazeboEntity.eventManager()->Emit<gz::sim::events::LoadSdfPlugins>(
+    gazeboEntity.eventManager()->Emit<ignition::gazebo::events::LoadSdfPlugins>(
         gazeboEntity.entity(), pluginElements);
 
     return true;

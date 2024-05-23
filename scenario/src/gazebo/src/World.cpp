@@ -33,19 +33,19 @@
 #include "scenario/gazebo/helpers.h"
 #include "scenario/gazebo/utils.h"
 
-#include <gz/common/Event.hh>
-#include <gz/sim/Events.hh>
-#include <gz/sim/SdfEntityCreator.hh>
-#include <gz/sim/components/Gravity.hh>
-#include <gz/sim/components/Model.hh>
-#include <gz/sim/components/Name.hh>
-#include <gz/sim/components/ParentEntity.hh>
-#include <gz/sim/components/Physics.hh>
-#include <gz/sim/components/PhysicsEnginePlugin.hh>
-#include <gz/sim/components/Pose.hh>
-#include <gz/math/Pose3.hh>
-#include <gz/math/Vector3.hh>
-#include <gz/physics/config.hh>
+#include <ignition/common/Event.hh>
+#include <ignition/gazebo/Events.hh>
+#include <ignition/gazebo/SdfEntityCreator.hh>
+#include <ignition/gazebo/components/Gravity.hh>
+#include <ignition/gazebo/components/Model.hh>
+#include <ignition/gazebo/components/Name.hh>
+#include <ignition/gazebo/components/ParentEntity.hh>
+#include <ignition/gazebo/components/Physics.hh>
+#include <ignition/gazebo/components/PhysicsEnginePlugin.hh>
+#include <ignition/gazebo/components/Pose.hh>
+#include <ignition/math/Pose3.hh>
+#include <ignition/math/Vector3.hh>
+#include <ignition/physics/config.hh>
 #include <sdf/Element.hh>
 #include <sdf/Model.hh>
 #include <sdf/Root.hh>
@@ -60,7 +60,7 @@ using namespace scenario::gazebo;
 class World::Impl
 {
 public:
-    std::shared_ptr<gz::sim::SdfEntityCreator> sdfEntityCreator;
+    std::shared_ptr<ignition::gazebo::SdfEntityCreator> sdfEntityCreator;
 
     using ModelName = std::string;
     std::unordered_map<ModelName, core::ModelPtr> models;
@@ -123,7 +123,7 @@ public:
         }
 
         // Create the model entity
-        const gz::sim::Entity modelEntity =
+        const ignition::gazebo::Entity modelEntity =
             this->sdfEntityCreator->CreateEntities(modelSdfRoot->Model());
 
         // Attach the model entity to the world entity
@@ -133,7 +133,7 @@ public:
             // Check that the model name is correct
             std::string modelNameSDF = modelSdfRoot->Model()->Name();
             std::string modelNameEntity = utils::getExistingComponentData< //
-                gz::sim::components::Name>(world.m_ecm, modelEntity);
+                ignition::gazebo::components::Name>(world.m_ecm, modelEntity);
             assert(modelNameSDF == modelNameEntity);
         }
 
@@ -164,8 +164,8 @@ public:
         // needs to be processed by the Physics system. Overriding the
         // component, instead, has instantaneous effect.
         if (pose != core::Pose::Identity()) {
-            utils::setComponentData<gz::sim::components::Pose>(
-                world.m_ecm, modelEntity, utils::toGzPose(pose));
+            utils::setComponentData<ignition::gazebo::components::Pose>(
+                world.m_ecm, modelEntity, utils::toIgnitionPose(pose));
         }
 
         return true;
@@ -183,11 +183,11 @@ uint64_t World::id() const
     return std::hash<std::string>{}(this->name());
 }
 
-bool World::initialize(const gz::sim::Entity worldEntity,
-                       gz::sim::EntityComponentManager* ecm,
-                       gz::sim::EventManager* eventManager)
+bool World::initialize(const ignition::gazebo::Entity worldEntity,
+                       ignition::gazebo::EntityComponentManager* ecm,
+                       ignition::gazebo::EventManager* eventManager)
 {
-    if (worldEntity == gz::sim::kNullEntity || !ecm || !eventManager) {
+    if (worldEntity == ignition::gazebo::kNullEntity || !ecm || !eventManager) {
         return false;
     }
 
@@ -198,7 +198,7 @@ bool World::initialize(const gz::sim::Entity worldEntity,
 
     // Create the SdfEntityCreator
     pImpl->sdfEntityCreator = std::make_unique< //
-        gz::sim::SdfEntityCreator>(*ecm, *eventManager);
+        ignition::gazebo::SdfEntityCreator>(*ecm, *eventManager);
 
     return true;
 }
@@ -207,21 +207,21 @@ bool World::createECMResources()
 {
     // Store the time of creation (big bang)
     if (!m_ecm->EntityHasComponentType(
-            m_entity, gz::sim::components::Timestamp::typeId)) {
-        utils::setComponentData<gz::sim::components::Timestamp>(
+            m_entity, ignition::gazebo::components::Timestamp::typeId)) {
+        utils::setComponentData<ignition::gazebo::components::Timestamp>(
             m_ecm, m_entity, std::chrono::steady_clock::duration::zero());
     }
 
     // Initialize the simulated time at 0.0 (Physics will then update it)
     if (!m_ecm->EntityHasComponentType(
-            m_entity, gz::sim::components::SimulatedTime::typeId)) {
-        utils::setComponentData<gz::sim::components::SimulatedTime>(
+            m_entity, ignition::gazebo::components::SimulatedTime::typeId)) {
+        utils::setComponentData<ignition::gazebo::components::SimulatedTime>(
             m_ecm, m_entity, std::chrono::steady_clock::duration::zero());
     }
 
     // Print the active physics profile
     const auto& physics = utils::getExistingComponentData< //
-        gz::sim::components::Physics>(m_ecm, m_entity);
+        ignition::gazebo::components::Physics>(m_ecm, m_entity);
     sDebug << "Initializing world '" << this->name()
            << "' with physics parameters:" << std::endl
            << "rtf=" << physics.RealTimeFactor() << std::endl
@@ -254,8 +254,8 @@ bool World::setPhysicsEngine(const PhysicsEngine engine)
     const std::string pluginLib = [&engine]() -> std::string {
         switch (engine) {
             case PhysicsEngine::Dart:
-                return "gz-physics"
-                       + std::to_string(GZ_PHYSICS_MAJOR_VERSION)
+                return "ignition-physics"
+                       + std::to_string(IGNITION_PHYSICS_MAJOR_VERSION)
                        + "-dartsim-plugin";
         }
         return "";
@@ -267,7 +267,7 @@ bool World::setPhysicsEngine(const PhysicsEngine engine)
     }
 
     // This component is read by the Physics system during its configuration
-    utils::setComponentData<gz::sim::components::PhysicsEnginePlugin>(
+    utils::setComponentData<ignition::gazebo::components::PhysicsEnginePlugin>(
         m_ecm, m_entity, pluginLib);
 
     // Vendored Physics system
@@ -286,15 +286,15 @@ bool World::setPhysicsEngine(const PhysicsEngine engine)
 std::array<double, 3> World::gravity() const
 {
     const auto& gravity = utils::getExistingComponentData< //
-        gz::sim::components::Gravity>(m_ecm, m_entity);
+        ignition::gazebo::components::Gravity>(m_ecm, m_entity);
 
-    return utils::fromGzVector(gravity);
+    return utils::fromIgnitionVector(gravity);
 }
 
 bool World::setGravity(const std::array<double, 3>& gravity)
 {
     const auto& simTimeAtWorldCreation = utils::getExistingComponentData<
-        gz::sim::components::Timestamp>(m_ecm, m_entity);
+        ignition::gazebo::components::Timestamp>(m_ecm, m_entity);
 
     const double simTimeAtWorldCreationInSeconds =
         utils::steadyClockDurationToDouble(simTimeAtWorldCreation);
@@ -305,8 +305,8 @@ bool World::setGravity(const std::array<double, 3>& gravity)
         return false;
     }
 
-    utils::setExistingComponentData<gz::sim::components::Gravity>(
-        m_ecm, m_entity, utils::toGzVector3(gravity));
+    utils::setExistingComponentData<ignition::gazebo::components::Gravity>(
+        m_ecm, m_entity, utils::toIgnitionVector3(gravity));
 
     return true;
 }
@@ -319,7 +319,7 @@ bool World::valid() const
 double World::time() const
 {
     const auto& simTime = utils::getExistingComponentData<
-        gz::sim::components::SimulatedTime>(m_ecm, m_entity);
+        ignition::gazebo::components::SimulatedTime>(m_ecm, m_entity);
 
     return utils::steadyClockDurationToDouble(simTime);
 }
@@ -327,7 +327,7 @@ double World::time() const
 std::string World::name() const
 {
     const std::string& worldName = utils::getExistingComponentData< //
-        gz::sim::components::Name>(m_ecm, m_entity);
+        ignition::gazebo::components::Name>(m_ecm, m_entity);
 
     return worldName;
 }
@@ -336,13 +336,13 @@ std::vector<std::string> World::modelNames() const
 {
     pImpl->buffers.modelNames.clear();
 
-    m_ecm->Each<gz::sim::components::Name,
-                gz::sim::components::Model,
-                gz::sim::components::ParentEntity>(
-        [&](const gz::sim::Entity& /*entity*/,
-            gz::sim::components::Name* nameComponent,
-            gz::sim::components::Model* /*modelComponent*/,
-            gz::sim::components::ParentEntity* parentEntityComponent)
+    m_ecm->Each<ignition::gazebo::components::Name,
+                ignition::gazebo::components::Model,
+                ignition::gazebo::components::ParentEntity>(
+        [&](const ignition::gazebo::Entity& /*entity*/,
+            ignition::gazebo::components::Name* nameComponent,
+            ignition::gazebo::components::Model* /*modelComponent*/,
+            ignition::gazebo::components::ParentEntity* parentEntityComponent)
             -> bool {
             assert(nameComponent);
             assert(parentEntityComponent);
@@ -368,11 +368,11 @@ scenario::core::ModelPtr World::getModel(const std::string& modelName) const
 
     // Find the model entity
     const auto modelEntity = m_ecm->EntityByComponents(
-        gz::sim::components::Name(modelName),
-        gz::sim::components::Model(),
-        gz::sim::components::ParentEntity(m_entity));
+        ignition::gazebo::components::Name(modelName),
+        ignition::gazebo::components::Model(),
+        ignition::gazebo::components::ParentEntity(m_entity));
 
-    if (modelEntity == gz::sim::kNullEntity) {
+    if (modelEntity == ignition::gazebo::kNullEntity) {
         throw exceptions::ModelNotFound(modelName);
     }
 
@@ -438,11 +438,11 @@ bool World::insertModelFromString(const std::string& sdfString,
 bool World::removeModel(const std::string& modelName)
 {
     const auto modelEntity = m_ecm->EntityByComponents(
-        gz::sim::components::Name(modelName),
-        gz::sim::components::Model(),
-        gz::sim::components::ParentEntity(m_entity));
+        ignition::gazebo::components::Name(modelName),
+        ignition::gazebo::components::Model(),
+        ignition::gazebo::components::ParentEntity(m_entity));
 
-    if (modelEntity == gz::sim::kNullEntity) {
+    if (modelEntity == ignition::gazebo::kNullEntity) {
         sError << "Model '" << modelName << "' not found in the world"
                << std::endl;
         return false;

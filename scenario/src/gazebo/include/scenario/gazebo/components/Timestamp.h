@@ -24,26 +24,26 @@
  * limitations under the License.
  */
 
-#ifndef GZ_SIM_COMPONENTS_TIMESTAMP_H
-#define GZ_SIM_COMPONENTS_TIMESTAMP_H
+#ifndef IGNITION_GAZEBO_COMPONENTS_TIMESTAMP_H
+#define IGNITION_GAZEBO_COMPONENTS_TIMESTAMP_H
 
-#include <gz/sim/components/Component.hh>
-#include <gz/sim/components/Factory.hh>
-#include <gz/sim/config.hh>
+#include <ignition/gazebo/components/Component.hh>
+#include <ignition/gazebo/components/Factory.hh>
+#include <ignition/gazebo/config.hh>
 
 #include <chrono>
 
-namespace gz::sim {
+namespace ignition::gazebo {
     // Inline bracket to help doxygen filtering.
-    inline namespace GZ_SIM_VERSION_NAMESPACE {
+    inline namespace IGNITION_GAZEBO_VERSION_NAMESPACE {
         namespace components {
             /// \brief A component that could store a timestamp.
             using Timestamp = Component<std::chrono::steady_clock::duration,
                                         class TimestampTag>;
-            GZ_SIM_REGISTER_COMPONENT("gz_sim_components.Timestamp",
+            IGN_GAZEBO_REGISTER_COMPONENT("ign_gazebo_components.Timestamp",
                                           Timestamp)
         } // namespace components
-    } // namespace GZ_SIM_VERSION_NAMESPACE
-} // namespace gz::sim
+    } // namespace IGNITION_GAZEBO_VERSION_NAMESPACE
+} // namespace ignition::gazebo
 
-#endif // GZ_SIM_COMPONENTS_TIMESTAMP_H
+#endif // IGNITION_GAZEBO_COMPONENTS_TIMESTAMP_H

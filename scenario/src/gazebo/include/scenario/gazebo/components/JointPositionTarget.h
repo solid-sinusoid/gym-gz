@@ -24,18 +24,18 @@
  * limitations under the License.
  */
 
-#ifndef GZ_SIM_COMPONENTS_JOINTPOSITIONTARGET_H
-#define GZ_SIM_COMPONENTS_JOINTPOSITIONTARGET_H
+#ifndef IGNITION_GAZEBO_COMPONENTS_JOINTPOSITIONTARGET_H
+#define IGNITION_GAZEBO_COMPONENTS_JOINTPOSITIONTARGET_H
 
 #include <vector>
 
-#include <gz/sim/components/Component.hh>
-#include <gz/sim/components/Factory.hh>
-#include <gz/sim/config.hh>
+#include <ignition/gazebo/components/Component.hh>
+#include <ignition/gazebo/components/Factory.hh>
+#include <ignition/gazebo/config.hh>
 
-namespace gz::sim {
+namespace ignition::gazebo {
     // Inline bracket to help doxygen filtering.
-    inline namespace GZ_SIM_VERSION_NAMESPACE {
+    inline namespace IGNITION_GAZEBO_VERSION_NAMESPACE {
         namespace components {
             /// \brief Joint position target in SI units (rad for revolute,
             ///        m for prismatic) used by joint controllers.
@@ -44,11 +44,11 @@ namespace gz::sim {
             /// degrees of freedom of the joint.
             using JointPositionTarget =
                 Component<std::vector<double>, class JointPositionTargetTag>;
-            GZ_SIM_REGISTER_COMPONENT(
-                "gz_sim_components.JointPositionTarget",
+            IGN_GAZEBO_REGISTER_COMPONENT(
+                "ign_gazebo_components.JointPositionTarget",
                 JointPositionTarget)
         } // namespace components
-    } // namespace GZ_SIM_VERSION_NAMESPACE
-} // namespace gz::sim
+    } // namespace IGNITION_GAZEBO_VERSION_NAMESPACE
+} // namespace ignition::gazebo
 
-#endif // GZ_SIM_COMPONENTS_JOINTPOSITIONTARGET_H
+#endif // IGNITION_GAZEBO_COMPONENTS_JOINTPOSITIONTARGET_H

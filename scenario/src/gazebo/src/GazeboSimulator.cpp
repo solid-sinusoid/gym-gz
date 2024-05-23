@@ -34,17 +34,17 @@
 #include "scenario/gazebo/helpers.h"
 #include "scenario/gazebo/utils.h"
 
-#include <gz/fuel_tools.hh>
-#include <gz/sim/Server.hh>
-#include <gz/sim/ServerConfig.hh>
-#include <gz/sim/Util.hh>
-#include <gz/sim/components/Name.hh>
-#include <gz/sim/components/Physics.hh>
-#include <gz/sim/components/PhysicsCmd.hh>
-#include <gz/sim/components/Pose.hh>
-#include <gz/sim/components/World.hh>
-#include <gz/transport/Node.hh>
-#include <gz/transport/Publisher.hh>
+#include <ignition/fuel_tools.hh>
+#include <ignition/gazebo/Server.hh>
+#include <ignition/gazebo/ServerConfig.hh>
+#include <ignition/gazebo/Util.hh>
+#include <ignition/gazebo/components/Name.hh>
+#include <ignition/gazebo/components/Physics.hh>
+#include <ignition/gazebo/components/PhysicsCmd.hh>
+#include <ignition/gazebo/components/Pose.hh>
+#include <ignition/gazebo/components/World.hh>
+#include <ignition/transport/Node.hh>
+#include <ignition/transport/Publisher.hh>
 #include <sdf/sdf.hh>
 
 #include <algorithm>
@@ -65,8 +65,8 @@ namespace scenario::gazebo::detail {
     struct PhysicsData;
     struct SimulationResources
     {
-        gz::sim::EventManager* eventMgr = nullptr;
-        gz::sim::EntityComponentManager* ecm = nullptr;
+        ignition::gazebo::EventManager* eventMgr = nullptr;
+        ignition::gazebo::EntityComponentManager* ecm = nullptr;
     };
 } // namespace scenario::gazebo::detail
 
@@ -80,22 +80,22 @@ struct detail::PhysicsData
 };
 
 class scenario::gazebo::detail::ECMProvider final
-    : public gz::sim::System
-    , public gz::sim::ISystemConfigure
+    : public ignition::gazebo::System
+    , public ignition::gazebo::ISystemConfigure
 {
 public:
     ECMProvider()
-        : gz::sim::System()
+        : ignition::gazebo::System()
     {}
 
-    void Configure(const gz::sim::Entity& entity,
+    void Configure(const ignition::gazebo::Entity& entity,
                    const std::shared_ptr<const sdf::Element>& /*sdf*/,
-                   gz::sim::EntityComponentManager& ecm,
-                   gz::sim::EventManager& eventMgr);
+                   ignition::gazebo::EntityComponentManager& ecm,
+                   ignition::gazebo::EventManager& eventMgr);
 
     std::string worldName;
-    gz::sim::EventManager* eventMgr = nullptr;
-    gz::sim::EntityComponentManager* ecm = nullptr;
+    ignition::gazebo::EventManager* eventMgr = nullptr;
+    ignition::gazebo::EntityComponentManager* ecm = nullptr;
 };
 
 // ==============
@@ -112,7 +112,7 @@ public:
         detail::PhysicsData physics;
         uint64_t numOfIterations = 0;
         std::unique_ptr<TinyProcessLib::Process> gui;
-        std::shared_ptr<gz::sim::Server> server;
+        std::shared_ptr<ignition::gazebo::Server> server;
     } gazebo;
 
     using WorldName = std::string;
@@ -122,7 +122,7 @@ public:
     std::unordered_map<WorldName, detail::SimulationResources> resources;
 
     bool insertSDFWorld(const sdf::World& world);
-    std::shared_ptr<gz::sim::Server> getServer();
+    std::shared_ptr<ignition::gazebo::Server> getServer();
 
     static std::shared_ptr<World>
     CreateGazeboWorld(const std::string& worldName,
@@ -149,9 +149,9 @@ GazeboSimulator::GazeboSimulator(const double stepSize,
 
     // Configure Fuel Callback
     sdf::setFindCallback([](const std::string& uri) -> std::string {
-        auto fuelClient = gz::fuel_tools::FuelClient();
+        auto fuelClient = ignition::fuel_tools::FuelClient();
         const auto path =
-            gz::fuel_tools::fetchResourceWithClient(uri, fuelClient);
+            ignition::fuel_tools::fetchResourceWithClient(uri, fuelClient);
         return path;
     });
 }
@@ -172,7 +172,7 @@ double GazeboSimulator::stepSize() const
 
     // Get the active physics parameters
     const auto& physics = utils::getExistingComponentData< //
-        gz::sim::components::Physics>(world->ecm(), world->entity());
+        ignition::gazebo::components::Physics>(world->ecm(), world->entity());
 
     return physics.MaxStepSize();
 }
@@ -188,7 +188,7 @@ double GazeboSimulator::realTimeFactor() const
 
     // Get the active physics parameters
     const auto& physics = utils::getExistingComponentData< //
-        gz::sim::components::Physics>(world->ecm(), world->entity());
+        ignition::gazebo::components::Physics>(world->ecm(), world->entity());
 
     return physics.RealTimeFactor();
 }
@@ -241,7 +241,7 @@ bool GazeboSimulator::run(const bool paused)
     // Get the gazebo server
     auto server = pImpl->getServer();
     if (!server) {
-        sError << "Failed to get the gz server" << std::endl;
+        sError << "Failed to get the ignition server" << std::endl;
         return false;
     }
 
@@ -265,7 +265,7 @@ bool GazeboSimulator::run(const bool paused)
         iterations = 1;
     }
 
-    // Recent versions of Gz Gazebo optimize the streaming of pose updates
+    // Recent versions of Ignition Gazebo optimize the streaming of pose updates
     // in order to reduce the bandwidth between server and client.
     // However, it does not take into account paused steps.
     // Here below we force all the Pose components to be streamed by manually
@@ -281,13 +281,13 @@ bool GazeboSimulator::run(const bool paused)
             auto* ecm = this->pImpl->resources.at(worldName).ecm;
 
             // Mark all all entities with Pose component as Changed
-            ecm->Each<gz::sim::components::Pose>(
-                [&](const gz::sim::Entity& entity,
-                    gz::sim::components::Pose*) -> bool {
+            ecm->Each<ignition::gazebo::components::Pose>(
+                [&](const ignition::gazebo::Entity& entity,
+                    ignition::gazebo::components::Pose*) -> bool {
                     ecm->SetChanged(
                         entity,
-                        gz::sim::components::Pose::typeId,
-                        gz::sim::ComponentState::OneTimeChange);
+                        ignition::gazebo::components::Pose::typeId,
+                        ignition::gazebo::ComponentState::OneTimeChange);
                     return true;
                 });
         }
@@ -311,6 +311,21 @@ bool GazeboSimulator::run(const bool paused)
     return true;
 }
 
+bool GazeboSimulator::step()
+{
+    // Set number of iterations to 1
+    auto tmp = pImpl->gazebo.numOfIterations;
+    pImpl->gazebo.numOfIterations = 1;
+
+    // Run the simulation
+    auto ret = run(false);
+
+    // Reset default number of interations
+    pImpl->gazebo.numOfIterations = tmp;
+
+    return ret;
+}
+
 bool GazeboSimulator::gui(const int verbosity)
 {
     if (!this->initialized()) {
@@ -318,7 +333,7 @@ bool GazeboSimulator::gui(const int verbosity)
         return false;
     }
 
-    // If gz-sim-gui is already running, return without doing anything
+    // If ign-gazebo-gui is already running, return without doing anything
     int exit_status;
     if (pImpl->gazebo.gui
         && !pImpl->gazebo.gui->try_get_exit_status(exit_status)) {
@@ -335,12 +350,12 @@ bool GazeboSimulator::gui(const int verbosity)
     // NOTE: we connect to the first world
     const std::string& worldName = worldNames[0];
 
-    if (!pImpl->sceneBroadcasterActive(worldName)) {
+    if (!sceneBroadcasterActive(worldName)) {
         sDebug << "Starting the SceneBroadcaster plugin" << std::endl;
         auto world = this->getWorld(worldName);
         if (!std::static_pointer_cast<World>(world)->insertWorldPlugin(
-                "libgz-sim-scene-broadcaster-system.so",
-                "gz::sim::systems::SceneBroadcaster")) {
+                "ignition-gazebo-scene-broadcaster-system",
+                "ignition::gazebo::systems::SceneBroadcaster")) {
             sError << "Failed to load SceneBroadcaster plugin" << std::endl;
             return false;
         }
@@ -351,7 +366,7 @@ bool GazeboSimulator::gui(const int verbosity)
 
     if (guiVerbosity < 0) {
         // Get the verbosity level
-        guiVerbosity = gz::common::Console::Verbosity();
+        guiVerbosity = ignition::common::Console::Verbosity();
     }
 
 #if defined(WIN32) || defined(_WIN32)
@@ -364,10 +379,10 @@ bool GazeboSimulator::gui(const int verbosity)
 
     // Spawn a new process with the GUI
     pImpl->gazebo.gui = std::make_unique<TinyProcessLib::Process>(
-        "gz sim -g -v " + std::to_string(guiVerbosity) + redirect);
+        "ign gazebo -g -v " + std::to_string(guiVerbosity) + redirect);
 
     bool guiServiceExists = false;
-    gz::transport::Node node;
+    ignition::transport::Node node;
     std::vector<std::string> serviceList;
 
     do {
@@ -386,6 +401,17 @@ bool GazeboSimulator::gui(const int verbosity)
 
     sDebug << "GUI up and running" << std::endl;
     return true;
+}
+
+bool GazeboSimulator::sceneBroadcasterActive(const std::string& worldName)
+{
+    ignition::transport::Node node;
+    std::vector<ignition::transport::ServicePublisher> publishers;
+
+    std::string serviceName{"/world/" + worldName + "/scene/info"};
+    node.ServiceInfo(serviceName, publishers);
+
+    return !publishers.empty();
 }
 
 bool GazeboSimulator::close()
@@ -602,20 +628,20 @@ GazeboSimulator::getWorld(const std::string& worldName) const
 // ==============
 
 void detail::ECMProvider::Configure(
-    const gz::sim::Entity& entity,
+    const ignition::gazebo::Entity& entity,
     const std::shared_ptr<const sdf::Element>&,
-    gz::sim::EntityComponentManager& ecm,
-    gz::sim::EventManager& eventMgr)
+    ignition::gazebo::EntityComponentManager& ecm,
+    ignition::gazebo::EventManager& eventMgr)
 {
     if (!ecm.EntityHasComponentType(
-            entity, gz::sim::components::World::typeId)) {
+            entity, ignition::gazebo::components::World::typeId)) {
         sError << "The ECMProvider system was not inserted "
                << "in a world element" << std::endl;
         return;
     }
 
     this->worldName = utils::getExistingComponentData< //
-        gz::sim::components::Name>(&ecm, entity);
+        ignition::gazebo::components::Name>(&ecm, entity);
 
     this->ecm = &ecm;
     this->eventMgr = &eventMgr;
@@ -650,7 +676,7 @@ bool GazeboSimulator::Impl::insertSDFWorld(const sdf::World& world)
     return true;
 }
 
-std::shared_ptr<gz::sim::Server> GazeboSimulator::Impl::getServer()
+std::shared_ptr<ignition::gazebo::Server> GazeboSimulator::Impl::getServer()
 {
     // Lazy initialization of the server
     if (gazebo.server) {
@@ -695,19 +721,19 @@ std::shared_ptr<gz::sim::Server> GazeboSimulator::Impl::getServer()
 
     // Set the following environment variable to disable loading the default
     // server plugins, which include upstream's Physics that is not compatible.
-    // https://github.com/gazebosim/gz-sim/pull/281
+    // https://github.com/ignitionrobotics/ign-gazebo/pull/281
     // TODO: this will not likely work in Windows.
     std::string value;
-    if (!gz::common::env(
-            gz::sim::kServerConfigPathEnv, value, true)
-        && !gz::common::setenv(gz::sim::kServerConfigPathEnv,
+    if (!ignition::common::env(
+            ignition::gazebo::kServerConfigPathEnv, value, true)
+        && !ignition::common::setenv(ignition::gazebo::kServerConfigPathEnv,
                                      "")) {
-        sError << "Failed to set " << gz::sim::kServerConfigPathEnv
+        sError << "Failed to set " << ignition::gazebo::kServerConfigPathEnv
                << std::endl;
         return nullptr;
     }
 
-    gz::sim::ServerConfig config;
+    ignition::gazebo::ServerConfig config;
     config.SetSeed(0);
     config.SetUseLevels(false);
     config.SetSdfString(root.Element()->ToString(""));
@@ -716,7 +742,7 @@ std::shared_ptr<gz::sim::Server> GazeboSimulator::Impl::getServer()
     // The worlds are initialized with the physics parameters
     // (rtf and physics step) defined in the SDF.
     // They get overridden below.
-    auto server = std::make_shared<gz::sim::Server>(config);
+    auto server = std::make_shared<ignition::gazebo::Server>(config);
     assert(server);
 
     // Add a Configure-only system to get the ECM pointer
@@ -758,12 +784,12 @@ std::shared_ptr<gz::sim::Server> GazeboSimulator::Impl::getServer()
 
         // Get the world entity
         const auto worldEntity = resources.ecm->EntityByComponents(
-            gz::sim::components::World(),
-            gz::sim::components::Name(worldName));
+            ignition::gazebo::components::World(),
+            ignition::gazebo::components::Name(worldName));
 
         // Create a new PhysicsCmd component
         auto& physics =
-            utils::getComponentData<gz::sim::components::PhysicsCmd>(
+            utils::getComponentData<ignition::gazebo::components::PhysicsCmd>(
                 resources.ecm, worldEntity);
 
         // Store the physics parameters.
@@ -819,8 +845,8 @@ std::shared_ptr<World> GazeboSimulator::Impl::CreateGazeboWorld(
 {
     // Get the world entity
     const auto worldEntity = resources.ecm->EntityByComponents(
-        gz::sim::components::World(),
-        gz::sim::components::Name(worldName));
+        ignition::gazebo::components::World(),
+        ignition::gazebo::components::Name(worldName));
 
     // Create the world object
     auto world = std::make_shared<scenario::gazebo::World>();
@@ -841,15 +867,4 @@ std::shared_ptr<World> GazeboSimulator::Impl::CreateGazeboWorld(
     }
 
     return world;
-}
-
-bool GazeboSimulator::Impl::sceneBroadcasterActive(const std::string& worldName)
-{
-    gz::transport::Node node;
-    std::vector<gz::transport::ServicePublisher> publishers;
-
-    std::string serviceName{"/world/" + worldName + "/scene/info"};
-    node.ServiceInfo(serviceName, publishers);
-
-    return !publishers.empty();
 }

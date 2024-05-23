@@ -37,10 +37,10 @@
 #include "scenario/gazebo/exceptions.h"
 #include "scenario/gazebo/helpers.h"
 
-#include <gz/math/Helpers.hh>
-#include <gz/math/Pose3.hh>
-#include <gz/math/Vector3.hh>
-#include <gz/plugin/Register.hh>
+#include <ignition/math/Helpers.hh>
+#include <ignition/math/Pose3.hh>
+#include <ignition/math/Vector3.hh>
+#include <ignition/plugin/Register.hh>
 #include <sdf/Element.hh>
 
 #include <array>
@@ -60,7 +60,7 @@ public:
     bool referencesHaveBeenSet = false;
 
     std::shared_ptr<Model> model;
-    gz::sim::Entity modelEntity;
+    ignition::gazebo::Entity modelEntity;
     std::chrono::steady_clock::duration prevUpdateTime{0};
 
     std::shared_ptr<controllers::Controller> controller;
@@ -76,13 +76,13 @@ public:
     } controllerInterfaces;
 
     bool
-    updateAllSupportedReferences(gz::sim::EntityComponentManager& ecm);
+    updateAllSupportedReferences(ignition::gazebo::EntityComponentManager& ecm);
 
     bool
-    updateBaseReferencesfromECM(gz::sim::EntityComponentManager& ecm);
+    updateBaseReferencesfromECM(ignition::gazebo::EntityComponentManager& ecm);
 
     bool
-    updateJointReferencesfromECM(gz::sim::EntityComponentManager& ecm);
+    updateJointReferencesfromECM(ignition::gazebo::EntityComponentManager& ecm);
 
     void printControllerContext(
         const std::shared_ptr<const sdf::Element> context) const;
@@ -99,10 +99,10 @@ ControllerRunner::ControllerRunner()
 //       and there's no more ECM -> we would get segfault.
 ControllerRunner::~ControllerRunner() = default;
 
-void ControllerRunner::Configure(const gz::sim::Entity& entity,
+void ControllerRunner::Configure(const ignition::gazebo::Entity& entity,
                                  const std::shared_ptr<const sdf::Element>& sdf,
-                                 gz::sim::EntityComponentManager& ecm,
-                                 gz::sim::EventManager& eventMgr)
+                                 ignition::gazebo::EntityComponentManager& ecm,
+                                 ignition::gazebo::EventManager& eventMgr)
 {
 
     // Store the model entity
@@ -180,8 +180,8 @@ void ControllerRunner::Configure(const gz::sim::Entity& entity,
     sDebug << "Controller successfully initialized" << std::endl;
 }
 
-void ControllerRunner::PreUpdate(const gz::sim::UpdateInfo& info,
-                                 gz::sim::EntityComponentManager& ecm)
+void ControllerRunner::PreUpdate(const ignition::gazebo::UpdateInfo& info,
+                                 ignition::gazebo::EntityComponentManager& ecm)
 {
     if (info.paused) {
         return;
@@ -282,7 +282,7 @@ void ControllerRunner::PreUpdate(const gz::sim::UpdateInfo& info,
 }
 
 bool ControllerRunner::Impl::updateAllSupportedReferences(
-    gz::sim::EntityComponentManager& ecm)
+    ignition::gazebo::EntityComponentManager& ecm)
 {
     bool ok = true;
 
@@ -317,11 +317,11 @@ bool ControllerRunner::Impl::updateAllSupportedReferences(
 }
 
 bool ControllerRunner::Impl::updateBaseReferencesfromECM(
-    gz::sim::EntityComponentManager& ecm)
+    ignition::gazebo::EntityComponentManager& ecm)
 {
     assert(controllerInterfaces.base);
-    using namespace gz::math;
-    using namespace gz::sim;
+    using namespace ignition::math;
+    using namespace ignition::gazebo;
 
     // =========
     // Base Pose
@@ -330,7 +330,7 @@ bool ControllerRunner::Impl::updateBaseReferencesfromECM(
     Pose3d& basePoseTarget = utils::getExistingComponentData< //
         components::BasePoseTarget>(&ecm, modelEntity);
 
-    core::Pose basePose = utils::fromGzPose(basePoseTarget);
+    core::Pose basePose = utils::fromIgnitionPose(basePoseTarget);
     baseReferences.position = basePose.position;
     baseReferences.orientation = basePose.orientation;
 
@@ -346,9 +346,9 @@ bool ControllerRunner::Impl::updateBaseReferencesfromECM(
         components::BaseWorldAngularVelocityTarget>(&ecm, modelEntity);
 
     baseReferences.linearVelocity =
-        utils::fromGzVector(baseLinearVelocityTarget);
+        utils::fromIgnitionVector(baseLinearVelocityTarget);
     baseReferences.angularVelocity =
-        utils::fromGzVector(baseAngularVelocityTarget);
+        utils::fromIgnitionVector(baseAngularVelocityTarget);
 
     // =================
     // Base Acceleration
@@ -361,15 +361,15 @@ bool ControllerRunner::Impl::updateBaseReferencesfromECM(
         components::BaseWorldAngularAccelerationTarget>(&ecm, modelEntity);
 
     baseReferences.linearAcceleration =
-        utils::fromGzVector(baseLinearAccelerationTarget);
+        utils::fromIgnitionVector(baseLinearAccelerationTarget);
     baseReferences.angularAcceleration =
-        utils::fromGzVector(baseAngularAccelerationTarget);
+        utils::fromIgnitionVector(baseAngularAccelerationTarget);
 
     return true;
 }
 
 bool ControllerRunner::Impl::updateJointReferencesfromECM(
-    gz::sim::EntityComponentManager& /*ecm*/)
+    ignition::gazebo::EntityComponentManager& /*ecm*/)
 {
     assert(controllerInterfaces.joints);
 
@@ -390,7 +390,7 @@ void ControllerRunner::Impl::printControllerContext(
     std::cout << context->ToString("") << std::endl;
 }
 
-GZ_ADD_PLUGIN(
+IGNITION_ADD_PLUGIN(
     scenario::plugins::gazebo::ControllerRunner,
     scenario::plugins::gazebo::ControllerRunner::System,
     scenario::plugins::gazebo::ControllerRunner::ISystemConfigure,

@@ -34,23 +34,23 @@
 #include "scenario/gazebo/helpers.h"
 #include "scenario/gazebo/utils.h"
 
-#include <gz/sim/Link.hh>
-#include <gz/sim/components/AngularAcceleration.hh>
-#include <gz/sim/components/AngularVelocity.hh>
-#include <gz/sim/components/CanonicalLink.hh>
-#include <gz/sim/components/Collision.hh>
-#include <gz/sim/components/ContactSensorData.hh>
-#include <gz/sim/components/Inertial.hh>
-#include <gz/sim/components/LinearAcceleration.hh>
-#include <gz/sim/components/LinearVelocity.hh>
-#include <gz/sim/components/Model.hh>
-#include <gz/sim/components/ParentEntity.hh>
-#include <gz/sim/components/Pose.hh>
-#include <gz/math/Inertial.hh>
-#include <gz/math/Pose3.hh>
-#include <gz/math/Quaternion.hh>
-#include <gz/math/Vector3.hh>
-#include <gz/msgs/contacts.pb.h>
+#include <ignition/gazebo/Link.hh>
+#include <ignition/gazebo/components/AngularAcceleration.hh>
+#include <ignition/gazebo/components/AngularVelocity.hh>
+#include <ignition/gazebo/components/CanonicalLink.hh>
+#include <ignition/gazebo/components/Collision.hh>
+#include <ignition/gazebo/components/ContactSensorData.hh>
+#include <ignition/gazebo/components/Inertial.hh>
+#include <ignition/gazebo/components/LinearAcceleration.hh>
+#include <ignition/gazebo/components/LinearVelocity.hh>
+#include <ignition/gazebo/components/Model.hh>
+#include <ignition/gazebo/components/ParentEntity.hh>
+#include <ignition/gazebo/components/Pose.hh>
+#include <ignition/math/Inertial.hh>
+#include <ignition/math/Pose3.hh>
+#include <ignition/math/Quaternion.hh>
+#include <ignition/math/Vector3.hh>
+#include <ignition/msgs/contacts.pb.h>
 
 #include <cassert>
 #include <chrono>
@@ -61,9 +61,9 @@ using namespace scenario::gazebo;
 class Link::Impl
 {
 public:
-    gz::sim::Link link;
+    ignition::gazebo::Link link;
 
-    static gz::math::Pose3d GetWorldPose(const Link& link,
+    static ignition::math::Pose3d GetWorldPose(const Link& link,
                                                const Link::Impl& impl)
     {
         if (!impl.link.IsCanonical(*link.ecm())) {
@@ -81,17 +81,17 @@ public:
                 impl.link.ParentModel(*link.ecm());
             assert(parentModelOptional.has_value());
 
-            const gz::sim::Model& parentModel =
+            const ignition::gazebo::Model& parentModel =
                 parentModelOptional.value();
-            const gz::sim::Entity parentModelEntity =
+            const ignition::gazebo::Entity parentModelEntity =
                 parentModel.Entity();
 
             auto W_H_M = utils::getExistingComponentData<
-                gz::sim::components::Pose>(link.ecm(),
+                ignition::gazebo::components::Pose>(link.ecm(),
                                                     parentModelEntity);
 
             auto M_H_B = utils::getExistingComponentData<
-                gz::sim::components::Pose>(link.ecm(), link.entity());
+                ignition::gazebo::components::Pose>(link.ecm(), link.entity());
 
             return W_H_M * M_H_B;
         }
@@ -118,11 +118,11 @@ uint64_t Link::id() const
     return std::hash<std::string>{}(scopedLinkName);
 }
 
-bool Link::initialize(const gz::sim::Entity linkEntity,
-                      gz::sim::EntityComponentManager* ecm,
-                      gz::sim::EventManager* eventManager)
+bool Link::initialize(const ignition::gazebo::Entity linkEntity,
+                      ignition::gazebo::EntityComponentManager* ecm,
+                      ignition::gazebo::EventManager* eventManager)
 {
-    if (linkEntity == gz::sim::kNullEntity || !ecm || !eventManager) {
+    if (linkEntity == ignition::gazebo::kNullEntity || !ecm || !eventManager) {
         sError << "Failed to initialize Link" << std::endl;
         return false;
     }
@@ -131,7 +131,7 @@ bool Link::initialize(const gz::sim::Entity linkEntity,
     m_entity = linkEntity;
     m_eventManager = eventManager;
 
-    pImpl->link = gz::sim::Link(linkEntity);
+    pImpl->link = ignition::gazebo::Link(linkEntity);
 
     // Check that the link is valid
     if (!pImpl->link.Valid(*ecm)) {
@@ -146,7 +146,7 @@ bool Link::createECMResources()
 {
     sMessage << "  [" << m_entity << "] " << this->name() << std::endl;
 
-    using namespace gz::sim;
+    using namespace ignition::gazebo;
 
     // Create link components
     m_ecm->CreateComponent(m_entity, //
@@ -201,21 +201,21 @@ std::string Link::name(const bool scoped) const
 double Link::mass() const
 {
     const auto& inertial = utils::getExistingComponentData< //
-        gz::sim::components::Inertial>(m_ecm, m_entity);
+        ignition::gazebo::components::Inertial>(m_ecm, m_entity);
 
     return inertial.MassMatrix().Mass();
 }
 
 std::array<double, 3> Link::position() const
 {
-    const gz::math::Pose3d& linkPose = Impl::GetWorldPose(*this, *pImpl);
-    return utils::fromGzPose(linkPose).position;
+    const ignition::math::Pose3d& linkPose = Impl::GetWorldPose(*this, *pImpl);
+    return utils::fromIgnitionPose(linkPose).position;
 }
 
 std::array<double, 4> Link::orientation() const
 {
-    const gz::math::Pose3d& linkPose = Impl::GetWorldPose(*this, *pImpl);
-    return utils::fromGzPose(linkPose).orientation;
+    const ignition::math::Pose3d& linkPose = Impl::GetWorldPose(*this, *pImpl);
+    return utils::fromIgnitionPose(linkPose).orientation;
 }
 
 std::array<double, 3> Link::worldLinearVelocity() const
@@ -227,7 +227,7 @@ std::array<double, 3> Link::worldLinearVelocity() const
                                     this->name());
     }
 
-    return utils::fromGzVector(linkLinearVelocity.value());
+    return utils::fromIgnitionVector(linkLinearVelocity.value());
 }
 
 std::array<double, 3> Link::worldAngularVelocity() const
@@ -239,23 +239,23 @@ std::array<double, 3> Link::worldAngularVelocity() const
                                     this->name());
     }
 
-    return utils::fromGzVector(linkAngularVelocity.value());
+    return utils::fromIgnitionVector(linkAngularVelocity.value());
 }
 
 std::array<double, 3> Link::bodyLinearVelocity() const
 {
     const auto& linkBodyLinVel = utils::getComponentData< //
-        gz::sim::components::LinearVelocity>(m_ecm, m_entity);
+        ignition::gazebo::components::LinearVelocity>(m_ecm, m_entity);
 
-    return utils::fromGzVector(linkBodyLinVel);
+    return utils::fromIgnitionVector(linkBodyLinVel);
 }
 
 std::array<double, 3> Link::bodyAngularVelocity() const
 {
     const auto& linkBodyAngVel = utils::getComponentData< //
-        gz::sim::components::AngularVelocity>(m_ecm, m_entity);
+        ignition::gazebo::components::AngularVelocity>(m_ecm, m_entity);
 
-    return utils::fromGzVector(linkBodyAngVel);
+    return utils::fromIgnitionVector(linkBodyAngVel);
 }
 
 std::array<double, 3> Link::worldLinearAcceleration() const
@@ -268,40 +268,40 @@ std::array<double, 3> Link::worldLinearAcceleration() const
                                     this->name());
     }
 
-    return utils::fromGzVector(linkLinearAcceleration.value());
+    return utils::fromIgnitionVector(linkLinearAcceleration.value());
 }
 
 std::array<double, 3> Link::worldAngularAcceleration() const
 {
     const auto& linkWorldAngAcc = utils::getComponentData<
-        gz::sim::components::WorldAngularAcceleration>(m_ecm,
+        ignition::gazebo::components::WorldAngularAcceleration>(m_ecm,
                                                                 m_entity);
 
-    return utils::fromGzVector(linkWorldAngAcc);
+    return utils::fromIgnitionVector(linkWorldAngAcc);
 }
 
 std::array<double, 3> Link::bodyLinearAcceleration() const
 {
     const auto& linkBodyLinAcc = utils::getComponentData<
-        gz::sim::components::LinearAcceleration>(m_ecm, m_entity);
+        ignition::gazebo::components::LinearAcceleration>(m_ecm, m_entity);
 
-    return utils::fromGzVector(linkBodyLinAcc);
+    return utils::fromIgnitionVector(linkBodyLinAcc);
 }
 
 std::array<double, 3> Link::bodyAngularAcceleration() const
 {
     const auto& linkBodyAngAcc = utils::getComponentData<
-        gz::sim::components::AngularAcceleration>(m_ecm, m_entity);
+        ignition::gazebo::components::AngularAcceleration>(m_ecm, m_entity);
 
-    return utils::fromGzVector(linkBodyAngAcc);
+    return utils::fromIgnitionVector(linkBodyAngAcc);
 }
 
 bool Link::contactsEnabled() const
 {
     const auto& collisionEntities = m_ecm->ChildrenByComponents(
         m_entity,
-        gz::sim::components::Collision(),
-        gz::sim::components::ParentEntity(m_entity));
+        ignition::gazebo::components::Collision(),
+        ignition::gazebo::components::ParentEntity(m_entity));
 
     // If the link has no collision elements, we return true regardless.
     // To prevent surprises, e.g. users expecting that calling Link::inContact
@@ -316,7 +316,7 @@ bool Link::contactsEnabled() const
     for (const auto collisionEntity : collisionEntities) {
         const bool hasContactSensorData = m_ecm->EntityHasComponentType(
             collisionEntity,
-            gz::sim::components::ContactSensorData::typeId);
+            ignition::gazebo::components::ContactSensorData::typeId);
 
         // Return false if a collision does not have the contact data component
         if (!hasContactSensorData) {
@@ -334,15 +334,15 @@ bool Link::enableContactDetection(const bool enable)
         // Get all the collision entities of this link
         const auto& collisionEntities = m_ecm->ChildrenByComponents(
             m_entity,
-            gz::sim::components::Collision(),
-            gz::sim::components::ParentEntity(m_entity));
+            ignition::gazebo::components::Collision(),
+            ignition::gazebo::components::ParentEntity(m_entity));
 
         // Create the contact sensor data component that enables the Physics
         // system to extract contact information from the physics engine
         for (const auto collisionEntity : collisionEntities) {
             m_ecm->CreateComponent(
                 collisionEntity,
-                gz::sim::components::ContactSensorData());
+                ignition::gazebo::components::ContactSensorData());
         }
 
         return true;
@@ -352,8 +352,8 @@ bool Link::enableContactDetection(const bool enable)
         // Get all the collision entities of this link
         const auto& collisionEntities = m_ecm->ChildrenByComponents(
             m_entity,
-            gz::sim::components::Collision(),
-            gz::sim::components::ParentEntity(m_entity));
+            ignition::gazebo::components::Collision(),
+            ignition::gazebo::components::ParentEntity(m_entity));
 
         // Links with no collision elements already print a sDebug in the
         // contactsEnabled method, and not further action is needed
@@ -364,7 +364,7 @@ bool Link::enableContactDetection(const bool enable)
         // Delete the contact sensor data component
         for (const auto collisionEntity : collisionEntities) {
             m_ecm->RemoveComponent<
-                gz::sim::components::ContactSensorData>(
+                ignition::gazebo::components::ContactSensorData>(
                 collisionEntity);
         }
 
@@ -388,8 +388,8 @@ std::vector<scenario::core::Contact> Link::contacts() const
 {
     // Get the collisions of this link
     const auto& collisionEntities = m_ecm->EntitiesByComponents(
-        gz::sim::components::ParentEntity(m_entity),
-        gz::sim::components::Collision());
+        ignition::gazebo::components::ParentEntity(m_entity),
+        ignition::gazebo::components::Collision());
 
     // Return early if the link has no collision elements
     if (collisionEntities.empty()) {
@@ -406,19 +406,19 @@ std::vector<scenario::core::Contact> Link::contacts() const
         // Skip collisions entities without contact sensor
         if (!m_ecm->EntityHasComponentType(
                 collisionEntity,
-                gz::sim::components::ContactSensorData::typeId)) {
+                ignition::gazebo::components::ContactSensorData::typeId)) {
             continue;
         }
 
         // Get the contact data for the selected collision entity
-        const gz::msgs::Contacts& contactSensorData =
+        const ignition::msgs::Contacts& contactSensorData =
             utils::getExistingComponentData<
-                gz::sim::components::ContactSensorData>(
+                ignition::gazebo::components::ContactSensorData>(
                 m_ecm, collisionEntity);
 
-        // Convert the gz msg
+        // Convert the ignition msg
         const std::vector<core::Contact>& collisionContacts =
-            utils::fromGzContactsMsgs(m_ecm, contactSensorData);
+            utils::fromIgnitionContactsMsgs(m_ecm, contactSensorData);
 
         for (const auto& contact : collisionContacts) {
             assert(!contact.bodyA.empty());
@@ -458,8 +458,8 @@ std::vector<scenario::core::Contact> Link::contacts() const
 
 std::array<double, 6> Link::contactWrench() const
 {
-    auto totalForce = gz::math::Vector3d::Zero;
-    auto totalTorque = gz::math::Vector3d::Zero;
+    auto totalForce = ignition::math::Vector3d::Zero;
+    auto totalTorque = ignition::math::Vector3d::Zero;
 
     const auto& contacts = this->contacts();
 
@@ -474,10 +474,10 @@ std::array<double, 6> Link::contactWrench() const
             assert(contactPoint.torque == zero);
 
             // Link position
-            const auto& o_L = utils::toGzVector3(this->position());
+            const auto& o_L = utils::toIgnitionVector3(this->position());
 
             // Contact position
-            const auto& o_P = utils::toGzVector3(contactPoint.position);
+            const auto& o_P = utils::toIgnitionVector3(contactPoint.position);
 
             // Relative position
             const auto L_o_P = o_P - o_L;
@@ -486,7 +486,7 @@ std::array<double, 6> Link::contactWrench() const
             // with the orientation of the world frame. This simplifies the
             // conversion since we have to take into account only the
             // displacement.
-            const auto& force = utils::toGzVector3(contactPoint.force);
+            const auto& force = utils::toIgnitionVector3(contactPoint.force);
 
             // The force does not have to be changed
             totalForce += force;
@@ -520,29 +520,29 @@ bool Link::applyWorldWrench(const std::array<double, 3>& force,
                             const std::array<double, 3>& torque,
                             const double duration)
 {
-    // Adapted from gz::sim::Link::AddWorld{Force,Wrench}
+    // Adapted from ignition::gazebo::Link::AddWorld{Force,Wrench}
 
     // Initialize the force and the torque with the input data
-    const auto& forceGzMath = utils::toGzVector3(force);
-    const auto& torqueGzMath = utils::toGzVector3(torque);
+    const auto& forceIgnitionMath = utils::toIgnitionVector3(force);
+    const auto& torqueIgnitionMath = utils::toIgnitionVector3(torque);
 
     const auto entityWithSimTime = utils::getFirstParentEntityWithComponent<
-        gz::sim::components::SimulatedTime>(m_ecm, m_entity);
-    assert(entityWithSimTime != gz::sim::kNullEntity);
+        ignition::gazebo::components::SimulatedTime>(m_ecm, m_entity);
+    assert(entityWithSimTime != ignition::gazebo::kNullEntity);
 
     // Get the current simulated time
     const auto& now = utils::getExistingComponentData<
-        gz::sim::components::SimulatedTime>(m_ecm, entityWithSimTime);
+        ignition::gazebo::components::SimulatedTime>(m_ecm, entityWithSimTime);
 
     // Create a new wrench with duration
     const utils::WrenchWithDuration wrench(
-        forceGzMath,
-        torqueGzMath,
+        forceIgnitionMath,
+        torqueIgnitionMath,
         utils::doubleToSteadyClockDuration(duration),
         now);
 
     utils::LinkWrenchCmd& linkWrenchCmd = utils::getComponentData<
-        gz::sim::components::ExternalWorldWrenchCmdWithDuration>(
+        ignition::gazebo::components::ExternalWorldWrenchCmdWithDuration>(
         m_ecm, m_entity);
 
     linkWrenchCmd.addWorldWrench(wrench);
@@ -553,11 +553,11 @@ bool Link::applyWorldWrenchToCoM(const std::array<double, 3>& force,
                                  const std::array<double, 3>& torque,
                                  const double duration)
 {
-    const gz::math::Pose3d& worldPose = Impl::GetWorldPose(*this, *pImpl);
+    const ignition::math::Pose3d& worldPose = Impl::GetWorldPose(*this, *pImpl);
 
     // Get the data of the inertial frame
     auto inertial = utils::getExistingComponentData< //
-        gz::sim::components::Inertial>(m_ecm, m_entity);
+        ignition::gazebo::components::Inertial>(m_ecm, m_entity);
 
     // We want the force to be applied at the center of mass, but
     // ExternalWorldWrenchCmd applies the force at the link origin so we need to
@@ -568,13 +568,13 @@ bool Link::applyWorldWrenchToCoM(const std::array<double, 3>& force,
         worldPose.Rot().RotateVector(inertial.Pose().Pos());
 
     // Initialize the force and the torque with the input data
-    const auto forceGzMath = utils::toGzVector3(force);
-    auto torqueGzMath = utils::toGzVector3(torque);
+    const auto forceIgnitionMath = utils::toIgnitionVector3(force);
+    auto torqueIgnitionMath = utils::toIgnitionVector3(torque);
 
     // Sum the component given by the projection of the force to the link origin
-    torqueGzMath += linkCOMInWorldCoordinates.Cross(forceGzMath);
+    torqueIgnitionMath += linkCOMInWorldCoordinates.Cross(forceIgnitionMath);
 
-    return this->applyWorldWrench(utils::fromGzVector(forceGzMath),
-                                  utils::fromGzVector(torqueGzMath),
+    return this->applyWorldWrench(utils::fromIgnitionVector(forceIgnitionMath),
+                                  utils::fromIgnitionVector(torqueIgnitionMath),
                                   duration);
 }

@@ -24,19 +24,19 @@
  * limitations under the License.
  */
 
-#ifndef GZ_SIM_COMPONENTS_JOINTVELOCITYTARGET_H
-#define GZ_SIM_COMPONENTS_JOINTVELOCITYTARGET_H
+#ifndef IGNITION_GAZEBO_COMPONENTS_JOINTVELOCITYTARGET_H
+#define IGNITION_GAZEBO_COMPONENTS_JOINTVELOCITYTARGET_H
 
 #include <vector>
 
-#include <gz/sim/components/Component.hh>
-#include <gz/sim/components/Factory.hh>
-#include <gz/sim/components/Serialization.hh>
-#include <gz/sim/config.hh>
+#include <ignition/gazebo/components/Component.hh>
+#include <ignition/gazebo/components/Factory.hh>
+#include <ignition/gazebo/components/Serialization.hh>
+#include <ignition/gazebo/config.hh>
 
-namespace gz::sim {
+namespace ignition::gazebo {
     // Inline bracket to help doxygen filtering.
-    inline namespace GZ_SIM_VERSION_NAMESPACE {
+    inline namespace IGNITION_GAZEBO_VERSION_NAMESPACE {
         namespace components {
             /// \brief Joint velocity target in SI units (rad/s for
             ///        revolute, m/s for prismatic) used by joint
@@ -48,11 +48,11 @@ namespace gz::sim {
                 Component<std::vector<double>,
                           class JointVelocityTargetTag,
                           serializers::VectorDoubleSerializer>;
-            GZ_SIM_REGISTER_COMPONENT(
-                "gz_sim_components.JointVelocityTarget",
+            IGN_GAZEBO_REGISTER_COMPONENT(
+                "ign_gazebo_components.JointVelocityTarget",
                 JointVelocityTarget)
         } // namespace components
-    } // namespace GZ_SIM_VERSION_NAMESPACE
-} // namespace gz::sim
+    } // namespace IGNITION_GAZEBO_VERSION_NAMESPACE
+} // namespace ignition::gazebo
 
-#endif // GZ_SIM_COMPONENTS_JOINTVELOCITYTARGET_H
+#endif // IGNITION_GAZEBO_COMPONENTS_JOINTVELOCITYTARGET_H

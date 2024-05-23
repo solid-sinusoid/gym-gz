@@ -78,7 +78,7 @@ namespace scenario::gazebo::utils {
     /**
      * Find a SDF file in the filesystem.
      *
-     * The search path is defined with the ``GZ_SIM_RESOURCE_PATH``
+     * The search path is defined with the ``IGN_GAZEBO_RESOURCE_PATH``
      * environment variable.
      *
      * @param fileName The SDF file name.
@@ -104,7 +104,7 @@ namespace scenario::gazebo::utils {
      *
      * @param fileName An SDF file. It could be either an absolute path
      *        to the file or the file name if the parent folder is part
-     *        of the ``GZ_SIM_RESOURCE_PATH`` environment variable.
+     *        of the ``IGN_GAZEBO_RESOURCE_PATH`` environment variable.
      * @return The SDF string if the file was found and is valid, an
      *         empty string otherwise.
      */
@@ -117,7 +117,7 @@ namespace scenario::gazebo::utils {
      *
      * @param fileName An SDF file. It could be either an absolute path
      *        to the file or the file name if the parent folder is part
-     *        of the ``GZ_SIM_RESOURCE_PATH`` environment variable.
+     *        of the ``IGN_GAZEBO_RESOURCE_PATH`` environment variable.
      * @return The name of the model if the file was found and is valid,
      *         an empty string otherwise.
      */
@@ -128,7 +128,7 @@ namespace scenario::gazebo::utils {
      *
      * @param fileName An SDF file. It could be either an absolute path
      *        to the file or the file name if the parent folder is part
-     *        of the ``GZ_SIM_RESOURCE_PATH`` environment variable.
+     *        of the ``IGN_GAZEBO_RESOURCE_PATH`` environment variable.
      * @param worldIndex The index of the world in the SDF file. By
      *        default it finds the first world.
      * @return The name of the world if the file was found and is valid,
@@ -153,7 +153,7 @@ namespace scenario::gazebo::utils {
      * Get a SDF model file from a Fuel URI.
      *
      * @note A valid URI has the following form:
-     * https://fuel.gazebosim.org/openrobotics/models/model_name
+     * https://fuel.ignitionrobotics.org/openrobotics/models/model_name
      *
      * @param URI A valid Fuel URI.
      * @param useCache Load the model from the local cache.
@@ -161,6 +161,45 @@ namespace scenario::gazebo::utils {
      */
     std::string getModelFileFromFuel(const std::string& URI,
                                      const bool useCache = false);
+
+
+    /**
+     * Get file paths of all models that belong to a collection.
+     *
+     * @note If any of the models is not stored in the local cache,
+     * it will be downloaded during the function call.
+     *
+     * @param collectionURI A valid URI to a Fuel collection.
+     * @return The absolute file paths of all models from the collection.
+     */
+    std::vector<std::string>
+    getFuelCollectionModelPaths(const std::string& collectionURI);
+
+    /**
+     * Get URIs of all models that belong to a collection.
+     *
+     * @note If any of the models is not stored in the local cache,
+     * it will be downloaded during the function call.
+     *
+     * @param collectionURI A valid URI to a Fuel collection.
+     * @return The URIs of all models from the collection.
+     */
+    std::vector<std::string>
+    getFuelCollectionModelURIs(const std::string& collectionURI);
+
+    /**
+     * Get file paths to all models in the local cache. An optional filter can
+     * be applied to restrict the returned models such that they belong to a
+     * specific owner and/or have a matching name.
+     *
+     * @param owner The name of the model's owner. Leave empty to return models
+     * that belong to all owners.
+     * @param name The model's name. Leave empty to disable name filter.
+     * @return The absolute file paths of all models from local cache that
+     * match criteria based on provided function arguments, if any.
+     */
+    std::vector<std::string> getLocalCacheModelPaths(const std::string& owner,
+                                                     const std::string& name);
 
     /**
      * Generate a random alpha numeric string.
@@ -182,7 +221,7 @@ namespace scenario::gazebo::utils {
     /**
      * Convert a URDF string to a SDF string.
      *
-     * @param urdfString A URDF string.
+     * @param urdfFile A URDF string.
      * @return The SDF string if the URDF string was successfully
      *         converted, an empty string otherwise.
      */

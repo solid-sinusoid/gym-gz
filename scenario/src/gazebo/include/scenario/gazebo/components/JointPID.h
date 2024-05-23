@@ -24,24 +24,24 @@
  * limitations under the License.
  */
 
-#ifndef GZ_SIM_COMPONENTS_JOINTPID_H
-#define GZ_SIM_COMPONENTS_JOINTPID_H
+#ifndef IGNITION_GAZEBO_COMPONENTS_JOINTPID_H
+#define IGNITION_GAZEBO_COMPONENTS_JOINTPID_H
 
-#include <gz/sim/components/Component.hh>
-#include <gz/sim/components/Factory.hh>
-#include <gz/sim/config.hh>
-#include <gz/math/PID.hh>
+#include <ignition/gazebo/components/Component.hh>
+#include <ignition/gazebo/components/Factory.hh>
+#include <ignition/gazebo/config.hh>
+#include <ignition/math/PID.hh>
 
-namespace gz::sim {
+namespace ignition::gazebo {
     // Inline bracket to help doxygen filtering.
-    inline namespace GZ_SIM_VERSION_NAMESPACE {
+    inline namespace IGNITION_GAZEBO_VERSION_NAMESPACE {
         namespace components {
             /// \brief Joint PID controller.
-            using JointPID = Component<gz::math::PID, class JointPIDTag>;
-            GZ_SIM_REGISTER_COMPONENT("gz_sim_components.JointPID",
+            using JointPID = Component<ignition::math::PID, class JointPIDTag>;
+            IGN_GAZEBO_REGISTER_COMPONENT("ign_gazebo_components.JointPID",
                                           JointPID)
         } // namespace components
-    } // namespace GZ_SIM_VERSION_NAMESPACE
-} // namespace gz::sim
+    } // namespace IGNITION_GAZEBO_VERSION_NAMESPACE
+} // namespace ignition::gazebo
 
-#endif // GZ_SIM_COMPONENTS_JOINTPID_H
+#endif // IGNITION_GAZEBO_COMPONENTS_JOINTPID_H

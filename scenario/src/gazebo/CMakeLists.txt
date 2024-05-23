@@ -51,7 +51,7 @@ target_include_directories(ExtraComponents INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:${SCENARIO_INSTALL_INCLUDEDIR}>)
 
-target_link_libraries(ExtraComponents INTERFACE ${gz-sim.core})
+target_link_libraries(ExtraComponents INTERFACE ${ignition-gazebo.core})
 
 set_target_properties(ExtraComponents PROPERTIES
     PUBLIC_HEADER "${EXTRA_COMPONENTS_PUBLIC_HEADERS}")
@@ -94,13 +94,13 @@ target_include_directories(ScenarioGazebo PUBLIC
 target_link_libraries(ScenarioGazebo
     PUBLIC
     ScenarioCore::ScenarioABC
-    ${gz-sim.core}
-    ${gz-common.gz-common}
+    ${ignition-gazebo.core}
+    ${ignition-common.ignition-common}
     PRIVATE
     ScenarioCore::CoreUtils
     ScenarioGazebo::ExtraComponents
-    ${gz-physics.gz-physics}
-    ${gz-fuel_tools.gz-fuel_tools})
+    ${ignition-physics.ignition-physics}
+    ${ignition-fuel_tools.ignition-fuel_tools})
 
 set_target_properties(ScenarioGazebo PROPERTIES
     PUBLIC_HEADER "${SCENARIO_GAZEBO_PUBLIC_HDRS}")
@@ -123,11 +123,11 @@ target_link_libraries(GazeboSimulator
     ScenarioCore::ScenarioABC
     PRIVATE
     tiny-process-library::tiny-process-library
-    ${gz-sim.core}
+    ${ignition-gazebo.core}
     ScenarioCore::CoreUtils
     ScenarioGazebo::ScenarioGazebo
     ScenarioGazebo::ExtraComponents
-    ${gz-fuel_tools.gz-fuel_tools})
+    ${ignition-fuel_tools.ignition-fuel_tools})
 
 set_target_properties(GazeboSimulator PROPERTIES
     PUBLIC_HEADER include/scenario/gazebo/GazeboSimulator.h)
@@ -171,7 +171,7 @@ install_basic_package_files(ScenarioGazebo
     VERSION ${PROJECT_VERSION}
     COMPATIBILITY AnyNewerVersion
     EXPORT ScenarioGazeboExport
-    DEPENDENCIES ScenarioCore ${gz-sim} ${gz-common}
+    DEPENDENCIES ScenarioCore ${ignition-gazebo} ${ignition-common}
     NAMESPACE ScenarioGazebo::
     NO_CHECK_REQUIRED_COMPONENTS_MACRO
     INSTALL_DESTINATION

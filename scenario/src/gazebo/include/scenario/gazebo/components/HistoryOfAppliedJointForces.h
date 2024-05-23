@@ -24,18 +24,18 @@
  * limitations under the License.
  */
 
-#ifndef GZ_SIM_COMPONENTS_HISTORYOFAPPLIEDJOINTFORCES_H
-#define GZ_SIM_COMPONENTS_HISTORYOFAPPLIEDJOINTFORCES_H
+#ifndef IGNITION_GAZEBO_COMPONENTS_HISTORYOFAPPLIEDJOINTFORCES_H
+#define IGNITION_GAZEBO_COMPONENTS_HISTORYOFAPPLIEDJOINTFORCES_H
 
 #include "scenario/gazebo/helpers.h"
 
-#include <gz/sim/components/Component.hh>
-#include <gz/sim/components/Factory.hh>
-#include <gz/sim/config.hh>
+#include <ignition/gazebo/components/Component.hh>
+#include <ignition/gazebo/components/Factory.hh>
+#include <ignition/gazebo/config.hh>
 
-namespace gz::sim {
+namespace ignition::gazebo {
     // Inline bracket to help doxygen filtering.
-    inline namespace GZ_SIM_VERSION_NAMESPACE {
+    inline namespace IGNITION_GAZEBO_VERSION_NAMESPACE {
         namespace components {
             /// \brief Fixed-size queue that stores a window of applied joint
             ///        forces.
@@ -45,11 +45,11 @@ namespace gz::sim {
             using HistoryOfAppliedJointForces =
                 Component<scenario::gazebo::utils::FixedSizeQueue,
                           class HistoryOfAppliedJointForcesTag>;
-            GZ_SIM_REGISTER_COMPONENT(
-                "gz_sim_components.HistoryOfAppliedJointForces",
+            IGN_GAZEBO_REGISTER_COMPONENT(
+                "ign_gazebo_components.HistoryOfAppliedJointForces",
                 HistoryOfAppliedJointForces)
         } // namespace components
-    } // namespace GZ_SIM_VERSION_NAMESPACE
-} // namespace gz::sim
+    } // namespace IGNITION_GAZEBO_VERSION_NAMESPACE
+} // namespace ignition::gazebo
 
-#endif // GZ_SIM_COMPONENTS_HISTORYOFAPPLIEDJOINTFORCES_H
+#endif // IGNITION_GAZEBO_COMPONENTS_HISTORYOFAPPLIEDJOINTFORCES_H

@@ -129,7 +129,7 @@ It shows the following functionalities:
     def insert_bucket(world: scenario_gazebo.World) -> scenario_gazebo.Model:
 
         # Insert objects from Fuel
-        uri = lambda org, name: f"https://fuel.gazebosim.org/{org}/models/{name}"
+        uri = lambda org, name: f"https://fuel.gazebosim.org/1.0/{org}/models/{name}"
 
         # Download the cube SDF file
         bucket_sdf = scenario_gazebo.get_model_file_from_fuel(
@@ -155,7 +155,7 @@ It shows the following functionalities:
     def insert_table(world: scenario_gazebo.World) -> scenario_gazebo.Model:
 
         # Insert objects from Fuel
-        uri = lambda org, name: f"https://fuel.gazebosim.org/{org}/models/{name}"
+        uri = lambda org, name: f"https://fuel.gazebosim.org/1.0/{org}/models/{name}"
 
         # Download the cube SDF file
         bucket_sdf = scenario_gazebo.get_model_file_from_fuel(
@@ -177,7 +177,7 @@ It shows the following functionalities:
     ) -> scenario_gazebo.Model:
 
         # Insert objects from Fuel
-        uri = lambda org, name: f"https://fuel.gazebosim.org/{org}/models/{name}"
+        uri = lambda org, name: f"https://fuel.gazebosim.org/1.0/{org}/models/{name}"
 
         # Download the cube SDF file
         cube_sdf = scenario_gazebo.get_model_file_from_fuel(
