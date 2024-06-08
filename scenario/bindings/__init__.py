@@ -77,9 +77,12 @@ def setup_gazebo_environment() -> None:
 
     else:
         raise ValueError(detect_install_mode())
-
     plugin_dir = install_prefix / "lib" / "scenario" / "plugins"
     ign_gazebo_system_plugin_path += f":{str(plugin_dir)}"
+    # ign_ros2_plugin exist in this path
+    if "LD_LIBRARY_PATH" in os.environ:
+        ld_libraty = str(os.environ.get('LD_LIBRARY_PATH'))
+        ign_gazebo_system_plugin_path += f":{ld_libraty}"
 
     os.environ["IGN_GAZEBO_SYSTEM_PLUGIN_PATH"] = ign_gazebo_system_plugin_path
 
