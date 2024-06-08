@@ -14,7 +14,6 @@ if(SCENARIO_USE_IGNITION)
 
     add_subdirectory(gazebo)
     add_subdirectory(plugins)
-    add_subdirectory(controllers)
 
     list(APPEND SCENARIO_COMPONENTS ScenarioGazebo ScenarioControllers)
 

@@ -23,5 +23,3 @@
 #  limitations under the License.
 
 add_subdirectory(Physics)
-add_subdirectory(JointController)
-add_subdirectory(ControllerRunner)
