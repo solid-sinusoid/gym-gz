@@ -72,7 +72,7 @@ class GazeboEnvRandomizer(gym.Wrapper, TaskRandomizer, abc.ABC):
     # ===============
 
     def reset(
-        self, seed: int = None, options: Dict = {}, **kwargs
+        self, seed: int | None = None, options: Dict = {}, **kwargs
     ) -> typing.ResetReturn:
         # Reset the physics
         if self._physics_randomizer.physics_expired() and seed is None:

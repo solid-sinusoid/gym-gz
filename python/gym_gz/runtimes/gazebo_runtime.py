@@ -149,14 +149,12 @@ class GazeboRuntime(runtime.Runtime):
         # Get info
         info = self.task.get_info()
 
-        return State(
-            (
-                Observation(observation),
-                Reward(reward),
-                Terminated(terminated),
-                Truncated(truncated),
-                Info(info),
-            )
+        return (
+            observation,
+            reward,
+            terminated,
+            truncated,
+            info,
         )
 
     def reset(self, seed: int = None, options: Dict = {}, **kwargs) -> ResetReturn:
@@ -184,7 +182,7 @@ class GazeboRuntime(runtime.Runtime):
         if self.render_mode == "human":
             self.render()
 
-        return ResetReturn((Observation(observation), Info(info)))
+        return (observation, info)
 
     def render(self, **kwargs) -> None:
         mode = self.render_mode

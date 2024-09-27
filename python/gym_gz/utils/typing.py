@@ -7,18 +7,33 @@ from typing import Dict, List, NewType, Tuple, Union
 import gymnasium as gym
 import numpy as np
 
-Terminated = NewType("Terminated", bool)
-Done = NewType("Done", bool)
-Truncated = NewType("Truncated", bool)
-Info = NewType("Info", Dict)
-Reward = NewType("Reward", float)
-Observation = NewType("Observation", np.ndarray)
-ResetReturn = NewType("ResetReturn", Tuple[Observation, Info])
-Action = NewType("Action", Union[np.ndarray, np.number])
+# Terminated = NewType("Terminated", bool)
+# Done = NewType("Done", bool)
+# Truncated = NewType("Truncated", bool)
+# Info = NewType("Info", Dict)
+# Reward = NewType("Reward", float)
+# Observation = NewType("Observation", np.ndarray)
+# ResetReturn = NewType("ResetReturn", Tuple[Observation, Info])
+# Action = NewType("Action", Union[np.ndarray, np.number])
+#
+# SeedList = NewType("SeedList", List[int])
+#
+# State = NewType("State", Tuple[Observation, Reward, Terminated, Truncated, Info])
+#
+# ActionSpace = NewType("ActionSpace", gym.spaces.Space)
+# ObservationSpace = NewType("ObservationSpace", gym.spaces.Space)
 
-SeedList = NewType("SeedList", List[int])
+Terminated = bool
+Done = bool
+Truncated = bool
+Info = dict
+Reward = float
+Observation = np.ndarray
+ResetReturn = tuple[Observation, Info]
+Action = np.ndarray | np.number
 
-State = NewType("State", Tuple[Observation, Reward, Terminated, Truncated, Info])
+SeedList = list[int]
+State = tuple[Observation, Reward, Terminated, Truncated, Info]
 
-ActionSpace = NewType("ActionSpace", gym.spaces.Space)
-ObservationSpace = NewType("ObservationSpace", gym.spaces.Space)
+ActionSpace = gym.spaces.Space
+ObservationSpace = gym.spaces.Space
